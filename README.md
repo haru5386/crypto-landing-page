@@ -41,6 +41,13 @@ yarn build
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
 
+## 更新語言包
+
+[語言包](https://docs.google.com/spreadsheets/d/1z52Kdt_Whwo4Kqp1lR087mvvKnLUGEzNIhWkWKkcKM8/edit?usp=sharing).
+```bash
+yarn update
+```
+
 ## Ref
 
 - [vitesse-nuxt3](https://github.com/antfu/vitesse-nuxt3)

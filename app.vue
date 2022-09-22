@@ -4,7 +4,7 @@ import { InitApp } from './utils/initApp'
 
 // 語言包初始化
 InitApp()
-const locale = useState<string>('locale.i18n')
+const locale = useState<string>('locale.setting')
 
 provide(ID_INJECTION_KEY, {
   prefix: 100,
