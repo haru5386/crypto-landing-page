@@ -4,6 +4,7 @@
     <!-- config public  測試： {{ ENV }} <br> -->
     <Logos />
     <Examples />
+    <SwitchLanguage />
   </div>
 </template>
 <script setup lang="ts">

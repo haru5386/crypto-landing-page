@@ -1,5 +1,10 @@
-<script setup>
+<script lang="ts" setup>
 import { ID_INJECTION_KEY } from 'element-plus'
+import { InitApp } from './utils/initApp'
+
+// 語言包初始化
+InitApp()
+const locale = useState<string>('locale.i18n')
 
 provide(ID_INJECTION_KEY, {
   prefix: 100,
@@ -8,5 +13,9 @@ provide(ID_INJECTION_KEY, {
 </script>
 
 <template>
-  <NuxtPage />
+  <Html :lang="locale">
+    <Body>
+      <NuxtPage />
+    </Body>
+  </Html>
 </template>
