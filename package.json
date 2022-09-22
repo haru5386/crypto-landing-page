@@ -5,8 +5,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "nuxi dev",
-    "build": "nuxi build",
+    "dev": "cross-env MODE=dev nuxi dev",
+    "build-uat": "cross-env MODE=uat nuxi build",
+    "build-production": "cross-env MODE=production nuxi build",
     "preview": "nuxi preview",
     "start": "node .output/server/index.mjs",
     "generate": "nuxi generate"
