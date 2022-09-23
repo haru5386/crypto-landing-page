@@ -25,173 +25,198 @@
     }
     color: $color;
 }
+
 // 英文字型
 @font-face {
     font-family: "Barlow";
-    src: url("/static/font/Barlow-Regular.ttf");
+    src: url("@/assets/font/Barlow-Regular.ttf");
     font-weight: 400;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Barlow";
-    src: url("/static/font/Barlow-Medium.ttf");
+    src: url("@/assets/font/Barlow-Medium.ttf");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Barlow";
-    src: url("/static/font/Barlow-Bold.ttf");
+    src: url("@/assets/font/Barlow-Bold.ttf");
     font-weight: 700;
     font-style: normal;
 }
+
 // 非英文字體
 @font-face {
     font-family: "Noto Sans";
-    src: url("/static/font/NotoSans-Bold.ttf");
+    src: url("@/assets/font/NotoSans-Bold.ttf");
     font-weight: 700;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans";
-    src: url("/static/font/NotoSans-Medium.ttf");
+    src: url("@/assets/font/NotoSans-Medium.ttf");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans";
-    src: url("/static/font/NotoSans-Regular.ttf");
+    src: url("@/assets/font/NotoSans-Regular.ttf");
     font-weight: 400;
     font-style: normal;
 }
+
 // 中文字體
 @font-face {
     font-family: "Noto Sans SC";
-    src: url("/static/font/NotoSansSC-Bold.otf");
+    src: url("@/assets/font/NotoSansSC-Bold.otf");
     font-weight: 700;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans SC";
-    src: url("/static/font/NotoSansSC-Medium.otf");
+    src: url("@/assets/font/NotoSansSC-Medium.otf");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans SC";
-    src: url("/static/font/NotoSansSC-Regular.otf");
+    src: url("@/assets/font/NotoSansSC-Regular.otf");
     font-weight: 400;
     font-style: normal;
 }
+
 // 韓文字體
 @font-face {
     font-family: "Noto Sans KR";
-    src: url("/static/font/NotoSansKR-Bold.otf");
+    src: url("@/assets/font/NotoSansKR-Bold.otf");
     font-weight: 700;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans KR";
-    src: url("/static/font/NotoSansKR-Medium.otf");
+    src: url("@/assets/font/NotoSansKR-Medium.otf");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans KR";
-    src: url("/static/font/NotoSansKR-Regular.otf");
+    src: url("@/assets/font/NotoSansKR-Regular.otf");
     font-weight: 400;
     font-style: normal;
 }
+
 // 日文字體
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("/static/font/NotoSansJP-Bold.otf");
+    src: url("@/assets/font/NotoSansJP-Bold.otf");
     font-weight: 700;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("/static/font/NotoSansJP-Medium.otf");
+    src: url("@/assets/font/NotoSansJP-Medium.otf");
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("/static/font/NotoSansJP-Regular.otf");
+    src: url("@/assets/font/NotoSansJP-Regular.otf");
     font-weight: 400;
     font-style: normal;
 }
+
+:lang(en_US) {
+    font-family: Barlow, "Noto Sans";
+}
+
+:lang(zh_CN) {
+    font-family: "Noto Sans SC", Barlow, "Noto Sans";
+}
+
+:lang(vi_VN) {
+    font-family: Barlow, "Noto Sans";
+}
+
+:lang(ja_JP) {
+    font-family: "Noto Sans JP", Barlow, "Noto Sans";
+}
+
+:lang(ko_KR) {
+    font-family: "Noto Sans KR", Barlow, "Noto Sans";
+}
+
 .font-heading-1 {
-    font-family: Barlow,"Noto Sans","Noto Sans SC", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 700;
     font-size: 36px;
     line-height: 54px;
 }
 
 .font-heading-2 {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
 }
 
 .font-heading-3 {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 700;
     font-size: 20px;
     line-height: 30px;
 }
 
 .font-body1-bold {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
 }
 
 .font-body1-med {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
 }
 
 .font-body1-reg {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
 }
 
 .font-body2-bold {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
 }
 
 .font-body2-med {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 500;
     font-size: 14px;
     line-height: 21px;
 }
 
 .font-body2-reg {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
 }
 
 .font-cap1-bold {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 700;
     font-size: 12px;
     line-height: 18px;
 }
 
 .font-cap1-reg {
-    font-family: Barlow,"Noto Sans", "Noto Sans SC","Noto Sans JP", "Noto Sans KR";
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
