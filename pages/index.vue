@@ -3,7 +3,7 @@
     <!-- config private 測試： {{ API_SECRET }} <br> -->
     <!-- config public  測試： {{ ENV }} <br> -->
     <div class="aaa">
-      {{ $t('test') }}
+      {{ $t('key1') }}
     </div>
     <Logos />
     <Examples />
@@ -25,7 +25,7 @@ console.log(env)
   padding-top: 60px;
   text-align: center;
   .aaa {
-    @include font('Heading1', yellow);
+    @include font('Heading1', red);
   }
 }
 </style>
