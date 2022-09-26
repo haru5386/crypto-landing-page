@@ -1,0 +1,47 @@
+// Identity Color (主視覺色)
+$color_identity_Primary: #e0b954;
+$color_identity_Secondary: #f1d961;
+$color_identity_Dark: #cda146;
+$color_identity_Light: #fbf3cb;
+$color_identity_Linear: linear-gradient($color_identity_Primary, $color_identity_Secondary);
+
+// UI State Colors (狀態使用)
+$color_state_Success: #1eb473;
+$color_state_Error: #e13232;
+$color_state_Buy: #2aa59d;
+$color_state_Sell: #fa6464;
+$color_state_SuccessLight: #def4ea;
+$color_state_ErrorLight: #fbe1e1;
+$color_state_ErrorLight: #fcba34;
+
+// UI State Colors (灰階色)
+$color_gray_Black: #11100f;
+$color_gray_90: #262626;
+$color_gray_80: #2d2d2d;
+$color_gray_70: #3c3a3a;
+$color_gray_60: #78787c;
+$color_gray_50: #a5a5a8;
+$color_gray_40: #d2d2d3;
+$color_gray_30: #e4e4e5;
+$color_gray_20: #ededee;
+$color_gray_10: #f6f6f6;
+$color_gray_White: #ffffff;
+
+// Spacing
+$base-space: 8px;
+$spacing_0-5: $base-space * 0.5;
+$spacing_1: $base-space;
+$spacing_1-5: $base-space * 1.5;
+$spacing_2: $base-space * 2;
+$spacing_2-5: $base-space * 2.5;
+$spacing_3: $base-space * 3;
+$spacing_4: $base-space * 4;
+$spacing_5: $base-space * 5;
+$spacing_6: $base-space * 6;
+$spacing_7: $base-space * 7;
+$spacing_8: $base-space * 8;
+$spacing_10: $base-space * 10;
+$spacing_12: $base-space * 12;
+$spacing_14: $base-space * 14;
+$spacing_16: $base-space * 16;
+$spacing_24: $base-space * 24;

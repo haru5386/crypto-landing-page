@@ -2,6 +2,9 @@
   <div class="page-index">
     <!-- config private 測試： {{ API_SECRET }} <br> -->
     <!-- config public  測試： {{ ENV }} <br> -->
+    <div class="aaa">
+      {{ $t('key1') }}
+    </div>
     <Logos />
     <Examples />
     <SwitchLanguage />
@@ -16,9 +19,13 @@ const env = { ...runtimeConfig.public }
 console.log(env)
 
 </script>
-<style>
+<style lang="scss" scoped>
+@import '../assets/scss';
 .page-index {
   padding-top: 60px;
   text-align: center;
+  .aaa {
+    @include font('Heading1', red);
+  }
 }
 </style>

@@ -1,0 +1,223 @@
+// 主要字型 Mixin
+@mixin font($name, $color: #000) {
+    @if $name == Heading1 {
+        @extend .font-heading-1;
+    } @else if $name == Heading2 {
+        @extend .font-heading-2;
+    } @else if $name == Heading3 {
+        @extend .font-heading-3;
+    } @else if $name == Body1-Bold {
+        @extend .font-body1-bold;
+    } @else if $name == Body1-Med {
+        @extend .font-body1-med;
+    } @else if $name == Body1-Reg {
+        @extend .font-body1-reg;
+    } @else if $name == Body2-Bold {
+        @extend .font-body2-bold;
+    } @else if $name == Body2-Med {
+        @extend .font-body2-med;
+    } @else if $name == Body2-Reg {
+        @extend .font-body2-reg;
+    } @else if $name == Cap1-Bold {
+        @extend .font-cap1-bold;
+    } @else if $name == Cap1-Reg {
+        @extend .font-cap1-reg;
+    }
+    color: $color;
+}
+
+// 英文字型
+@font-face {
+    font-family: "Barlow";
+    src: url("@/assets/font/Barlow-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Barlow";
+    src: url("@/assets/font/Barlow-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Barlow";
+    src: url("@/assets/font/Barlow-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+// 非英文字體
+@font-face {
+    font-family: "Noto Sans";
+    src: url("@/assets/font/NotoSans-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("@/assets/font/NotoSans-Medium.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("@/assets/font/NotoSans-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+// 中文字體
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("@/assets/font/NotoSansSC-Bold.otf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("@/assets/font/NotoSansSC-Medium.otf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans SC";
+    src: url("@/assets/font/NotoSansSC-Regular.otf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+// 韓文字體
+@font-face {
+    font-family: "Noto Sans KR";
+    src: url("@/assets/font/NotoSansKR-Bold.otf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    src: url("@/assets/font/NotoSansKR-Medium.otf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans KR";
+    src: url("@/assets/font/NotoSansKR-Regular.otf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+// 日文字體
+@font-face {
+    font-family: "Noto Sans JP";
+    src: url("@/assets/font/NotoSansJP-Bold.otf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans JP";
+    src: url("@/assets/font/NotoSansJP-Medium.otf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans JP";
+    src: url("@/assets/font/NotoSansJP-Regular.otf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+:lang(en) {
+    font-family: Barlow, "Noto Sans";
+}
+
+:lang(zh) {
+    font-family: "Noto Sans SC", Barlow, "Noto Sans";
+}
+
+:lang(vi) {
+    font-family: Barlow, "Noto Sans";
+}
+
+:lang(ja) {
+    font-family: "Noto Sans JP", Barlow, "Noto Sans";
+}
+
+:lang(ko) {
+    font-family: "Noto Sans KR", Barlow, "Noto Sans";
+}
+
+.font-heading-1 {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+}
+
+.font-heading-2 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.font-heading-3 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.font-body1-bold {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font-body1-med {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font-body1-reg {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.font-body2-bold {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.font-body2-med {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.font-body2-reg {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.font-cap1-bold {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.font-cap1-reg {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+}
