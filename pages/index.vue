@@ -8,6 +8,7 @@
     <Logos />
     <Examples />
     <SwitchLanguage />
+    <StoreData />
   </div>
 </template>
 <script setup lang="ts">
