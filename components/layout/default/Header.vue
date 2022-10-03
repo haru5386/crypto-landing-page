@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="nav"
-  >
+  <div class="nav">
     <div class="nav_left">
       <img
         src="@/assets/images/logo.png"
@@ -26,19 +24,123 @@
       >
         <img src="@/assets/images/menu.svg">
       </div>
-      <!-- 語言 -->
-      <div class="icon member-center">
-        <div class="member-centre-title">
-          語言
-          <i
-            class="el-icon-arrow-down"
-          />
+
+      <div
+        v-if="!isLogin"
+        class="login-buttons"
+      >
+        <button
+          class="login"
+        >
+          登入
+        </button>
+        <!-- 註冊 -->
+        <button
+          class="sign-up"
+        >
+          註冊
+        </button>
+      </div>
+
+      <div
+        v-if="isLogin"
+        style="display:flex; height: 100%;"
+        class="pc"
+      >
+        <!-- 資產 -->
+        <div class="icon drop-down-menu">
+          <div class="drop-down-title">
+            資產
+            <img
+              style="margin-left:5px;"
+              src="@/assets/images/icons/menu-down.svg"
+            >
+          </div>
+          <div class="drop-down">
+            <div
+              v-for="item in languages"
+              :key="item.iso"
+              class="drop-down-item"
+            >
+              <div class="item-text">
+                {{ item.name }}
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="member-drop">
+
+        <!-- 訂單 -->
+        <div class="icon drop-down-menu">
+          <div class="drop-down-title">
+            訂單
+            <img
+              style="margin-left:5px;"
+              src="@/assets/images/icons/menu-down.svg"
+            >
+          </div>
+          <div class="drop-down">
+            <div
+              v-for="item in languages"
+              :key="item.iso"
+              class="drop-down-item"
+            >
+              <div class="item-text">
+                {{ item.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 個人中心 -->
+        <div class="icon drop-down-menu">
+          <div class="drop-down-title">
+            <img
+              src="@/assets/images/icons/account.svg"
+            >
+          </div>
+          <div class="drop-down">
+            個人中心
+          </div>
+        </div>
+
+        <!-- 通知 -->
+        <div class="icon drop-down-menu">
+          <div class="drop-down-title">
+            <img
+              src="@/assets/images/icons/bell.svg"
+            >
+          </div>
+          <div class="drop-down">
+            通知
+          </div>
+        </div>
+      </div>
+      <!-- 下載 -->
+      <div class="icon drop-down-menu">
+        <div class="drop-down-title">
+          <img
+            src="@/assets/images/icons/download.svg"
+          >
+        </div>
+        <div class="drop-down">
+          downloads
+        </div>
+      </div>
+
+      <!-- 語言 -->
+      <div class="icon drop-down-menu">
+        <div class="drop-down-title">
+          語言
+          <img
+            style="margin-left:5px;"
+            src="@/assets/images/icons/menu-down.svg"
+          >
+        </div>
+        <div class="drop-down">
           <div
             v-for="item in languages"
             :key="item.iso"
-            class="member-centre-item"
+            class="drop-down-item"
           >
             <div class="item-text">
               {{ item.name }}
@@ -99,6 +201,8 @@ const languages = [
   }
 ]
 
+const isLogin = ref(true)
+
 </script>
 
 <style lang="scss" scoped>
@@ -117,171 +221,146 @@ const languages = [
   position: fixed;
   top: 0;
   z-index: 1000;
-      .nav_left {
-        display: flex;
-        img {
-            margin-right: 25px;
-        }
-        .tabs {
-            display: flex;
-            .tab_item {
-                @include font("Body2-Med", #fff);
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                margin-right: $spacing_3;
-                &.active {
-                    color: $color_identity_Primary;
-                }
-            }
-        }
+  .nav_left {
+    display: flex;
+    img {
+      margin-right: 25px;
     }
-    .nav_right {
-        height: 100%;
+    .tabs {
+      display: flex;
+      .tab_item {
         @include font("Body2-Med", #fff);
         display: flex;
         align-items: center;
-        // .UserMenu {
-        //     display: flex;
-        //     position: relative;
-        //     z-index: 100;
-        //     padding: 0 20px 0 20px;
-        //     .userModel {
-        //         width: 200px;
-        //         padding: 10px;
-        //         overflow: hidden;
-        //         position: absolute;
-        //         background-color: $color_gray_80;
-        //         .item {
-        //             height: 50px;
-        //             font-size: 14px;
-        //             .black2 {
-        //                 display: inline-block;
-        //             }
-
-        //             .blue2 {
-        //                 display: none;
-        //             }
-        //         }
-        //     }
-        //     .white {
-        //         display: inline-block;
-        //     }
-        //     .blue {
-        //         display: none;
-        //     }
-        // }
-        // 登出狀態顯示
-        .login-buttons {
-            display: flex;
-            .login {
-                height: 30px;
-                padding: 4px 15px;
-                @extend .button-text;
-                margin-right: $spacing_3;
-            }
-            .sign-up {
-                height: 30px;
-                padding: 4px 15px;
-                @extend .button-filled;
-            }
+        cursor: pointer;
+        margin-right: $spacing_3;
+        &.active {
+          color: $color_identity_Primary;
         }
-
-        // 登入狀態顯示
-        .login-methods {
-            display: flex;
-            height: 100%;
-        }
-
-        .icon {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            margin-left: $spacing_3;
-            cursor: pointer;
-            &.burger {
-                display: none;
-            }
-        }
-
-        // 切換語言 & 幣種
-        .EnglishUSD {
-            display: flex;
-            height: 100%;
-            margin-left: 26px;
-            align-items: center;
-            cursor: pointer;
-            @include font("Cap1-Reg", #fff);
-        }
+      }
     }
+  }
+  .nav_right {
+    height: 100%;
+    @include font("Body2-Med", #fff);
+    display: flex;
+    align-items: center;
+    // .UserMenu {
+    //     display: flex;
+    //     position: relative;
+    //     z-index: 100;
+    //     padding: 0 20px 0 20px;
+    //     .userModel {
+    //         width: 200px;
+    //         padding: 10px;
+    //         overflow: hidden;
+    //         position: absolute;
+    //         background-color: $color_gray_80;
+    //         .item {
+    //             height: 50px;
+    //             font-size: 14px;
+    //             .black2 {
+    //                 display: inline-block;
+    //             }
+
+    //             .blue2 {
+    //                 display: none;
+    //             }
+    //         }
+    //     }
+    //     .white {
+    //         display: inline-block;
+    //     }
+    //     .blue {
+    //         display: none;
+    //     }
+    // }
+    // 登出狀態顯示
+    .login-buttons {
+      display: flex;
+      .login {
+        height: 30px;
+        padding: 4px 15px;
+        @extend .button-text;
+        margin-right: $spacing_3;
+      }
+      .sign-up {
+        height: 30px;
+        padding: 4px 15px;
+        @extend .button-filled;
+      }
+    }
+
+    // 登入狀態顯示
+    .login-methods {
+      display: flex;
+      height: 100%;
+    }
+
+    .icon {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-left: $spacing_2;
+      cursor: pointer;
+      &.burger {
+        display: none;
+      }
+    }
+
+    // 切換語言 & 幣種
+    .EnglishUSD {
+      display: flex;
+      height: 100%;
+      margin-left: 26px;
+      align-items: center;
+      cursor: pointer;
+      @include font("Cap1-Reg", #fff);
+    }
+  }
 }
 
 // 個人中心
-.member-center {
+.drop-down-menu {
   position: relative;
+  .drop-down-title {
+    padding: 8px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
   &:hover {
-    .member-drop {
-      box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, 0.25);
-      padding-bottom: 10px;
+    .drop-down {
       transition-delay: 0s;
       opacity: 1;
-      height: 350px;
+      height: auto;
     }
   }
-  .member-drop {
+  .drop-down {
     opacity: 0;
     height: 0;
-    transition: all linear .2s;
+    transition: all linear 0.2s;
     transition-delay: 1s;
     overflow: hidden;
     position: absolute;
     border-radius: 8px;
     top: 64px;
     right: 0;
-    width: 220px;
+    width: 200px;
     background-color: $color_gray_80;
-    .member-centre-title {
-      padding: 16px;
-    }
-    .member-centre-item {
-      height: 56px;
-      padding: 0 16px;
+
+    .drop-down-item {
+      height: 50px;
+      padding: 0 10px;
       display: flex;
       justify-content: content;
       align-items: center;
       cursor: pointer;
       &:hover {
         background-color: $color_gray_90;
-        .normal-icon {
-          display: none;
-        }
-        .active-icon {
-          display: block;
-        }
       }
       &.active {
         background-color: $color_gray_90;
-        .normal-icon {
-          display: none;
-        }
-        .active-icon {
-          display: block;
-        }
-      }
-      img {
-        width: 19px;
-        height: 19px;
-        &.active-icon {
-          display: none;
-        }
-        &.active {
-          .normal-icon {
-            display: none;
-          }
-          .active-icon {
-            display: block;
-          }
-        }
       }
       .item-text {
         flex: 1;
@@ -292,14 +371,20 @@ const languages = [
         @include font("Body2-Med", #fff);
       }
     }
-    .line {
-      height: 1px;
-      border-bottom: 1px solid $color_gray_60;
-      margin: 0 16px;
-    }
   }
 }
-.member-center-mobile {
+.drop-down-menu-mobile {
   display: none !important;
+}
+
+// RWD Setting
+.pc {
+     display: block;
+}
+
+@include pad {
+  .pc {
+    display: none;
+  }
 }
 </style>

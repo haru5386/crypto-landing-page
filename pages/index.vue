@@ -4,6 +4,7 @@
     <!-- config public  測試： {{ ENV }} <br> -->
     <div class="aaa">
       {{ $t("key1") }}
+      <img src="@/assets/images/icons/menu-down.svg">
     </div>
     <Logos />
     <Examples />

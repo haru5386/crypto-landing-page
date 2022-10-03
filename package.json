@@ -12,7 +12,6 @@
     "start": "node .output/server/index.mjs",
     "generate": "nuxi generate",
     "update": "node utils/updateLang.js"
-    
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
