@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia'
 import { useBaseStore } from '../stores/base.js'
 
-import fetchData from '../utils/request'
+// import fetchData from '../utils/request'
 // import fetchData3 from '../utils/request3.ts'
 
 const BaseStore = useBaseStore()
@@ -23,7 +23,7 @@ const { counter } = storeToRefs(BaseStore)
 //     delete = 'delete'
 // }
 
-const { data } = await fetchData.post('fe-ex-api/common/user_info')
+const { data } = await fetchData('fe-ex-api/common/user_info', 'post')
 
 console.log(data)
 
