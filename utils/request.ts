@@ -1,49 +1,51 @@
-import { _AsyncData } from 'nuxt/dist/app/composables/asyncData'
-
-const baseUrl = 'https://www.metacoin.is/'
-const option = {
-  headers: { 'exchange-token': '123123' }
+//  types
+enum AsyncApiMethod {
+  get = 'get',
+  post = 'post',
+  put = 'pust',
+  delete = 'delete'
 }
 
-const fetch = (url: string, options?: any): Promise<any> => {
-  const reqUrl = baseUrl + url // 你的接口地址
-  return new Promise((resolve, reject) => {
-    useFetch(reqUrl, { ...options, ...option }).then(({ data, error }: _AsyncData<any, any>) => {
-      if (error.value) {
-        reject(error.value)
-        return
-      }
-      const value = data.value
-      if (!value) {
-        throw createError({
-          statusCode: 500,
-          statusMessage: reqUrl,
-          message: '後端報錯'
-        })
-      } else {
-        resolve(value)
-      }
-    }).catch((err: any) => {
-      console.log(err)
-      reject(err)
-    })
-  })
+// const config = useRuntimeConfig()
+// const runtimeConfig = useRuntimeConfig()
+// const baseURL = runtimeConfig.public.ENV_API
+
+// console.log(config.public.apiBase)
+
+const token: string = process.server ? '' : useCookie('token').value
+const lang: string = process.server ? '' : useCookie('lan').value
+
+// API 基礎設定
+const fetchData = (reqUrl:string, method:AsyncApiMethod, params?:any) => {
+  const options = {
+    // baseURL,
+    method,
+    params,
+    server: false,
+    headers: {
+    // token
+      'exchange-token': token,
+      // 語系
+      'exchange-language': lang || 'zh_CN'
+    }
+  }
+  return useFetch(reqUrl, options)
 }
 
-export default new class Http {
+export default new class getData {
   get (url: string, params?: any): Promise<any> {
-    return fetch(url, { method: 'get', params })
+    return fetchData(url, AsyncApiMethod.get, params)
   }
 
   post (url: string, params?: any): Promise<any> {
-    return fetch(url, { method: 'post', params })
+    return fetchData(url, AsyncApiMethod.post, params)
   }
 
   put (url: string, body?: any): Promise<any> {
-    return fetch(url, { method: 'put', body })
+    return fetchData(url, AsyncApiMethod.put, body)
   }
 
   delete (url: string, body?: any): Promise<any> {
-    return fetch(url, { method: 'delete', body })
+    return fetchData(url, AsyncApiMethod.delete, body)
   }
 }()
