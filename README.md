@@ -1,3 +1,5 @@
+# node
+v16.17.0
 # Element Plus with Nuxt 3 Minimal Starter
 
 <pre align="center">

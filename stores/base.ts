@@ -1,22 +1,22 @@
 import { defineStore } from 'pinia'
-
+import { getBaseData, getUserInfo } from '@/api/base'
 export const useBaseStore = defineStore('base', () => {
   // state
-  const counter = ref(0)
 
-  // getter
-  const doubleCount = computed(() => {
-    return counter.value * 2
-  })
+  const header = ref(0)
 
-  // action
-  const addCOunt = () => {
-    counter.value++
+  const BaseDataInit = async () => {
+    const { data: basedata } = await getBaseData()
+    console.log('basedata', basedata.value)
+  }
+  const UserInfoInit = async () => {
+    const { data: userInfo } = await getUserInfo()
+    console.log('userInfo', userInfo.value)
   }
 
   return {
-    counter,
-    addCOunt,
-    doubleCount
+    header,
+    BaseDataInit,
+    UserInfoInit
   }
 })

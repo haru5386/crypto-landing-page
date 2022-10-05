@@ -21,13 +21,13 @@ const fetchData = (reqUrl:string, method:AsyncApiMethod, params?:any) => {
     // token
       'exchange-token': token,
       // 語系
-      'exchange-language': lang || 'zh_CN'
+      'exchange-language': lang || 'en_US'
     }
   }
-  return useFetch(reqUrl, options)
+  return $fetch(reqUrl, options)
 }
 
-export default new class getData {
+export const useFetchData = new class getData {
   get (url: string, params?: any): Promise<any> {
     return fetchData(url, AsyncApiMethod.get, params)
   }

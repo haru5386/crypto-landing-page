@@ -1,17 +1,16 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
 import { useBaseStore } from '../stores/base.js'
+// import { getBaseData } from '@/api/base'
 
-import useFetchData from '@/composables/fetch.ts'
 // import fetchData3 from '../utils/request3.ts'
 
 const BaseStore = useBaseStore()
 
 // ref 的解構方式
-const { counter } = storeToRefs(BaseStore)
+const { header } = storeToRefs(BaseStore)
 // function 的解構方式
-// const { addCOunt } = BaseStore
-
+const { BaseDataInit } = BaseStore
 // const clickAdd = () => {
 //   addCOunt()
 // }
@@ -22,11 +21,32 @@ const { counter } = storeToRefs(BaseStore)
 //     put = 'pust',
 //     delete = 'delete'
 // }
+const { data } = await useFetch('https://www.metacoin.is/fe-ex-api/common/public_info_v4', {
+  method: 'post'
+})
+console.log('data', data)
+// const { data: data5 } = await useFetch('https://www.metacoin.is/fe-ex-api/common/public_info_v4', {
+//   // baseURL: 'https://www.metacoin.is/',
+//   headers: {
+//     token: '12fff3'
+//   },
+//   method: 'post'
+// })
+// console.log('data5', data5.value)
 
-const { data } = await useFetchData.post('fe-ex-api/common/user_info')
+// const { data: data2 } = await useFetchData.post('fe-ex-api/common/user_info')
+// console.log('data2', data2.value)
 
-console.log(data)
+// const { data } = await getBaseData()
+// console.log('data', data.value)
 
+// BaseDataInit()
+// const init = () => {
+//   BaseDataInit()
+// }
+// onMounted(() => {
+//   BaseDataInit()
+// })
 // // 封裝 server 發 request
 // const data2 = await config1()
 
@@ -49,20 +69,11 @@ console.log(data)
 // console.log('data3', data3)
 // console.log('data4', data4)
 
-// const data5 = await useFetch('https://www.metacoin.is/fe-ex-api/common/public_info_v4', {
-//   // baseURL: 'https://www.metacoin.is/',
-//   headers: {
-//     token: '12fff3'
-//   },
-//   method: 'post'
-// })
-// console.log('data5', data5)
-
 </script>
 
 <template>
   <div>
-    <h1>{{ counter }}</h1>
+    <h1>{{ header }}</h1>
     <!-- <button @click="clickAdd">
       click
     </button> -->
