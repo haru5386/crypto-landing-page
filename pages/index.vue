@@ -39,7 +39,7 @@ const { BASE_DATA_INIT, USER_DATA_INIT, NO_READ_MSG } = BaseStore
 // 引入 store state / getter
 const { BASEDATA, USERDATA, ISLOGIN, WSURL, NOREADMSG } = storeToRefs(BaseStore)
 
-nextTick(() => {
+onMounted(() => {
   USER_DATA_INIT()
   BASE_DATA_INIT()
   NO_READ_MSG()
