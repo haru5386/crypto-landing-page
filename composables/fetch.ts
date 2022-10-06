@@ -5,7 +5,7 @@ const { t } = i18n.global
 enum AsyncApiMethod {
   get = 'get',
   post = 'post',
-  put = 'pust',
+  put = 'put',
   delete = 'delete'
 }
 
@@ -29,13 +29,11 @@ const fetchData = (reqUrl:string, method:AsyncApiMethod, data?:any) => {
   if (method === AsyncApiMethod.get) {
     return $fetch(reqUrl, { ...options, params: data })
       .catch(() => {
-      // 需改成多國語系
-        ElMessage.error('Oops! Server Wrong')
+        ElMessage.error(t('伺服器錯誤'))
       })
   }
   return $fetch(reqUrl, { ...options, body: data })
     .catch(() => {
-      // 需改成多國語系
       ElMessage.error(t('伺服器錯誤'))
     })
 }

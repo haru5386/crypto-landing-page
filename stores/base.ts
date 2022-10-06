@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { UnwrapNestedRefs } from 'vue'
-import { getBaseData, getUserInfo, getNoReadMsg, getIndexData } from '@/api/base'
+import { getBaseDataApi, getUserInfoApi, getNoReadMsgApi, getIndexDataApi } from '@/api/base'
 import { Banner, Notice } from '@/types/interface/base.interface'
 
 export const useBaseStore = defineStore('useBaseStore', () => {
@@ -40,28 +40,28 @@ export const useBaseStore = defineStore('useBaseStore', () => {
 
   // action
   const BASE_DATA_INIT = async () => {
-    const data = await getBaseData()
+    const data = await getBaseDataApi()
     baseData.value = { ...data.data }
     wsUrl.value = data.data.market.wsUrl
   }
   const USER_DATA_INIT = async () => {
-    const data = await getUserInfo()
+    const data = await getUserInfoApi()
     userData.value = { ...data.data }
     // 登入狀態
     isLogin.value = !!data.data
   }
   const NO_READ_MSG = async () => {
     clearInterval(timer.value)
-    const data = await getNoReadMsg()
+    const data = await getNoReadMsgApi()
     noReadMsg.value = { ...data.data }
     timer.value = window.setInterval(async () => {
-      const data = await getNoReadMsg()
+      const data = await getNoReadMsgApi()
       noReadMsg.value = { ...data.data }
     }, 10000)
   }
 
   const INDEX_DATA = async () => {
-    const data = await getIndexData()
+    const data = await getIndexDataApi()
     banner = [...data.data.cmsAdvertList]
     noticeInfoList = [...data.data.noticeInfoList]
   }
