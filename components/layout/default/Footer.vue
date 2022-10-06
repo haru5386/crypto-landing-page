@@ -3,9 +3,7 @@
     <!-- desktop -->
     <div class="footer-container">
       <div class="titles">
-        <img
-          src="@/assets/images/ACE-Global_logo.png"
-        >
+        <img src="@/assets/images/ACE-Global_logo.png">
       </div>
       <div class="items">
         <div
@@ -49,9 +47,7 @@
     <!-- mobile -->
     <div class="footer-container-mobile">
       <div class="titles">
-        <img
-          src="@/assets/images/ACE-Global_logo.png"
-        >
+        <img src="@/assets/images/ACE-Global_logo.png">
       </div>
       <el-collapse class="collapse">
         <el-collapse-item
@@ -119,7 +115,8 @@ const dataList = reactive([
         status: 1,
         sort: 1,
         articleId: 2,
-        externalLink: 'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer',
         externalLinkFlag: 1
       },
       {
@@ -204,8 +201,10 @@ const links = reactive([
   {
     id: 1,
     title: 'Twitter',
-    logo: 'https://ipfs.metabazaar.vip/ipfs/QmSELYYW9f5j3HnGYA9orgrJA3AmpgSiHFDK3HjQDjb4d9',
-    hoverLogo: 'https://ipfs.metabazaar.vip/ipfs/QmUURuaBvEo7f3JK4WPC4L1RNv2X3Fc2n4X8VMcBeTmHta',
+    logo:
+      'https://ipfs.metabazaar.vip/ipfs/QmSELYYW9f5j3HnGYA9orgrJA3AmpgSiHFDK3HjQDjb4d9',
+    hoverLogo:
+      'https://ipfs.metabazaar.vip/ipfs/QmUURuaBvEo7f3JK4WPC4L1RNv2X3Fc2n4X8VMcBeTmHta',
     url: 'https://twitter.com/exchange_ace',
     status: 1,
     active: false
@@ -213,14 +212,16 @@ const links = reactive([
   {
     id: 2,
     title: 'Telegram',
-    logo: 'https://ipfs.metabazaar.vip/ipfs/Qmcvxozmo3ugmJxQebXYnyjMvwWxZhjfzjigGQB4ffBKd6',
-    hoverLogo: 'https://ipfs.metabazaar.vip/ipfs/QmS7U7yeQs59GS8k4yVxGNBYhrAbCPK3QYSvGMTfyJ9HWQ',
+    logo:
+      'https://ipfs.metabazaar.vip/ipfs/Qmcvxozmo3ugmJxQebXYnyjMvwWxZhjfzjigGQB4ffBKd6',
+    hoverLogo:
+      'https://ipfs.metabazaar.vip/ipfs/QmS7U7yeQs59GS8k4yVxGNBYhrAbCPK3QYSvGMTfyJ9HWQ',
     url: 'https://t.me/aceglobalexchangechannel',
     status: 1,
     active: false
   }
 ])
-const openLink = (url:string) => {
+const openLink = (url: string) => {
   console.log(url)
 }
 
@@ -233,110 +234,117 @@ const goToWhat = () => {
 @import "../../../assets/scss/index.scss";
 
 .footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: $color_gray_80;
+  padding: 48px 0 0 0;
+  .footer-container {
+    width: 1200px;
+    .items {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      .item-ul {
+        flex: 1;
+        padding-bottom: 32px;
+        margin-bottom: 32px;
+        .label {
+          @include font("Heading3", #fff);
+        }
+        .item-li {
+          margin-top: 16px;
+          @include font("Body1-Reg", $color_gray_60);
+        }
+        .shareFootList {
+          display: flex;
+          .social-icon {
+            height: 30px;
+            margin: 16px 20px 10px 0;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .footer-container-mobile {
     width: 100%;
+    display: none;
+    .collapse {
+      margin-top: 8px;
+      .collapse-title {
+        @include font("Heading3", #fff);
+      }
+      .item-li {
+        margin-bottom: 10px;
+        @include font("Body1-Reg", $color_gray_60);
+      }
+    }
+    .social-media {
+      .label {
+        @include font("Heading3", #fff);
+        height: 48px;
+        line-height: 48px;
+      }
+      .shareFootList {
+        display: flex;
+        height: 50px;
+        img {
+          margin: 20px 10px 10px 10px;
+        }
+      }
+    }
+  }
+
+  .titles {
+    margin-bottom: 32px;
+    .logoFootTitle {
+      width: 150px;
+      height: 50px;
+    }
+  }
+
+  .copy-right {
     display: flex;
     justify-content: center;
-    background: $color_gray_80;
-    padding: 48px 0 0 0;
-    .footer-container {
-        width: 1200px;
-        .items {
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            .item-ul {
-                flex: 1;
-                padding-bottom: 32px;
-                margin-bottom: 32px;
-                .label {
-                    @include font("Heading3", #fff);
-                }
-                .item-li {
-                    margin-top: 16px;
-                    @include font("Body1-Reg", $color_gray_60);
-                }
-                .shareFootList {
-                    display: flex;
-                    .social-icon {
-                        height: 30px;
-                        margin: 16px 20px 10px 0;
-                        cursor: pointer;
-                    }
-                }
-            }
-        }
-    }
-    .footer-container-mobile {
-        width: 100%;
-        display: none;
-        .collapse {
-            margin-top: 20px;
-            .collapse-title {
-                @include font("Heading3", #fff);
-            }
-            .item-li {
-                margin-bottom: 10px;
-                @include font("Body1-Reg", $color_gray_60);
-            }
-        }
-        .social-media {
-            .label {
-                @include font("Heading3", #fff);
-                height: 48px;
-                line-height: 48px;
-            }
-            .shareFootList {
-                display: flex;
-                height: 50px;
-                img {
-                    margin: 20px 10px 10px 10px;
-                }
-            }
-        }
-    }
-
-    .titles {
-        margin-bottom: 38px;
-        .logoFootTitle {
-            width: 150px;
-            height: 50px;
-        }
-    }
-
-    .copy-right {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        margin: 32px 16px;
-        @include font("Body2-Reg", #fff);
-    }
-
+    text-align: center;
+    margin: 32px 16px;
+    @include font("Body2-Reg", #fff);
+  }
 }
 
 // pad
 @include pad {
-    .footer {
-        .footer-container {
-            display: none;
-        }
-        .footer-container-mobile {
-            display: block;
-            padding: 0 32px;
-        }
+  .footer {
+    padding: 32px 0 0 0;
+    .footer-container {
+      display: none;
     }
+    .footer-container-mobile {
+      display: block;
+      padding: 0 32px;
+    }
+    .titles {
+       margin-bottom: 0px;
+    .logoFootTitle {
+      width: 150px;
+      height: 50px;
+    }
+  }
+  }
 }
 
 // mobile
 @include mobile {
-    .footer {
-        .footer-container {
-            display: none;
-        }
-        .footer-container-mobile {
-            display: block;
-            padding: 0 16px;
-        }
+  .footer {
+    .footer-container {
+      display: none;
     }
+    .footer-container-mobile {
+      display: block;
+      padding: 0 16px;
+    }
+  }
 }
 </style>
 
@@ -346,7 +354,7 @@ const goToWhat = () => {
   border: none;
 }
 
-.footer .el-collapse-item__header i{
+.footer .el-collapse-item__header i {
   color: white;
 }
 .footer .el-collapse {
@@ -359,4 +367,8 @@ const goToWhat = () => {
 .el-collapse-item__content {
   padding-bottom: 10px;
 }
+.el-collapse {
+  --el-collapse-header-height: 45px;
+}
+
 </style>
