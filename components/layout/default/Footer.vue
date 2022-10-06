@@ -1,6 +1,5 @@
 <template>
   <div class="footer">
-    <!-- {{ dataList }} -->
     <!-- desktop -->
     <div class="footer-container">
       <div class="titles">
@@ -21,7 +20,7 @@
             v-for="detail in item.footerArticleList"
             :key="'detail-' + detail.id"
             class="item-li"
-            @click="goToWhat(detail)"
+            @click="goToWhat()"
           >
             {{ detail.title }}
           </div>
