@@ -3,7 +3,8 @@
     <!-- config private 測試： {{ API_SECRET }} <br> -->
     <!-- config public  測試： {{ ENV }} <br> -->
     <div class="aaa">
-      {{ $t('key1') }}
+      {{ $t("key1") }}
+      <img src="@/assets/images/icons/menu-down.svg">
     </div>
     <p>未讀訊息</p>
     {{ NOREADMSG }}
@@ -48,12 +49,15 @@ onMounted(() => {
 
 </script>
 <style lang="scss" scoped>
-@import '../assets/scss';
+@import "../assets/scss";
 .page-index {
   padding-top: 60px;
   text-align: center;
   .aaa {
-    @include font('Heading1', red);
+    @include font("Heading1", red);
+  }
+  .bbb {
+    @include font("Heading1", red);
   }
 }
 </style>

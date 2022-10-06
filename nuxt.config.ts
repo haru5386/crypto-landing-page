@@ -2,7 +2,7 @@ import { defineNuxtConfig } from 'nuxt'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 // types
-import { EnvConfig } from './types/interface/env.interface'
+import type { EnvConfig } from './types/interface/env.interface'
 
 // env mode
 const mode : any = process.env.MODE ? process.env.MODE : 'dev'
@@ -24,20 +24,20 @@ export default defineNuxtConfig({
   runtimeConfig,
   // meta
   meta: {
-    title: 'Element Plus + Nuxt 3',
+    title: 'ACE Global',
     meta: [
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: 'ElementPlus + Nuxt3'
+        content: 'ACE Global'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   // css
-  css: ['~/assets/scss/index.scss'],
+  css: ['~/assets/scss/index.scss', '~/assets/font/font.css'],
 
   // build
   build: {
