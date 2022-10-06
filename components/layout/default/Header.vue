@@ -17,40 +17,121 @@
       </div>
     </div>
     <div class="nav_right">
-      <!-- 選單 -->
-      <div
-        class="icon burger"
-        @click="openMainDrawer = true"
-      >
-        <img src="@/assets/images/menu.svg">
-      </div>
-
-      <div
-        v-if="!isLogin"
-        class="login-buttons"
-      >
-        <button
-          class="login"
+      <div class="pc">
+        <!-- 選單 -->
+        <div
+          class="icon burger"
+          @click="openMainDrawer = true"
         >
-          登入
-        </button>
-        <!-- 註冊 -->
-        <button
-          class="sign-up"
-        >
-          註冊
-        </button>
-      </div>
+          <img src="@/assets/images/menu.svg">
+        </div>
 
-      <div
-        v-if="isLogin"
-        style="display:flex; height: 100%;"
-        class="pc"
-      >
-        <!-- 資產 -->
+        <div
+          v-if="!isLogin"
+          class="login-buttons"
+        >
+          <button
+            class="login"
+          >
+            登入
+          </button>
+          <!-- 註冊 -->
+          <button
+            class="sign-up"
+          >
+            註冊
+          </button>
+        </div>
+
+        <div
+          v-if="isLogin"
+          style="display:flex; height: 100%;"
+          class="pc"
+        >
+          <!-- 資產 -->
+          <div class="icon drop-down-menu">
+            <div class="drop-down-title">
+              資產
+              <img
+                style="margin-left:5px;"
+                src="@/assets/images/icons/menu-down.svg"
+              >
+            </div>
+            <div class="drop-down">
+              <div
+                v-for="item in languages"
+                :key="item.iso"
+                class="drop-down-item"
+              >
+                <div class="item-text">
+                  {{ item.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 訂單 -->
+          <div class="icon drop-down-menu">
+            <div class="drop-down-title">
+              訂單
+              <img
+                style="margin-left:5px;"
+                src="@/assets/images/icons/menu-down.svg"
+              >
+            </div>
+            <div class="drop-down">
+              <div
+                v-for="item in languages"
+                :key="item.iso"
+                class="drop-down-item"
+              >
+                <div class="item-text">
+                  {{ item.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 個人中心 -->
+          <div class="icon drop-down-menu">
+            <div class="drop-down-title">
+              <img
+                src="@/assets/images/icons/account.svg"
+              >
+            </div>
+            <div class="drop-down">
+              個人中心
+            </div>
+          </div>
+
+          <!-- 通知 -->
+          <div class="icon drop-down-menu">
+            <div class="drop-down-title">
+              <img
+                src="@/assets/images/icons/bell.svg"
+              >
+            </div>
+            <div class="drop-down">
+              通知
+            </div>
+          </div>
+        </div>
+        <!-- 下載 -->
         <div class="icon drop-down-menu">
           <div class="drop-down-title">
-            資產
+            <img
+              src="@/assets/images/icons/download.svg"
+            >
+          </div>
+          <div class="drop-down">
+            downloads
+          </div>
+        </div>
+
+        <!-- 語言 -->
+        <div class="icon drop-down-menu">
+          <div class="drop-down-title">
+            語言
             <img
               style="margin-left:5px;"
               src="@/assets/images/icons/menu-down.svg"
@@ -65,85 +146,6 @@
               <div class="item-text">
                 {{ item.name }}
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 訂單 -->
-        <div class="icon drop-down-menu">
-          <div class="drop-down-title">
-            訂單
-            <img
-              style="margin-left:5px;"
-              src="@/assets/images/icons/menu-down.svg"
-            >
-          </div>
-          <div class="drop-down">
-            <div
-              v-for="item in languages"
-              :key="item.iso"
-              class="drop-down-item"
-            >
-              <div class="item-text">
-                {{ item.name }}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 個人中心 -->
-        <div class="icon drop-down-menu">
-          <div class="drop-down-title">
-            <img
-              src="@/assets/images/icons/account.svg"
-            >
-          </div>
-          <div class="drop-down">
-            個人中心
-          </div>
-        </div>
-
-        <!-- 通知 -->
-        <div class="icon drop-down-menu">
-          <div class="drop-down-title">
-            <img
-              src="@/assets/images/icons/bell.svg"
-            >
-          </div>
-          <div class="drop-down">
-            通知
-          </div>
-        </div>
-      </div>
-      <!-- 下載 -->
-      <div class="icon drop-down-menu">
-        <div class="drop-down-title">
-          <img
-            src="@/assets/images/icons/download.svg"
-          >
-        </div>
-        <div class="drop-down">
-          downloads
-        </div>
-      </div>
-
-      <!-- 語言 -->
-      <div class="icon drop-down-menu">
-        <div class="drop-down-title">
-          語言
-          <img
-            style="margin-left:5px;"
-            src="@/assets/images/icons/menu-down.svg"
-          >
-        </div>
-        <div class="drop-down">
-          <div
-            v-for="item in languages"
-            :key="item.iso"
-            class="drop-down-item"
-          >
-            <div class="item-text">
-              {{ item.name }}
             </div>
           </div>
         </div>
@@ -245,36 +247,6 @@ const isLogin = ref(true)
     @include font("Body2-Med", #fff);
     display: flex;
     align-items: center;
-    // .UserMenu {
-    //     display: flex;
-    //     position: relative;
-    //     z-index: 100;
-    //     padding: 0 20px 0 20px;
-    //     .userModel {
-    //         width: 200px;
-    //         padding: 10px;
-    //         overflow: hidden;
-    //         position: absolute;
-    //         background-color: $color_gray_80;
-    //         .item {
-    //             height: 50px;
-    //             font-size: 14px;
-    //             .black2 {
-    //                 display: inline-block;
-    //             }
-
-    //             .blue2 {
-    //                 display: none;
-    //             }
-    //         }
-    //     }
-    //     .white {
-    //         display: inline-block;
-    //     }
-    //     .blue {
-    //         display: none;
-    //     }
-    // }
     // 登出狀態顯示
     .login-buttons {
       display: flex;
@@ -379,7 +351,11 @@ const isLogin = ref(true)
 
 // RWD Setting
 .pc {
-     display: block;
+     display: flex;
+}
+
+.pad {
+  display: none;
 }
 
 @include pad {
