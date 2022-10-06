@@ -1,3 +1,6 @@
+import { ElMessage } from 'element-plus'
+import i18n from '../utils/i18n'
+const { t } = i18n.global
 //  types
 enum AsyncApiMethod {
   get = 'get',
@@ -15,7 +18,7 @@ const fetchData = (reqUrl:string, method:AsyncApiMethod, data?:any) => {
   const options = {
     baseURL: runtimeConfig.public.ENV_API,
     method,
-    server: true,
+    server: false,
     headers: {
       // token
       'exchange-token': token,
@@ -24,9 +27,17 @@ const fetchData = (reqUrl:string, method:AsyncApiMethod, data?:any) => {
     }
   }
   if (method === AsyncApiMethod.get) {
-    return $fetch(reqUrl, { ...options, params: data }).catch(err => console.error(err))
+    return $fetch(reqUrl, { ...options, params: data })
+      .catch(() => {
+      // 需改成多國語系
+        ElMessage.error('Oops! Server Wrong')
+      })
   }
-  return $fetch(reqUrl, { ...options, body: data }).catch(err => console.error(err))
+  return $fetch(reqUrl, { ...options, body: data })
+    .catch(() => {
+      // 需改成多國語系
+      ElMessage.error(t('伺服器錯誤'))
+    })
 }
 
 export const useFetchData = new class getData {

@@ -1,7 +1,7 @@
 import { useFetchData } from '~~/composables/fetch'
 
 export const getBaseData = () => {
-  return useFetchData.post('fe-ex-api/common/public_info_v4')
+  return useFetchData.post('fe-ex-api/common/pubic_info_v4')
 }
 
 export const getUserInfo = () => {
