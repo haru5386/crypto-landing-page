@@ -35,14 +35,15 @@ console.log(env)
 // fetch 資料
 const BaseStore = useBaseStore()
 // 引入 store action
-const { BASE_DATA_INIT, USER_DATA_INIT, NO_READ_MSG } = BaseStore
+const { BASE_DATA_INIT, USER_DATA_INIT, NO_READ_MSG, INDEX_DATA } = BaseStore
 // 引入 store state / getter
-const { BASEDATA, USERDATA, ISLOGIN, WSURL, NOREADMSG } = storeToRefs(BaseStore)
+const { BASEDATA, USERDATA, ISLOGIN, WSURL, NOREADMSG, NOTICEINFOLIST, BANNER } = storeToRefs(BaseStore)
 
 onMounted(() => {
   USER_DATA_INIT()
   BASE_DATA_INIT()
   NO_READ_MSG()
+  INDEX_DATA()
 })
 
 </script>

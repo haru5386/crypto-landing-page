@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
-import { getBaseData, getUserInfo, getNoReadMsg } from '@/api/base'
+import { UnwrapNestedRefs } from 'vue'
+import { getBaseData, getUserInfo, getNoReadMsg, getIndexData } from '@/api/base'
+import { Banner, Notice } from '@/types/interface/base.interface'
 
 export const useBaseStore = defineStore('useBaseStore', () => {
   // state
@@ -10,6 +12,8 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   const wsUrl = ref('')
   const noReadMsg = ref(null)
   const timer = ref(0)
+  let banner:UnwrapNestedRefs<Banner[]> = reactive([])
+  let noticeInfoList:UnwrapNestedRefs<Notice[]> = reactive([])
 
   // getter
   const BASEDATA = computed(() => {
@@ -26,6 +30,12 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   })
   const NOREADMSG = computed(() => {
     return noReadMsg.value
+  })
+  const BANNER = computed(() => {
+    return banner
+  })
+  const NOTICEINFOLIST = computed(() => {
+    return noticeInfoList
   })
 
   // action
@@ -50,14 +60,23 @@ export const useBaseStore = defineStore('useBaseStore', () => {
     }, 10000)
   }
 
+  const INDEX_DATA = async () => {
+    const data = await getIndexData()
+    banner = [...data.data.cmsAdvertList]
+    noticeInfoList = [...data.data.noticeInfoList]
+  }
+
   return {
     BASEDATA,
     USERDATA,
     ISLOGIN,
     WSURL,
     NOREADMSG,
+    BANNER,
+    NOTICEINFOLIST,
     BASE_DATA_INIT,
     USER_DATA_INIT,
-    NO_READ_MSG
+    NO_READ_MSG,
+    INDEX_DATA
   }
 })

@@ -11,3 +11,7 @@ export const getUserInfo = () => {
 export const getNoReadMsg = () => {
   return useFetchData.post('fe-ex-api/message/v4/get_no_read_message_count', {})
 }
+
+export const getIndexData = () => {
+  return useFetchData.post('fe-ex-api/common/index')
+}
