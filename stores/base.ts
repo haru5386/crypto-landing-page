@@ -12,8 +12,8 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   const wsUrl = ref('')
   const noReadMsg = ref(null)
   const timer = ref(0)
-  let banner:UnwrapNestedRefs<Banner[]> = reactive([])
-  let noticeInfoList:UnwrapNestedRefs<Notice[]> = reactive([])
+  const banner:UnwrapNestedRefs<Banner[]> = reactive([])
+  const noticeInfoList:UnwrapNestedRefs<Notice[]> = reactive([])
 
   // getter
   const BASEDATA = computed(() => {
@@ -62,10 +62,9 @@ export const useBaseStore = defineStore('useBaseStore', () => {
 
   const INDEX_DATA = async () => {
     const data = await getIndexDataApi()
-    banner = [...data.data.cmsAdvertList]
-    noticeInfoList = [...data.data.noticeInfoList]
+    banner.push(...data.data.cmsAdvertList)
+    noticeInfoList.push(...data.data.noticeInfoList)
   }
-
   return {
     BASEDATA,
     USERDATA,
