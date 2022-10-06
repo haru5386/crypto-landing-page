@@ -57,6 +57,7 @@ export default defineNuxtConfig({
 
   // build modules
   modules: ['@vueuse/nuxt', '@unocss/nuxt', '@pinia/nuxt', '@intlify/nuxt3'],
+  plugins: ['@/utils/i18n.ts'],
 
   // auto import components
   components: true,
@@ -72,16 +73,15 @@ export default defineNuxtConfig({
     icons: {
       scale: 1.2
     }
-  },
-
-  // localization - i18n config
-  intlify: {
-    localeDir: 'locales',
-    vueI18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
-      availableLocales: ['en', 'jp', 'vi', 'zh', 'ko'],
-      sync: true
-    }
   }
+  // localization - i18n config
+  // intlify: {
+  //   localeDir: 'locales',
+  //   vueI18n: {
+  //     locale: 'en',
+  //     fallbackLocale: 'en',
+  //     availableLocales: ['en', 'jp', 'vi', 'zh', 'ko'],
+  //     sync: true
+  //   }
+  // }
 })

@@ -10,23 +10,23 @@ export interface ILocales {
 export const availableLocales: ILocales = {
   en: {
     name: 'English',
-    iso: 'en'
+    iso: 'en_US'
   },
   cn: {
     name: '简体中文',
-    iso: 'zh'
+    iso: 'zh_CN'
   },
   vi: {
     name: 'Tiếng Việt',
-    iso: 'vi'
+    iso: 'vi_VN'
   },
   ja: {
     name: '日本語',
-    iso: 'ja'
+    iso: 'ja_JP'
   },
   ko: {
     name: '한국어',
-    iso: 'ko'
+    iso: 'ko_KR'
   }
 }
 
@@ -41,9 +41,9 @@ export function LanguageManager () {
       const foundLang = window
         ? window.navigator.language.substring(0, 2)
         : 'en'
-      return availableLocales[foundLang] ? foundLang : 'en'
+      return availableLocales[foundLang] ? availableLocales.foundLang.iso : 'en_US'
     } catch (error) {
-      return 'en'
+      return 'en_US'
     }
   }
   const getUserLocale = (): string =>
