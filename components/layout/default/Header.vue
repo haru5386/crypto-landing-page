@@ -1,6 +1,8 @@
 <template>
   <div class="nav">
+    <!-- {{ data }} -->
     <div class="nav_left">
+      <!-- LOGO -->
       <img
         src="@/assets/images/logo.png"
         @click="$router.push({ path: '/' })"
@@ -10,9 +12,9 @@
           v-for="(item, index) in tabs"
           :key="index"
           class="tab_item"
-          @click="$router.push({ path: item.path })"
+          @click="goPath(item.link)"
         >
-          {{ item.title }}
+          {{ item.text }}
         </div>
       </div>
     </div>
@@ -23,7 +25,7 @@
           class="icon burger"
           @click="openMainDrawer = true"
         >
-          <img src="@/assets/images/menu.svg">
+          <!-- <img src="@/assets/images/menu.svg"> -->
         </div>
 
         <div
@@ -155,30 +157,18 @@
 </template>
 
 <script setup lang="ts">
-const openMainDrawer = ref(false)
+// import { storeToRefs } from 'pinia'
+// import { useBaseStore } from '@/stores/base.js'
+import { HeaderInfo } from '@/types/interface/base.interface'
+import { getHeadAndFooterApi } from '@/api/base'
 
-const tabs = [
-  {
-    name: 'index',
-    title: '幣幣交易',
-    path: '/'
-  },
-  {
-    name: 'market',
-    title: 'C2C交易',
-    path: '/market'
-  },
-  {
-    name: 'box',
-    title: '買幣',
-    path: '/box'
-  },
-  {
-    name: 'auction',
-    title: 'ETF',
-    path: '/auction'
-  }
-]
+// const BaseStore = useBaseStore()
+// 引入 store state / getter
+// const { HEADER_LIST } = storeToRefs(BaseStore)
+// tabs
+let tabs: HeaderInfo[] = reactive([])
+
+const openMainDrawer = ref(false)
 
 const languages = [
   {
@@ -205,6 +195,13 @@ const languages = [
 
 const isLogin = ref(true)
 
+const goPath = (link: string) => {
+  window.location.href = link
+}
+
+const data = await getHeadAndFooterApi({ lang: 'ko_KR' })
+
+tabs = [...JSON.parse(data.data.value.data.header)]
 </script>
 
 <style lang="scss" scoped>
@@ -352,6 +349,7 @@ const isLogin = ref(true)
 // RWD Setting
 .pc {
      display: flex;
+     height: 100%;
 }
 
 .pad {

@@ -17,7 +17,14 @@ interface Notice {
   httpUrl: string | null
 }
 
+interface HeaderInfo {
+  text: string,
+  link: string,
+  target: string
+}
+
 export {
   Banner,
-  Notice
+  Notice,
+  HeaderInfo
 }

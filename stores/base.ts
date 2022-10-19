@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
-import { UnwrapNestedRefs } from 'vue'
-import { getBaseDataApi, getUserInfoApi, getNoReadMsgApi, getIndexDataApi } from '@/api/base'
-import { Banner, Notice } from '@/types/interface/base.interface'
+import { computed, reactive, ref, UnwrapNestedRefs } from 'vue'
+import { getBaseDataApi, getUserInfoApi, getNoReadMsgApi, getIndexDataApi, getHeadAndFooterApi } from '@/api/base'
+import { Banner, HeaderInfo, Notice } from '@/types/interface/base.interface'
 
 export const useBaseStore = defineStore('useBaseStore', () => {
   // state
-
   const baseData = ref(null)
   const userData = ref(null)
   const isLogin = ref(false)
@@ -14,6 +13,11 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   const timer = ref(0)
   const banner:UnwrapNestedRefs<Banner[]> = reactive([])
   const noticeInfoList:UnwrapNestedRefs<Notice[]> = reactive([])
+
+  // Header Links
+  const headerList:UnwrapNestedRefs<HeaderInfo[]> = reactive([])
+  // Footer Links
+  const footerList = reactive([])
 
   // getter
   const BASEDATA = computed(() => {
@@ -37,6 +41,12 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   const NOTICEINFOLIST = computed(() => {
     return noticeInfoList
   })
+  const HEADER_LIST = computed(() => {
+    return headerList
+  })
+  const FOOTER_LIST = computed(() => {
+    return footerList
+  })
 
   // action
   const BASE_DATA_INIT = async () => {
@@ -59,12 +69,16 @@ export const useBaseStore = defineStore('useBaseStore', () => {
       noReadMsg.value = { ...data.data }
     }, 10000)
   }
-
   const INDEX_DATA = async () => {
     const data = await getIndexDataApi()
     banner.push(...data.data.cmsAdvertList)
     noticeInfoList.push(...data.data.noticeInfoList)
   }
+  const GET_HEADER_AND_FOOTER_DATA = async () => {
+    const { data } = await getHeadAndFooterApi({})
+    headerList.push(...JSON.parse(data.header))
+  }
+
   return {
     BASEDATA,
     USERDATA,
@@ -73,9 +87,12 @@ export const useBaseStore = defineStore('useBaseStore', () => {
     NOREADMSG,
     BANNER,
     NOTICEINFOLIST,
+    HEADER_LIST,
+    FOOTER_LIST,
     BASE_DATA_INIT,
     USER_DATA_INIT,
     NO_READ_MSG,
-    INDEX_DATA
+    INDEX_DATA,
+    GET_HEADER_AND_FOOTER_DATA // 取得 Header & Footer 設定
   }
 })
