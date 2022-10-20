@@ -7,14 +7,13 @@ import { getHeadAndFooterApi } from '@/api/base'
 // env data
 const runtimeConfig = useRuntimeConfig()
 const env = { ...runtimeConfig.public }
-console.log(env)
 
 const route = useRoute()
 const localeSetting = useState<string>('locale.setting')
 
 // data
 const openMainDrawer = ref(false)
-const isLogin = ref(true)
+const isLogin = ref(false)
 
 // tabs
 const { t } = i18n.global
@@ -47,6 +46,14 @@ const goPath = (link: string) => {
   window.location.href = link
 }
 
+const goLogin = () => {
+  window.location.href = `${env.BASE_URL}/login`
+}
+
+const goSignUp = () => {
+  window.location.href = `${env.BASE_URL}/register`
+}
+
 /*
  * 語言相關
  */
@@ -69,14 +76,16 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
         src="@/assets/images/logo.png"
         @click="$router.push({ path: '/' })"
       >
-      <div class="tabs">
-        <div
-          v-for="(item, index) in headTabs"
-          :key="index"
-          class="tab_item"
-          @click="goPath(item.link)"
-        >
-          {{ item.text }}
+      <div class="pc">
+        <div class="tabs">
+          <div
+            v-for="(item, index) in headTabs"
+            :key="index"
+            class="tab_item"
+            @click="goPath(item.link)"
+          >
+            {{ item.text }}
+          </div>
         </div>
       </div>
     </div>
@@ -94,11 +103,17 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
           v-if="!isLogin"
           class="login-buttons"
         >
-          <button class="login">
+          <button
+            class="login"
+            @click="goLogin"
+          >
             登入
           </button>
           <!-- 註冊 -->
-          <button class="sign-up">
+          <button
+            class="sign-up"
+            @click="goSignUp"
+          >
             註冊
           </button>
         </div>
@@ -210,6 +225,53 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
           </div>
         </div>
       </div>
+      <div class="pad">
+        <div
+          v-if="isLogin"
+          style="display:flex;"
+        >
+          <div class="icon">
+            <img
+              class="menu"
+              src="@/assets/images/icons/account.svg"
+            >
+          </div>
+          <!-- 通知 -->
+          <div class="icon drop-down-menu">
+            <div class="drop-down-title">
+              <img src="@/assets/images/icons/bell.svg">
+            </div>
+            <div class="drop-down">
+              通知
+            </div>
+          </div>
+        </div>
+        <div
+          v-else
+          class="login-buttons"
+        >
+          <button
+            class="login"
+            @click="goLogin"
+          >
+            登入
+          </button>
+          <!-- 註冊 -->
+          <button
+            class="sign-up"
+            @click="goSignUp"
+          >
+            註冊
+          </button>
+        </div>
+        <div class="icon">
+          <img
+            class="menu"
+            src="@/assets/images/icons/menu.svg"
+            @click="$router.push({ path: '/' })"
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -230,8 +292,12 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
   position: fixed;
   top: 0;
   z-index: 1000;
+  @include pad {
+    padding: 0 $spacing_2 0 $spacing_2;
+  }
   .nav_left {
     display: flex;
+    align-items: center;
     img {
       margin-right: 25px;
     }
@@ -257,6 +323,8 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
     // 登出狀態顯示
     .login-buttons {
       display: flex;
+      align-items: center;
+      margin-right: 15px;
       .login {
         height: 30px;
         padding: 4px 15px;
@@ -281,6 +349,9 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
       display: flex;
       align-items: center;
       margin-left: $spacing_2;
+      @include pad {
+        margin-left: $spacing_2-5;
+      }
       cursor: pointer;
       &.burger {
         display: none;
@@ -371,7 +442,8 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
     display: none;
   }
   .pad {
-    display: block;
+    display: flex;
+    height: 100%;
   }
 }
 </style>
