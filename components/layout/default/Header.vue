@@ -4,33 +4,43 @@ import { availableLocales } from '@/utils/lang'
 import { HeaderInfo } from '@/types/interface/base.interface'
 import { getHeadAndFooterApi } from '@/api/base'
 
+// env data
+const runtimeConfig = useRuntimeConfig()
+const env = { ...runtimeConfig.public }
+console.log(env)
+
 const route = useRoute()
 const localeSetting = useState<string>('locale.setting')
+
+// data
+const openMainDrawer = ref(false)
+const isLogin = ref(true)
 
 // tabs
 const { t } = i18n.global
 // 交易 tabs
 const headTabs: HeaderInfo[] = reactive([
+  // {
+  //   text: t('行情'),
+  //   link: `${env.BASE_URL}/market`,
+  //   target: ''
+  // },
   {
     text: t('幣幣交易'),
-    link: '',
+    link: `${env.BASE_URL}/trade`,
     target: ''
   },
   {
     text: t('法幣交易'),
-    link: '',
-    target: ''
-  },
-  {
-    text: t('杠桿交易'),
-    link: '',
+    link: `https://otc.${env.DOMAIN_NAME}`,
     target: ''
   }
+  // {
+  //   text: t('杠桿交易'),
+  //   link: `${env.BASE_URL}/margin`,
+  //   target: ''
+  // }
 ])
-
-const openMainDrawer = ref(false)
-
-const isLogin = ref(true)
 
 // tab 導頁
 const goPath = (link: string) => {
@@ -359,6 +369,9 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
 @include pad {
   .pc {
     display: none;
+  }
+  .pad {
+    display: block;
   }
 }
 </style>

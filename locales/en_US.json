@@ -7,5 +7,6 @@
   "幣幣交易": "Spot trading",
   "法幣交易": "C2C",
   "杠桿交易": "Margin",
-  "合約交易": "Contract"
+  "合約交易": "Contract",
+  "行情": "Markets"
 }

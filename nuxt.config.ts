@@ -15,7 +15,9 @@ const runtimeConfig : EnvConfig = {
   // 設定只可在 client side 取得的 key
   public: {
     ENV: env[mode].MODE,
-    ENV_API: env[mode].ENV_API
+    ENV_API: env[mode].ENV_API,
+    BASE_URL: env[mode].BASE_URL,
+    DOMAIN_NAME: env[mode].DOMAIN_NAME
   }
 }
 
