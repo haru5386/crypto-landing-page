@@ -1,6 +1,11 @@
 {
   "伺服器錯誤": "\nLỗi máy chủ",
+  "公告": "Announcement",
+  "查看更多": "more",
   "test": "越南文",
-  "ff": "ff",
-  "key1": "Nhấp vào góc trên cùng bên phải"
+  "key1": "Nhấp vào góc trên cùng bên phải",
+  "幣幣交易": "giao dịch giao ngay",
+  "法幣交易": "Tiền mặt ",
+  "杠桿交易": "Giao dịch đòn bẩy",
+  "合約交易": "hợp đồng"
 }

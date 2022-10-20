@@ -1,6 +1,11 @@
 {
   "伺服器錯誤": "Oops! Server error",
+  "公告": "Announcement",
+  "查看更多": "more",
   "test": "英文",
-  "ff": "dd",
-  "key1": "Click on the top right corner"
+  "key1": "Click on the top right corner",
+  "幣幣交易": "Spot trading",
+  "法幣交易": "C2C",
+  "杠桿交易": "Margin",
+  "合約交易": "Contract"
 }
