@@ -8,5 +8,7 @@
   "法幣交易": "C2C",
   "杠桿交易": "Margin",
   "合約交易": "Contract",
-  "行情": "Markets"
+  "行情": "Markets",
+  "登錄": "Log In",
+  "註冊": "Sign Up"
 }

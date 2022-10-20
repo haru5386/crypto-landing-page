@@ -107,14 +107,14 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
             class="login"
             @click="goLogin"
           >
-            登入
+            {{ $t('登錄') }}
           </button>
           <!-- 註冊 -->
           <button
             class="sign-up"
             @click="goSignUp"
           >
-            註冊
+            {{ $t('註冊') }}
           </button>
         </div>
 
@@ -254,14 +254,14 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
             class="login"
             @click="goLogin"
           >
-            登入
+            {{ $t('登錄') }}
           </button>
           <!-- 註冊 -->
           <button
             class="sign-up"
             @click="goSignUp"
           >
-            註冊
+            {{ $t('註冊') }}
           </button>
         </div>
         <div class="icon">

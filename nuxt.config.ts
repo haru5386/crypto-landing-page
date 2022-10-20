@@ -16,6 +16,7 @@ const runtimeConfig : EnvConfig = {
   public: {
     ENV: env[mode].MODE,
     ENV_API: env[mode].ENV_API,
+    M_BASE_URL: env[mode].M_BASE_URL,
     BASE_URL: env[mode].BASE_URL,
     DOMAIN_NAME: env[mode].DOMAIN_NAME
   }
