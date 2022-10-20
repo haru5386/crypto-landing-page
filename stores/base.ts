@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
-import { UnwrapNestedRefs } from 'vue'
+import { computed, reactive, ref, UnwrapNestedRefs } from 'vue'
 import { getBaseDataApi, getUserInfoApi, getNoReadMsgApi, getIndexDataApi } from '@/api/base'
 import { Banner, Notice } from '@/types/interface/base.interface'
 
 export const useBaseStore = defineStore('useBaseStore', () => {
   // state
-
   const baseData = ref(null)
   const userData = ref(null)
   const isLogin = ref(false)
@@ -59,12 +58,12 @@ export const useBaseStore = defineStore('useBaseStore', () => {
       noReadMsg.value = { ...data.data }
     }, 10000)
   }
-
   const INDEX_DATA = async () => {
     const data = await getIndexDataApi()
     banner.push(...data.data.cmsAdvertList)
     noticeInfoList.push(...data.data.noticeInfoList)
   }
+
   return {
     BASEDATA,
     USERDATA,

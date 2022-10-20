@@ -24,7 +24,10 @@
 </template>
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useBaseStore } from '../stores/base.js'
+import { useBaseStore } from '../../stores/base.js'
+const route = useRoute()
+
+console.log(route.params.lang)
 
 // env setting
 // const runtimeConfig = useRuntimeConfig()

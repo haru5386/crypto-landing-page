@@ -1,18 +1,91 @@
+<script setup lang="ts">
+import i18n from '@/utils/i18n'
+import { availableLocales } from '@/utils/lang'
+import { HeaderInfo } from '@/types/interface/base.interface'
+import { getHeadAndFooterApi } from '@/api/base'
+
+// env data
+const runtimeConfig = useRuntimeConfig()
+const env = { ...runtimeConfig.public }
+
+const route = useRoute()
+const localeSetting = useState<string>('locale.setting')
+
+// data
+const openMainDrawer = ref(false)
+const isLogin = ref(false)
+
+// tabs
+const { t } = i18n.global
+// 交易 tabs
+const headTabs: HeaderInfo[] = reactive([
+  // {
+  //   text: t('行情'),
+  //   link: `${env.BASE_URL}/market`,
+  //   target: ''
+  // },
+  {
+    text: t('幣幣交易'),
+    link: `${env.BASE_URL}/trade`,
+    target: ''
+  },
+  {
+    text: t('法幣交易'),
+    link: `https://otc.${env.DOMAIN_NAME}`,
+    target: ''
+  }
+  // {
+  //   text: t('杠桿交易'),
+  //   link: `${env.BASE_URL}/margin`,
+  //   target: ''
+  // }
+])
+
+// tab 導頁
+const goPath = (link: string) => {
+  window.location.href = link
+}
+
+const goLogin = () => {
+  window.location.href = `${env.BASE_URL}/login`
+}
+
+const goSignUp = () => {
+  window.location.href = `${env.BASE_URL}/register`
+}
+
+/*
+ * 語言相關
+ */
+
+// 更新語言
+const changeLang = (lang: string) => {
+  localeSetting.value = lang
+}
+
+// 取得 header 呈現資訊
+const data = await getHeadAndFooterApi({ lang: route.params.lang })
+headTabs.push(...JSON.parse(data.data.value.data.header))
+</script>
+
 <template>
   <div class="nav">
     <div class="nav_left">
+      <!-- LOGO -->
       <img
         src="@/assets/images/logo.png"
         @click="$router.push({ path: '/' })"
       >
-      <div class="tabs">
-        <div
-          v-for="(item, index) in tabs"
-          :key="index"
-          class="tab_item"
-          @click="$router.push({ path: item.path })"
-        >
-          {{ item.title }}
+      <div class="pc">
+        <div class="tabs">
+          <div
+            v-for="(item, index) in headTabs"
+            :key="index"
+            class="tab_item"
+            @click="goPath(item.link)"
+          >
+            {{ item.text }}
+          </div>
         </div>
       </div>
     </div>
@@ -23,7 +96,7 @@
           class="icon burger"
           @click="openMainDrawer = true"
         >
-          <img src="@/assets/images/menu.svg">
+          <!-- <img src="@/assets/images/menu.svg"> -->
         </div>
 
         <div
@@ -32,14 +105,16 @@
         >
           <button
             class="login"
+            @click="goLogin"
           >
-            登入
+            {{ $t('登錄') }}
           </button>
           <!-- 註冊 -->
           <button
             class="sign-up"
+            @click="goSignUp"
           >
-            註冊
+            {{ $t('註冊') }}
           </button>
         </div>
 
@@ -59,9 +134,11 @@
             </div>
             <div class="drop-down">
               <div
-                v-for="item in languages"
+                v-for="item in availableLocales"
                 :key="item.iso"
+                :class="{ active: localeSetting === item.iso }"
                 class="drop-down-item"
+                @click="changeLang(item.iso)"
               >
                 <div class="item-text">
                   {{ item.name }}
@@ -81,9 +158,11 @@
             </div>
             <div class="drop-down">
               <div
-                v-for="item in languages"
+                v-for="item in availableLocales"
                 :key="item.iso"
+                :class="{ active: localeSetting === item.iso }"
                 class="drop-down-item"
+                @click="changeLang(item.iso)"
               >
                 <div class="item-text">
                   {{ item.name }}
@@ -95,9 +174,7 @@
           <!-- 個人中心 -->
           <div class="icon drop-down-menu">
             <div class="drop-down-title">
-              <img
-                src="@/assets/images/icons/account.svg"
-              >
+              <img src="@/assets/images/icons/account.svg">
             </div>
             <div class="drop-down">
               個人中心
@@ -107,9 +184,7 @@
           <!-- 通知 -->
           <div class="icon drop-down-menu">
             <div class="drop-down-title">
-              <img
-                src="@/assets/images/icons/bell.svg"
-              >
+              <img src="@/assets/images/icons/bell.svg">
             </div>
             <div class="drop-down">
               通知
@@ -119,9 +194,7 @@
         <!-- 下載 -->
         <div class="icon drop-down-menu">
           <div class="drop-down-title">
-            <img
-              src="@/assets/images/icons/download.svg"
-            >
+            <img src="@/assets/images/icons/download.svg">
           </div>
           <div class="drop-down">
             downloads
@@ -139,9 +212,11 @@
           </div>
           <div class="drop-down">
             <div
-              v-for="item in languages"
+              v-for="item in availableLocales"
               :key="item.iso"
               class="drop-down-item"
+              :class="{ active: localeSetting === item.iso }"
+              @click="changeLang(item.iso)"
             >
               <div class="item-text">
                 {{ item.name }}
@@ -150,65 +225,59 @@
           </div>
         </div>
       </div>
+      <div class="pad">
+        <div
+          v-if="isLogin"
+          style="display:flex;"
+        >
+          <div class="icon">
+            <img
+              class="menu"
+              src="@/assets/images/icons/account.svg"
+            >
+          </div>
+          <!-- 通知 -->
+          <div class="icon drop-down-menu">
+            <div class="drop-down-title">
+              <img src="@/assets/images/icons/bell.svg">
+            </div>
+            <div class="drop-down">
+              通知
+            </div>
+          </div>
+        </div>
+        <div
+          v-else
+          class="login-buttons"
+        >
+          <button
+            class="login"
+            @click="goLogin"
+          >
+            {{ $t('登錄') }}
+          </button>
+          <!-- 註冊 -->
+          <button
+            class="sign-up"
+            @click="goSignUp"
+          >
+            {{ $t('註冊') }}
+          </button>
+        </div>
+        <div class="icon">
+          <img
+            class="menu"
+            src="@/assets/images/icons/menu.svg"
+            @click="$router.push({ path: '/' })"
+          >
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-const openMainDrawer = ref(false)
-
-const tabs = [
-  {
-    name: 'index',
-    title: '幣幣交易',
-    path: '/'
-  },
-  {
-    name: 'market',
-    title: 'C2C交易',
-    path: '/market'
-  },
-  {
-    name: 'box',
-    title: '買幣',
-    path: '/box'
-  },
-  {
-    name: 'auction',
-    title: 'ETF',
-    path: '/auction'
-  }
-]
-
-const languages = [
-  {
-    name: 'English',
-    iso: 'en'
-  },
-  {
-    name: '简体中文',
-    iso: 'zh'
-  },
-  {
-    name: 'Tiếng Việt',
-    iso: 'vi'
-  },
-  {
-    name: '日本語',
-    iso: 'ja'
-  },
-  {
-    name: '한국어',
-    iso: 'ko'
-  }
-]
-
-const isLogin = ref(true)
-
-</script>
-
 <style lang="scss" scoped>
-@import "@/assets/scss/index.scss";
+@import '@/assets/scss/index.scss';
 
 .nav {
   width: 100%;
@@ -223,15 +292,19 @@ const isLogin = ref(true)
   position: fixed;
   top: 0;
   z-index: 1000;
+  @include pad {
+    padding: 0 $spacing_2 0 $spacing_2;
+  }
   .nav_left {
     display: flex;
+    align-items: center;
     img {
       margin-right: 25px;
     }
     .tabs {
       display: flex;
       .tab_item {
-        @include font("Body2-Med", #fff);
+        @include font('Body2-Med', #fff);
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -244,12 +317,14 @@ const isLogin = ref(true)
   }
   .nav_right {
     height: 100%;
-    @include font("Body2-Med", #fff);
+    @include font('Body2-Med', #fff);
     display: flex;
     align-items: center;
     // 登出狀態顯示
     .login-buttons {
       display: flex;
+      align-items: center;
+      margin-right: 15px;
       .login {
         height: 30px;
         padding: 4px 15px;
@@ -274,6 +349,9 @@ const isLogin = ref(true)
       display: flex;
       align-items: center;
       margin-left: $spacing_2;
+      @include pad {
+        margin-left: $spacing_2-5;
+      }
       cursor: pointer;
       &.burger {
         display: none;
@@ -287,7 +365,7 @@ const isLogin = ref(true)
       margin-left: 26px;
       align-items: center;
       cursor: pointer;
-      @include font("Cap1-Reg", #fff);
+      @include font('Cap1-Reg', #fff);
     }
   }
 }
@@ -340,7 +418,7 @@ const isLogin = ref(true)
         margin-left: 11px;
         display: flex;
         align-items: center;
-        @include font("Body2-Med", #fff);
+        @include font('Body2-Med', #fff);
       }
     }
   }
@@ -351,7 +429,8 @@ const isLogin = ref(true)
 
 // RWD Setting
 .pc {
-     display: flex;
+  display: flex;
+  height: 100%;
 }
 
 .pad {
@@ -361,6 +440,10 @@ const isLogin = ref(true)
 @include pad {
   .pc {
     display: none;
+  }
+  .pad {
+    display: flex;
+    height: 100%;
   }
 }
 </style>
