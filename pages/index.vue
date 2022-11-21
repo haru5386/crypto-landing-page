@@ -10,10 +10,6 @@
     {{ NOREADMSG }}
     <p>wsUrl</p>
     {{ WSURL }}
-    <p>islogin</p>
-    {{ ISLOGIN }}
-    <p>userdata</p>
-    {{ USERDATA }}
     <p>baseData</p>
     {{ BASEDATA }}
 
@@ -36,15 +32,27 @@ import { useBaseStore } from '../stores/base.js'
 // fetch 資料
 const BaseStore = useBaseStore()
 // 引入 store action
-const { BASE_DATA_INIT, USER_DATA_INIT, NO_READ_MSG, INDEX_DATA } = BaseStore
+const { BASE_DATA_INIT } = BaseStore
 // 引入 store state / getter
-const { BASEDATA, USERDATA, ISLOGIN, WSURL, NOREADMSG } = storeToRefs(BaseStore)
+const { BASEDATA, WSURL, NOREADMSG } = storeToRefs(BaseStore)
+
+// 語言
+const localeSetting = useState<string>('locale.setting')
+
+// 更新語言重新整理
+// watch(localeSetting, (val) => {
+//   window.location.href = `/${val}`
+// })
+
+const router = useRouter()
 
 onMounted(() => {
-  USER_DATA_INIT()
   BASE_DATA_INIT()
-  NO_READ_MSG()
-  INDEX_DATA()
+  const language = localeSetting.value
+    ? localeSetting.value
+    : window.navigator.language
+  // console.log('language', language)
+  router.push(`/${language}`)
 })
 </script>
 <style lang="scss" scoped>

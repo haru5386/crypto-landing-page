@@ -1,13 +1,11 @@
 import { defineStore } from 'pinia'
 import { computed, reactive, ref, UnwrapNestedRefs } from 'vue'
-import { getBaseDataApi, getUserInfoApi, getNoReadMsgApi, getIndexDataApi } from '@/api/base'
+import { getBaseDataApi, getNoReadMsgApi, getIndexDataApi } from '@/api/base'
 import { Banner, Notice } from '@/types/interface/base.interface'
 
-export const useBaseStore = defineStore('useBaseStore', () => {
+export const useBaseStore = defineStore('baseStore', () => {
   // state
   const baseData = ref(null)
-  const userData = ref(null)
-  const isLogin = ref(false)
   const wsUrl = ref('')
   const noReadMsg = ref(null)
   const timer = ref(0)
@@ -18,12 +16,7 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   const BASEDATA = computed(() => {
     return baseData.value
   })
-  const USERDATA = computed(() => {
-    return userData.value
-  })
-  const ISLOGIN = computed(() => {
-    return isLogin.value
-  })
+
   const WSURL = computed(() => {
     return wsUrl.value
   })
@@ -41,13 +34,7 @@ export const useBaseStore = defineStore('useBaseStore', () => {
   const BASE_DATA_INIT = async () => {
     const data = await getBaseDataApi()
     baseData.value = { ...data.data }
-    wsUrl.value = data.data.market.wsUrl
-  }
-  const USER_DATA_INIT = async () => {
-    const data = await getUserInfoApi()
-    userData.value = { ...data.data }
-    // 登入狀態
-    isLogin.value = !!data.data
+    // wsUrl.value = data.data.market.wsUrl
   }
   const NO_READ_MSG = async () => {
     clearInterval(timer.value)
@@ -66,14 +53,11 @@ export const useBaseStore = defineStore('useBaseStore', () => {
 
   return {
     BASEDATA,
-    USERDATA,
-    ISLOGIN,
     WSURL,
     NOREADMSG,
     BANNER,
     NOTICEINFOLIST,
     BASE_DATA_INIT,
-    USER_DATA_INIT,
     NO_READ_MSG,
     INDEX_DATA
   }

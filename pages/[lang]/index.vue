@@ -25,29 +25,24 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { useBaseStore } from '../../stores/base.js'
-const route = useRoute()
-
-console.log(route.params.lang)
-
-// env setting
-// const runtimeConfig = useRuntimeConfig()
-// const env = { ...runtimeConfig.public }
-// const API_SECRET = runtimeConfig.public.API_BASE_URL
-// const ENV = runtimeConfig.public.ENV
-// console.log(env)
+import { useUserStore } from '../../stores/user.js'
 
 // fetch 資料
 const BaseStore = useBaseStore()
+const UserStore = useUserStore()
+
 // 引入 store action
-const { BASE_DATA_INIT, USER_DATA_INIT, NO_READ_MSG, INDEX_DATA } = BaseStore
+const { BASE_DATA_INIT, NO_READ_MSG } = BaseStore
+const { USER_DATA_INIT } = UserStore
 // 引入 store state / getter
-const { BASEDATA, USERDATA, ISLOGIN, WSURL, NOREADMSG } = storeToRefs(BaseStore)
+const { BASEDATA, WSURL, NOREADMSG } = storeToRefs(BaseStore)
+const { USERDATA, ISLOGIN } = storeToRefs(UserStore)
 
 onMounted(() => {
+  // 取得使用者資訊
   USER_DATA_INIT()
   BASE_DATA_INIT()
   NO_READ_MSG()
-  INDEX_DATA()
 })
 </script>
 <style lang="scss" scoped>

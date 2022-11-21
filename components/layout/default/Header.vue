@@ -1,8 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { computed, ref } from 'vue'
+import { useUserStore } from '@/stores/user.js'
 import i18n from '@/utils/i18n'
 import { availableLocales } from '@/utils/lang'
 import { HeaderInfo } from '@/types/interface/base.interface'
 import { getHeadAndFooterApi } from '@/api/base'
+
+import { getURLs } from '@/utils/urls'
 
 // env data
 const runtimeConfig = useRuntimeConfig()
@@ -11,9 +16,15 @@ const env = { ...runtimeConfig.public }
 const route = useRoute()
 const localeSetting = useState<string>('locale.setting')
 
+// stores
+const UserStore = useUserStore()
+const { ISLOGIN } = storeToRefs(UserStore)
+
 // data
 const openMainDrawer = ref(false)
-const isLogin = ref(false)
+const isLogin = computed(() => {
+  return ISLOGIN.value
+})
 
 // tabs
 const { t } = i18n.global
@@ -66,6 +77,12 @@ const changeLang = (lang: string) => {
 // 取得 header 呈現資訊
 const data = await getHeadAndFooterApi({ lang: route.params.lang })
 headTabs.push(...JSON.parse(data.data.value.data.header))
+
+const urls1 = computed(() => {
+  return getURLs().c2c
+})
+
+console.log(urls1)
 </script>
 
 <template>
@@ -120,7 +137,7 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
 
         <div
           v-if="isLogin"
-          style="display:flex; height: 100%;"
+          style="display: flex; height: 100%"
           class="pc"
         >
           <!-- 資產 -->
@@ -128,7 +145,7 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
             <div class="drop-down-title">
               資產
               <img
-                style="margin-left:5px;"
+                style="margin-left: 5px"
                 src="@/assets/images/icons/menu-down.svg"
               >
             </div>
@@ -152,7 +169,7 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
             <div class="drop-down-title">
               訂單
               <img
-                style="margin-left:5px;"
+                style="margin-left: 5px"
                 src="@/assets/images/icons/menu-down.svg"
               >
             </div>
@@ -206,7 +223,7 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
           <div class="drop-down-title">
             語言
             <img
-              style="margin-left:5px;"
+              style="margin-left: 5px"
               src="@/assets/images/icons/menu-down.svg"
             >
           </div>
@@ -228,7 +245,7 @@ headTabs.push(...JSON.parse(data.data.value.data.header))
       <div class="pad">
         <div
           v-if="isLogin"
-          style="display:flex;"
+          style="display: flex"
         >
           <div class="icon">
             <img
