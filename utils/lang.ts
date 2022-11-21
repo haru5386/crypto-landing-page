@@ -12,7 +12,7 @@ export const availableLocales: ILocales = {
     name: 'English',
     iso: 'en_US'
   },
-  cn: {
+  zh: {
     name: '简体中文',
     iso: 'zh_CN'
   },
@@ -41,7 +41,7 @@ export function LanguageManager () {
       const foundLang = window
         ? window.navigator.language.substring(0, 2)
         : 'en'
-      return availableLocales[foundLang] ? availableLocales.foundLang.iso : 'en_US'
+      return availableLocales[foundLang] ? availableLocales[foundLang].iso : 'en_US'
     } catch (error) {
       return 'en_US'
     }

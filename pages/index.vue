@@ -49,8 +49,8 @@ const router = useRouter()
 onMounted(() => {
   BASE_DATA_INIT()
   const language = localeSetting.value
-    ? localeSetting.value
-    : window.navigator.language
+  // ? localeSetting.value
+  // : window.navigator.language
   // console.log('language', language)
   router.push(`/${language}`)
 })
