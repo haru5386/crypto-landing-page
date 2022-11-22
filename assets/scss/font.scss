@@ -26,23 +26,23 @@
     color: $color;
 }
 
-:lang(en) {
+:lang(en_US) {
     font-family: Barlow, "Noto Sans";
 }
 
-:lang(zh) {
+:lang(zh_CN) {
     font-family: "Noto Sans SC", Barlow, "Noto Sans";
 }
 
-:lang(vi) {
+:lang(vi_CN) {
     font-family: Barlow, "Noto Sans";
 }
 
-:lang(ja) {
+:lang(ja_JP) {
     font-family: "Noto Sans JP", Barlow, "Noto Sans";
 }
 
-:lang(ko) {
+:lang(ko_KR) {
     font-family: "Noto Sans KR", Barlow, "Noto Sans";
 }
 
