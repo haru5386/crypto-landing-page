@@ -1,7 +1,7 @@
 <template>
   <div class="page-index">
     <!-- content -->
-    <block2 />
+    <block3 />
   </div>
 </template>
 <script setup lang="ts">
