@@ -20,6 +20,12 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Barlow";
+    src: url("@/assets/font/Barlow-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
  /* 非英文字體 */
 @font-face {
     font-family: "Noto Sans";
@@ -27,6 +33,13 @@
     font-weight: 700;
     font-style: normal;
 }
+@font-face {
+    font-family: "Noto Sans";
+    src: url("@/assets/font/NotoSans-SemiBold.ttf");
+    font-weight: 600;
+    font-style: normal;
+}
+
 
 @font-face {
     font-family: "Noto Sans";
