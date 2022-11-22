@@ -2,24 +2,10 @@
   <div class="page-index">
     <!-- config private 測試： {{ API_SECRET }} <br> -->
     <!-- config public  測試： {{ ENV }} <br> -->
-    <div class="aaa">
-      {{ $t('key1') }}
-      <img src="@/assets/images/icons/menu-down.svg">
-    </div>
-    <p>未讀訊息</p>
-    {{ NOREADMSG }}
-    <p>wsUrl</p>
-    {{ WSURL }}
-    <p>baseData</p>
-    {{ BASEDATA }}
-
-    <Logos />
-    <Examples />
-    <SwitchLanguage />
   </div>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 import { useBaseStore } from '../stores/base.js'
 
 // env setting
@@ -34,7 +20,7 @@ const BaseStore = useBaseStore()
 // 引入 store action
 const { BASE_DATA_INIT } = BaseStore
 // 引入 store state / getter
-const { BASEDATA, WSURL, NOREADMSG } = storeToRefs(BaseStore)
+// const { BASEDATA, WSURL, NOREADMSG } = storeToRefs(BaseStore)
 
 // 語言
 const localeSetting = useState<string>('locale.setting')
@@ -60,11 +46,5 @@ onMounted(() => {
 .page-index {
   padding-top: 60px;
   text-align: center;
-  .aaa {
-    @include font('Heading1', red);
-  }
-  .bbb {
-    @include font('Heading1', red);
-  }
 }
 </style>
