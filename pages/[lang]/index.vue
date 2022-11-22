@@ -1,6 +1,7 @@
 <template>
   <div class="page-index">
     <!-- content -->
+    <block2 />
   </div>
 </template>
 <script setup lang="ts">
@@ -25,6 +26,11 @@ onMounted(() => {
 </script>
 <style lang="scss">
 @import '../assets/scss';
+
+.page-index {
+  background-color: #000;
+}
+
 .block {
   height: 100vh;
   width: 100vw;
