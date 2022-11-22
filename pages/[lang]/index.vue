@@ -23,16 +23,19 @@ onMounted(() => {
   NO_READ_MSG()
 })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../assets/scss';
-.page-index {
-  padding-top: 60px;
-  text-align: center;
-  .aaa {
-    @include font('Heading1', red);
-  }
-  .bbb {
-    @include font('Heading1', red);
+.block {
+  height: 100vh;
+  width: 100vw;
+  padding-top: 64px;
+}
+.container {
+  max-width: 1200px;
+  padding: 0 $spacing_4;
+  margin: 0 auto;
+  @include mobile {
+    padding: 0 $spacing_2;
   }
 }
 </style>
