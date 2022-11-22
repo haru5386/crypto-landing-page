@@ -10,6 +10,7 @@ const { t } = useLang()
     <video
       class="block2-video"
       autoplay
+      muted
       loop
     >
       <source
