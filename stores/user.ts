@@ -23,9 +23,17 @@ export const useUserStore = defineStore('userStore', () => {
     isLogin.value = data.data !== null
   }
 
+  const LOGOUT = () => {
+    userData.value = null
+    // 登入狀態
+    isLogin.value = false
+    useCookie('token').value = ''
+  }
+
   return {
     ISLOGIN,
     USERDATA,
-    USER_DATA_INIT
+    USER_DATA_INIT,
+    LOGOUT
   }
 })

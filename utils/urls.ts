@@ -24,6 +24,7 @@ export function getURLs () {
       c2c: `/co/${lang}/assets/otcAccount`,
       // 合約資產
       co: `/co/${lang}/trade/assets/coAccount`
-    }
+    },
+    AGET: 'https://aget.aceglobal.io/'
   }
 }

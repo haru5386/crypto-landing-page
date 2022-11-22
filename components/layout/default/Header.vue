@@ -2,10 +2,10 @@
 import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useUserStore } from '@/stores/user.js'
-import i18n from '@/utils/i18n'
+// import i18n from '@/utils/i18n'
 import { availableLocales } from '@/utils/lang'
 import { HeaderInfo } from '@/types/interface/base.interface'
-import { getHeadAndFooterApi } from '@/api/base'
+// import { getHeadAndFooterApi } from '@/api/base'
 
 import { getURLs } from '@/utils/urls'
 
@@ -13,7 +13,7 @@ import { getURLs } from '@/utils/urls'
 const runtimeConfig = useRuntimeConfig()
 const env = { ...runtimeConfig.public }
 
-const route = useRoute()
+// const route = useRoute()
 const localeSetting = useState<string>('locale.setting')
 
 // stores
@@ -27,7 +27,7 @@ const isLogin = computed(() => {
 })
 
 // tabs
-const { t } = i18n.global
+const { t } = useLang()
 // 交易 tabs
 const headTabs: HeaderInfo[] = reactive([
   // {
@@ -35,21 +35,34 @@ const headTabs: HeaderInfo[] = reactive([
   //   link: `${env.BASE_URL}/market`,
   //   target: ''
   // },
-  {
-    text: t('幣幣交易'),
-    link: `${env.BASE_URL}/trade`,
-    target: ''
-  },
-  {
-    text: t('法幣交易'),
-    link: `https://otc.${env.DOMAIN_NAME}`,
-    target: ''
-  }
+  // {
+  //   text: t('幣幣交易'),
+  //   link: `${env.BASE_URL}/trade`,
+  //   target: ''
+  // },
+  // {
+  //   text: t('法幣交易'),
+  //   link: `https://otc.${env.DOMAIN_NAME}`,
+  //   target: ''
+  // }
   // {
   //   text: t('杠桿交易'),
   //   link: `${env.BASE_URL}/margin`,
   //   target: ''
   // }
+  {
+    text: 'AGET',
+    link: getURLs().AGET,
+    target: '_BLANK'
+  }
+])
+
+const assetsUrls = reactive([
+  {
+    text: t('幣幣帳戶'),
+    link: getURLs().assets.trade,
+    target: '_BLANK'
+  }
 ])
 
 // tab 導頁
@@ -75,14 +88,8 @@ const changeLang = (lang: string) => {
 }
 
 // 取得 header 呈現資訊
-const data = await getHeadAndFooterApi({ lang: route.params.lang })
-headTabs.push(...JSON.parse(data.data.value.data.header))
-
-const urls1 = computed(() => {
-  return getURLs().c2c
-})
-
-console.log(urls1)
+// const data = await getHeadAndFooterApi({ lang: route.params.lang })
+// headTabs.push(...JSON.parse(data.data.value.data.header))
 </script>
 
 <template>
@@ -95,14 +102,15 @@ console.log(urls1)
       >
       <div class="pc">
         <div class="tabs">
-          <div
+          <a
             v-for="(item, index) in headTabs"
             :key="index"
             class="tab_item"
-            @click="goPath(item.link)"
+            :href="item.link"
+            :target="item.target"
           >
             {{ item.text }}
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -151,21 +159,20 @@ console.log(urls1)
             </div>
             <div class="drop-down">
               <div
-                v-for="item in availableLocales"
-                :key="item.iso"
-                :class="{ active: localeSetting === item.iso }"
+                v-for="(item, index) in assetsUrls"
+                :key="index"
                 class="drop-down-item"
-                @click="changeLang(item.iso)"
+                @click="goPath(item.link)"
               >
                 <div class="item-text">
-                  {{ item.name }}
+                  {{ item.text }}
                 </div>
               </div>
             </div>
           </div>
 
           <!-- 訂單 -->
-          <div class="icon drop-down-menu">
+          <!-- <div class="icon drop-down-menu">
             <div class="drop-down-title">
               訂單
               <img
@@ -186,7 +193,7 @@ console.log(urls1)
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- 個人中心 -->
           <div class="icon drop-down-menu">
@@ -194,29 +201,36 @@ console.log(urls1)
               <img src="@/assets/images/icons/account.svg">
             </div>
             <div class="drop-down">
-              個人中心
+              <div
+                class="drop-down-item"
+                @click="UserStore.LOGOUT"
+              >
+                <div class="item-text">
+                  {{ t('退出') }}
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- 通知 -->
-          <div class="icon drop-down-menu">
+          <!-- <div class="icon drop-down-menu">
             <div class="drop-down-title">
               <img src="@/assets/images/icons/bell.svg">
             </div>
             <div class="drop-down">
               通知
             </div>
-          </div>
+          </div> -->
         </div>
         <!-- 下載 -->
-        <div class="icon drop-down-menu">
+        <!-- <div class="icon drop-down-menu">
           <div class="drop-down-title">
             <img src="@/assets/images/icons/download.svg">
           </div>
           <div class="drop-down">
             downloads
           </div>
-        </div>
+        </div> -->
 
         <!-- 語言 -->
         <div class="icon drop-down-menu">
@@ -254,14 +268,14 @@ console.log(urls1)
             >
           </div>
           <!-- 通知 -->
-          <div class="icon drop-down-menu">
+          <!-- <div class="icon drop-down-menu">
             <div class="drop-down-title">
               <img src="@/assets/images/icons/bell.svg">
             </div>
             <div class="drop-down">
               通知
             </div>
-          </div>
+          </div> -->
         </div>
         <div
           v-else
@@ -324,6 +338,7 @@ console.log(urls1)
         @include font('Body2-Med', #fff);
         display: flex;
         align-items: center;
+        text-decoration: none;
         cursor: pointer;
         margin-right: $spacing_3;
         &.active {
@@ -393,6 +408,7 @@ console.log(urls1)
   .drop-down-title {
     padding: 8px;
     height: 24px;
+    line-height: 24px;
     display: flex;
     align-items: center;
   }

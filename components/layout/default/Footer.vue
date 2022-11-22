@@ -201,8 +201,7 @@ const links = reactive([
   {
     id: 1,
     title: 'Twitter',
-    logo:
-      'https://ipfs.metabazaar.vip/ipfs/QmSELYYW9f5j3HnGYA9orgrJA3AmpgSiHFDK3HjQDjb4d9',
+    logo: 'https://ipfs.metabazaar.vip/ipfs/QmSELYYW9f5j3HnGYA9orgrJA3AmpgSiHFDK3HjQDjb4d9',
     hoverLogo:
       'https://ipfs.metabazaar.vip/ipfs/QmUURuaBvEo7f3JK4WPC4L1RNv2X3Fc2n4X8VMcBeTmHta',
     url: 'https://twitter.com/exchange_ace',
@@ -212,8 +211,7 @@ const links = reactive([
   {
     id: 2,
     title: 'Telegram',
-    logo:
-      'https://ipfs.metabazaar.vip/ipfs/Qmcvxozmo3ugmJxQebXYnyjMvwWxZhjfzjigGQB4ffBKd6',
+    logo: 'https://ipfs.metabazaar.vip/ipfs/Qmcvxozmo3ugmJxQebXYnyjMvwWxZhjfzjigGQB4ffBKd6',
     hoverLogo:
       'https://ipfs.metabazaar.vip/ipfs/QmS7U7yeQs59GS8k4yVxGNBYhrAbCPK3QYSvGMTfyJ9HWQ',
     url: 'https://t.me/aceglobalexchangechannel',
@@ -231,7 +229,7 @@ const goToWhat = () => {
 </script>
 
 <style lang="scss">
-@import "../../../assets/scss/index.scss";
+@import '../../../assets/scss/index.scss';
 
 .footer {
   width: 100%;
@@ -250,11 +248,11 @@ const goToWhat = () => {
         padding-bottom: 32px;
         margin-bottom: 32px;
         .label {
-          @include font("Heading3", #fff);
+          @include font('Heading3', #fff);
         }
         .item-li {
           margin-top: 16px;
-          @include font("Body1-Reg", $color_gray_60);
+          @include font('Body1-Reg', $color_gray_60);
         }
         .shareFootList {
           display: flex;
@@ -273,16 +271,16 @@ const goToWhat = () => {
     .collapse {
       margin-top: 8px;
       .collapse-title {
-        @include font("Heading3", #fff);
+        @include font('Heading3', #fff);
       }
       .item-li {
         margin-bottom: 10px;
-        @include font("Body1-Reg", $color_gray_60);
+        @include font('Body1-Reg', $color_gray_60);
       }
     }
     .social-media {
       .label {
-        @include font("Heading3", #fff);
+        @include font('Heading3', #fff);
         height: 48px;
         line-height: 48px;
       }
@@ -309,7 +307,7 @@ const goToWhat = () => {
     justify-content: center;
     text-align: center;
     margin: 32px 16px;
-    @include font("Body2-Reg", #fff);
+    @include font('Body2-Reg', #fff);
   }
 }
 
@@ -325,12 +323,12 @@ const goToWhat = () => {
       padding: 0 32px;
     }
     .titles {
-       margin-bottom: 0px;
-    .logoFootTitle {
-      width: 150px;
-      height: 50px;
+      margin-bottom: 0px;
+      .logoFootTitle {
+        width: 150px;
+        height: 50px;
+      }
     }
-  }
   }
 }
 
@@ -370,5 +368,4 @@ const goToWhat = () => {
 .el-collapse {
   --el-collapse-header-height: 45px;
 }
-
 </style>
