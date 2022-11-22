@@ -17,8 +17,8 @@ html.dark {
 }
 
 a {
-  font-weight: 400;
-  color: var(--el-color-primary);
+  color: $color_identity_Primary;
+  text-decoration: none
 }
 
 * {
@@ -29,4 +29,8 @@ h1,h2,h3,h4,h5 {
   margin: 0;
   padding: 0;
   line-height: 1;
+}
+input,input:focus {
+  border:none;
+  outline: none;
 }
