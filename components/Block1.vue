@@ -64,6 +64,7 @@ const signUp = () => {
     width: 100%;
     height: calc(100% - 64px);
     overflow: hidden;
+    z-index: -1;
   }
   video{
     position: absolute;
@@ -74,8 +75,11 @@ const signUp = () => {
     object-fit: cover;
     z-index: -1;
     overflow: hidden;
+    @include pad {
+      top:20%;
+    }
     @include mobile {
-    top: 20%;
+      top: 20%;
     }
 }
   .des1 {
@@ -83,6 +87,9 @@ const signUp = () => {
     font-size: 38px;
     font-weight: 600;
     text-transform:uppercase;
+    @include pad {
+      font-size: 25px;
+    }
     @include mobile {
       font-size: 16px;
       margin-top: 57px;
@@ -94,6 +101,9 @@ const signUp = () => {
     font-size: 65px;
     font-weight: 400;
     text-transform:uppercase;
+    @include pad {
+      font-size: 43px;
+    }
     @include mobile {
       margin-top: 12px;
       font-size: 38px;
@@ -103,6 +113,9 @@ const signUp = () => {
     margin-top: 22px;
     font-size: 38px;
     font-weight: 400;
+    @include pad {
+      font-size: 25px;
+    }
     @include mobile {
       margin-top: 42px;
       font-size: 21px;
@@ -119,9 +132,16 @@ const signUp = () => {
     border-radius:  26px;
     background-color: $color_gray_Black;
     font-size: 20px;
+    z-index: 10;
+    @include pad {
+      height: 33px;
+      font-size: 13px;
+      margin-top: 30px;
+    }
     @include mobile {
       height: 26px;
       font-size: 10px;
+      max-width: 350px;
       width: 80%;
     }
 
@@ -133,10 +153,13 @@ const signUp = () => {
       padding:0 20px;
       border-radius:  26px 0 0 26px;
       flex:6;
+      @include pad {
+        font-size: 13px;
+        padding:0 20px 0 20px;
+      }
       @include mobile {
         font-size: 10px;
         padding:0 10px 0 10px;
-
       }
 
     }
@@ -149,6 +172,9 @@ const signUp = () => {
       text-transform:uppercase;
       color: $color_identity_Primary;
       flex:4;
+      @include pad {
+        line-height: 33px;
+      }
       @include mobile {
         line-height: 26px;
       }
