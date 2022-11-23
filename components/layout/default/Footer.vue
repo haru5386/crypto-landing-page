@@ -237,6 +237,7 @@ const goToWhat = () => {
   justify-content: center;
   background: $color_gray_80;
   padding: 48px 0 0 0;
+  z-index: 100px;
   .footer-container {
     width: 1200px;
     .items {
