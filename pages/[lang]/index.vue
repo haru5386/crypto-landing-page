@@ -6,7 +6,9 @@
     <block3 />
     <block4 />
     <block5 />
+    <block6 />
     <block7 />
+    <block8 />
     <block9 />
   </div>
 </template>
@@ -31,12 +33,9 @@ const triggers = ScrollTrigger.getAll()
 
 function gsapSet () {
   ScrollTrigger.matchMedia({
-    '(min-width: 1200px)': () => {
-    },
-    '(min-width: 768px)': () => {
-    },
-    '(max-width: 768px)': () => {
-    },
+    '(min-width: 1200px)': () => {},
+    '(min-width: 768px)': () => {},
+    '(max-width: 768px)': () => {},
     all: () => {
       block1Scroll()
       block3Scroll()
@@ -51,61 +50,84 @@ function gsapSet () {
 
 // Earth 進入動畫
 function animatedEarthIn () {
-  gsap.timeline().fromTo('.animation-group', {
-    duration: 1,
-    ease: 'circ.out',
-    y: -100,
-    opacity: 0
-  }, {
-    duration: 1,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }).fromTo('.video-earth', {
-    duration: 1,
-    ease: 'circ.out',
-    y: 100,
-    opacity: 0,
-    delay: 0.2
-  }, {
-    duration: 1,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1,
-    delay: 0.2
-  }, '<')
+  gsap
+    .timeline()
+    .fromTo(
+      '.animation-group',
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: -100,
+        opacity: 0
+      },
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.video-earth',
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: 100,
+        opacity: 0,
+        delay: 0.2
+      },
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1,
+        delay: 0.2
+      },
+      '<'
+    )
 }
 // Earth 離開動畫
 function animatedEarthOut () {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '#block2',
-      markers: true,
-      start: 'top 95%',
-      end: 'top 30%',
-      scrub: true
-    }
-  }).to('.video-earth-video', {
-    duration: 1,
-    ease: 'easeIn',
-    y: -400
-  }).to('.animation-group', {
-    duration: 1,
-    ease: 'easeIn',
-    y: -900
-  }, '<')
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block2',
+        markers: true,
+        start: 'top 95%',
+        end: 'top 30%',
+        scrub: true
+      }
+    })
+    .to('.video-earth-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -400
+    })
+    .to(
+      '.animation-group',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -900
+      },
+      '<'
+    )
 }
 
 // video-ace 進入動畫
 function aceVideoIn () {
-  gsap.timeline().fromTo('.video-ace', {
-    ease: 'circ.out',
-    y: 200
-  }, {
-    duration: 1,
-    ease: 'circ.out',
-    y: 0
-  })
+  gsap.timeline().fromTo(
+    '.video-ace',
+    {
+      ease: 'circ.out',
+      y: 200
+    },
+    {
+      duration: 1,
+      ease: 'circ.out',
+      y: 0
+    }
+  )
 }
 // shield 進入動畫
 function shieldIn () {
@@ -116,16 +138,20 @@ function shieldIn () {
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
-      gsap.timeline().fromTo('.shield', {
-        ease: 'circ.out',
-        y: -700,
-        opacity: 0
-      }, {
-        duration: 2,
-        ease: 'circ.out',
-        y: 0,
-        opacity: 1
-      })
+      gsap.timeline().fromTo(
+        '.shield',
+        {
+          ease: 'circ.out',
+          y: -700,
+          opacity: 0
+        },
+        {
+          duration: 2,
+          ease: 'circ.out',
+          y: 0,
+          opacity: 1
+        }
+      )
     },
 
     // 向下滾動超過end點時觸發callback
@@ -137,7 +163,6 @@ function shieldIn () {
     onEnterBack: function () {
       // animatedEarthOut()
     }
-
   })
 }
 // badge 進入動畫
@@ -149,24 +174,36 @@ function badgeIn () {
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
-      gsap.timeline().fromTo('.badge', {
-        ease: 'circ.out',
-        y: 100,
-        opacity: 0
-      }, {
-        duration: 1,
-        ease: 'circ.out',
-        y: 0,
-        opacity: 1
-      }).fromTo('.block5-bg', {
-        ease: 'circ.out',
-        y: 100
-      }, {
-        duration: 1,
-        ease: 'circ.out',
-        y: 0,
-        delay: 0.2
-      }, '<')
+      gsap
+        .timeline()
+        .fromTo(
+          '.badge',
+          {
+            ease: 'circ.out',
+            y: 100,
+            opacity: 0
+          },
+          {
+            duration: 1,
+            ease: 'circ.out',
+            y: 0,
+            opacity: 1
+          }
+        )
+        .fromTo(
+          '.block5-bg',
+          {
+            ease: 'circ.out',
+            y: 100
+          },
+          {
+            duration: 1,
+            ease: 'circ.out',
+            y: 0,
+            delay: 0.2
+          },
+          '<'
+        )
     },
 
     // 向下滾動超過end點時觸發callback
@@ -178,115 +215,176 @@ function badgeIn () {
     onEnterBack: function () {
       // animatedEarthOut()
     }
-
   })
 }
 
 // roadMap 進入動畫
 function roadMapIn () {
-  gsap.timeline().fromTo('.bg-roadMap', {
-    ease: 'circ.out',
-    y: 250
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0
-  }).fromTo('.location-2021', {
-    ease: 'circ.out',
-    y: -250,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }).fromTo('.content-2021', {
-    ease: 'circ.out',
-    y: 550,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }, '<').fromTo('.location-2022', {
-    ease: 'circ.out',
-    y: -250,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }).fromTo('.content-2022', {
-    ease: 'circ.out',
-    y: 550,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }, '<').fromTo('.location-2023', {
-    ease: 'circ.out',
-    y: -250,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }).fromTo('.content-2023', {
-    ease: 'circ.out',
-    y: 550,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }, '<').fromTo('.location-2024', {
-    ease: 'circ.out',
-    y: -250,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }).fromTo('.content-2024', {
-    ease: 'circ.out',
-    y: 550,
-    opacity: 0
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }, '<')
+  gsap
+    .timeline()
+    .fromTo(
+      '.bg-roadMap',
+      {
+        ease: 'circ.out',
+        y: 250
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0
+      }
+    )
+    .fromTo(
+      '.location-2021',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2021',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
+    .fromTo(
+      '.location-2022',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2022',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
+    .fromTo(
+      '.location-2023',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2023',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
+    .fromTo(
+      '.location-2024',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2024',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
 }
 
 // device 進入動畫
 function deviceIn () {
-  gsap.timeline().fromTo('.device', {
-    ease: 'circ.out',
-    opacity: 0,
-    y: -150
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    opacity: 1,
-    y: 0
-  }).fromTo('.block9-bg', {
-    ease: 'circ.out',
-    opacity: 0,
-    y: 150
-  }, {
-    duration: 0.8,
-    ease: 'circ.out',
-    opacity: 1,
-    y: 0
-  }, '<')
+  gsap
+    .timeline()
+    .fromTo(
+      '.device',
+      {
+        ease: 'circ.out',
+        opacity: 0,
+        y: -150
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        opacity: 1,
+        y: 0
+      }
+    )
+    .fromTo(
+      '.block9-bg',
+      {
+        ease: 'circ.out',
+        opacity: 0,
+        y: 150
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        opacity: 1,
+        y: 0
+      },
+      '<'
+    )
 }
 // scroll block1 觸發
 function block1Scroll () {
@@ -301,14 +399,12 @@ function block1Scroll () {
     },
 
     // 向下滾動超過end點時觸發callback
-    onLeave: function () {
-    },
+    onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
       animatedEarthIn()
     }
-
   })
 }
 
@@ -325,14 +421,12 @@ function block3Scroll () {
     },
 
     // 向下滾動超過end點時觸發callback
-    onLeave: function () {
-    },
+    onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
       aceVideoIn()
     }
-
   })
 }
 
@@ -349,14 +443,12 @@ function block7Scroll () {
     },
 
     // 向下滾動超過end點時觸發callback
-    onLeave: function () {
-    },
+    onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
       roadMapIn()
     }
-
   })
 }
 
@@ -373,14 +465,12 @@ function block9Scroll () {
     },
 
     // 向下滾動超過end點時觸發callback
-    onLeave: function () {
-    },
+    onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
       deviceIn()
     }
-
   })
 }
 onUnmounted(() => {
