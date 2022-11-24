@@ -1,0 +1,25 @@
+<svg width="363" height="543" viewBox="0 0 363 543" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter x="-5.2%" y="-3.4%" width="110.4%" height="106.8%" filterUnits="objectBoundingBox" id="vmaqv2fhja">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g fill="#000">
+            <path d="M181 167v173l163-86.5zM181 367.06v162.717L350 273z"/>
+            <path d="M182 367.06v162.717L13 273zM181 13v155l163 86.5z"/>
+            <path d="M182 13v155L19 256.892z"/>
+            <path d="M182 167v173L19 255.892z"/>
+        </g>
+        <g filter="url(#vmaqv2fhja)" transform="translate(13 13)" stroke="#E0B854">
+            <path d="M168.5 154.831 329.933 240.5 168.5 326.169V154.83zM335.461 261.429 168.5 515.109V354.353l166.961-92.925zM1.539 261.429 168.5 515.109V354.353L1.539 261.43zM168.5 1.635l160.965 238.484L168.5 154.7V1.635zM168.5 1.648v153.055L7.545 242.48 168.5 1.648z"/>
+            <path d="M168.5 154.842V326.18L7.067 242.88 168.5 154.842z"/>
+        </g>
+    </g>
+</svg>
