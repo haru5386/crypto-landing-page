@@ -32,7 +32,7 @@ onMounted(() => {
 }
 
 .block {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   padding-top: 64px;
 }

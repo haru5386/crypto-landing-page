@@ -10,7 +10,7 @@ import { CaretRight } from '@element-plus/icons-vue'
 // import { Ref } from 'vue'
 const activeIndx = ref(0)
 const carouselBlock4 = ref<any | null>(null)
-// const { t } = useLang()
+const { t } = useLang()
 const setActiveItem = (idx: number) => {
   carouselBlock4.value?.setActiveItem(idx)
   activeIndx.value = idx
@@ -30,7 +30,7 @@ const setActiveItem = (idx: number) => {
     <div class="container">
       <div class="section desktop">
         <div class="title">
-          ACE GLOBAL LAUNCHPAD
+          {{ t('block4-title') }}
         </div>
         <div class="carousel-labels">
           <div class="tab-items">
@@ -46,7 +46,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              Yield Farming
+              {{ t('block4-tab1') }}
             </div>
             <div
               class="tab-item"
@@ -60,7 +60,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              ACE Global Launchpad
+              {{ t('block4-tab2') }}
             </div>
             <div
               class="tab-item"
@@ -74,7 +74,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              Perpetual contracts trading
+              {{ t('block4-tab3') }}
             </div>
             <div
               class="tab-item"
@@ -88,7 +88,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              Copy Trading
+              {{ t('block4-tab4') }}
             </div>
             <div
               class="tab-item"
@@ -102,7 +102,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              ACE Global Referral Program
+              {{ t('block4-tab5') }}
             </div>
             <div
               class="tab-item"
@@ -116,7 +116,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              NFT MarketPlace
+              {{ t('block4-tab6') }}
             </div>
           </div>
           <el-carousel
@@ -128,99 +128,87 @@ const setActiveItem = (idx: number) => {
             <!-- 1 -->
             <el-carousel-item>
               <div class="carousel-title">
-                What is Yield Farming?
+                {{ t('block4-tab1-title1') }}
               </div>
               <div class="carousel-des">
-                ACE Global Exchange provides the one-stop hub where you can see
-                all your earning possibilities open for you and the
-                cryptocurrency you hold. Great options if you are a HODLer.
+                {{ t('block4-tab1-des1') }}
               </div>
               <div class="carousel-title">
-                How does it work?
+                {{ t('block4-tab1-title2') }}
               </div>
               <div class="carousel-des">
-                Simply choose from dozens of available products, and transfer
-                your cryptocurrencies into your chosen product.
+                {{ t('block4-tab1-des2') }}
               </div>
             </el-carousel-item>
             <!-- 2 -->
             <el-carousel-item>
               <div class="carousel-title">
-                What is ACE Global Launchpad?
+                {{ t('block4-tab2-title1') }}
               </div>
               <div class="carousel-des">
-                The ACE Global Launchpad is the exclusive token launch platform,
-                aiming to support the crypto ecosystem by offering first-look
-                access to quality projects to all users.
+                {{ t('block4-tab2-des1') }}
               </div>
               <div class="carousel-title">
-                How does it work?
+                {{ t('block4-tab1-title2') }}
               </div>
               <div class="carousel-des">
-                The Launchpad allows AGET holders to commit an amount of AGET
-                towards a Token sale. The final allocation of the new token is
-                determined by the ratio of their committed AGET against the
-                total committed AGET by all participating users.
+                {{ t('block4-tab2-des2') }}
               </div>
             </el-carousel-item>
             <!-- 3 -->
             <el-carousel-item>
               <div class="carousel-title">
-                What is a perpetual contract?
+                {{ t('block4-tab3-title1') }}
               </div>
               <div class="carousel-des">
-                A perpetual contract is a crypto futures contract without an
-                expiry date. Like a futures contract, a perpetual contract is a
-                derivative that derives its value from the underlying crypto
-                asset. Contract is a derivative that derives its value from the
-                underlying crypto asset.
+                {{ t('block4-tab3-des1') }}
               </div>
               <div class="carousel-title">
-                How does it work?
+                {{ t('block4-tab1-title2') }}
               </div>
               <div class="carousel-table">
                 <div class="carousel-table-title">
-                  Perpetual Futures
+                  {{ t('carousel-table-title') }}
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    Margin Type
+                    {{ t('carousel-table-key1') }}
                   </div>
                   <div class="right">
-                    Support USDT
-                  </div>
-                </div>
-                <div class="table-col">
-                  <div class="left">
-                    Order Type
-                  </div>
-                  <div class="right">
-                    Limit Order, Market Order, IOC, FOK, Maker only
+                    {{ t('carousel-table-val1') }}
                   </div>
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    Position Management
+                    {{ t('carousel-table-key2') }}
                   </div>
                   <div class="right">
-                    Isolated Margin, Cross Margin
+                    {{ t('carousel-table-val2') }}
                   </div>
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    Trading Fee
+                    {{ t('carousel-table-key3') }}
                   </div>
                   <div class="right">
-                    Taker (executed instantly):0.075% <br>
-                    Maker (pending orders):0.025%
+                    {{ t('carousel-table-val3') }}
                   </div>
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    Leverage
+                    {{ t('carousel-table-key4') }}
                   </div>
                   <div class="right">
-                    1-125x
+                    {{ t('carousel-table-val4') }} <br>
+                    {{ t('carousel-table-val4-2') }}
+                  </div>
+                </div>
+                <div class="table-col">
+                  <div class="left">
+                    {{ t('carousel-table-key5') }}
+                  </div>
+                  <div class="right">
+                    {{ t('carousel-table-val5') }}
                   </div>
                 </div>
               </div>
@@ -228,39 +216,28 @@ const setActiveItem = (idx: number) => {
             <!-- 4 -->
             <el-carousel-item>
               <div class="carousel-title">
-                What is Copy Trading?
+                {{ t('block4-tab4-title') }}
               </div>
               <div class="carousel-des">
-                Copy Trading is a feature that allows copiers to copy the trades
-                of multiple elite traders by automatically aligning with
-                traders' trading activities and thus generating profits or
-                losses. Copy trading saves users from the trouble of opening and
-                closing positions and monitoring the market for themselves as
-                all trades of the trader that they copy will be automatically
-                copied.
+                {{ t('block4-tab4-des') }}
               </div>
             </el-carousel-item>
             <!-- 5 -->
             <el-carousel-item>
               <div class="carousel-title">
-                What is ACE Global Referral Program?
+                {{ t('block4-tab5-title') }}
               </div>
               <div class="carousel-des">
-                In the ACE Global referral program, you can invite your friends
-                to ACE Global Exchange and get a portion of their trading fees
-                (including spot and futures trading) as a commission.
+                {{ t('block4-tab5-des') }}
               </div>
             </el-carousel-item>
             <!-- 6 -->
             <el-carousel-item>
               <div class="carousel-title">
-                What is NFT MarketPlace
+                {{ t('block4-tab6-title') }}
               </div>
               <div class="carousel-des">
-                The NFT marketplace is a marketplace that features all forms of
-                digital artworks and collectibles, the ACE Global NFT
-                marketplace provides a high liquidity platform for users to
-                launch and trade NFTs.
+                {{ t('block4-tab6-des') }}
               </div>
             </el-carousel-item>
           </el-carousel>
@@ -268,8 +245,7 @@ const setActiveItem = (idx: number) => {
       </div>
       <div class="section phone">
         <div class="title">
-          ACE GLOBAL <br>
-          LAUNCHPAD
+          {{ t('block4-title') }}
         </div>
         <el-collapse accordion>
           <el-collapse-item name="0">
@@ -281,22 +257,19 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              Yield Farming
+              {{ t('block4-tab1') }}
             </template>
             <div class="carousel-title">
-              What is Yield Farming?
+              {{ t('block4-tab1-title1') }}
             </div>
             <div class="carousel-des">
-              ACE Global Exchange provides the one-stop hub where you can see
-              all your earning possibilities open for you and the cryptocurrency
-              you hold. Great options if you are a HODLer.
+              {{ t('block4-tab1-des1') }}
             </div>
             <div class="carousel-title">
-              How does it work?
+              {{ t('block4-tab1-title2') }}
             </div>
             <div class="carousel-des">
-              Simply choose from dozens of available products, and transfer your
-              cryptocurrencies into your chosen product.
+              {{ t('block4-tab1-des2') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="1">
@@ -308,24 +281,19 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              ACE Global Launchpad
+              {{ t('block4-tab2') }}
             </template>
             <div class="carousel-title">
-              What is ACE Global Launchpad?
+              {{ t('block4-tab2-title1') }}
             </div>
             <div class="carousel-des">
-              The ACE Global Launchpad is the exclusive token launch platform,
-              aiming to support the crypto ecosystem by offering first-look
-              access to quality projects to all users.
+              {{ t('block4-tab2-des1') }}
             </div>
             <div class="carousel-title">
-              How does it work?
+              {{ t('block4-tab1-title2') }}
             </div>
             <div class="carousel-des">
-              The Launchpad allows AGET holders to commit an amount of AGET
-              towards a Token sale. The final allocation of the new token is
-              determined by the ratio of their committed AGET against the total
-              committed AGET by all participating users.
+              {{ t('block4-tab2-des2') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="2">
@@ -337,64 +305,60 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              Perpetual contracts trading
+              {{ t('block4-tab3') }}
             </template>
             <div class="carousel-title">
-              What is a perpetual contract?
+              {{ t('block4-tab3-title1') }}
             </div>
             <div class="carousel-des">
-              A perpetual contract is a crypto futures contract without an
-              expiry date. Like a futures contract, a perpetual contract is a
-              derivative that derives its value from the underlying crypto
-              asset. Contract is a derivative that derives its value from the
-              underlying crypto asset.
+              {{ t('block4-tab3-des1') }}
             </div>
             <div class="carousel-title">
-              How does it work?
+              {{ t('block4-tab1-title2') }}
             </div>
             <div class="carousel-table">
               <div class="carousel-table-title">
-                Perpetual Futures
+                {{ t('carousel-table-title') }}
               </div>
               <div class="table-col">
                 <div class="left">
-                  Margin Type
+                  {{ t('carousel-table-key1') }}
                 </div>
                 <div class="right">
-                  Support USDT
-                </div>
-              </div>
-              <div class="table-col">
-                <div class="left">
-                  Order Type
-                </div>
-                <div class="right">
-                  Limit Order, Market Order, IOC, FOK, Maker only
+                  {{ t('carousel-table-val1') }}
                 </div>
               </div>
               <div class="table-col">
                 <div class="left">
-                  Position Management
+                  {{ t('carousel-table-key2') }}
                 </div>
                 <div class="right">
-                  Isolated Margin, Cross Margin
+                  {{ t('carousel-table-val2') }}
                 </div>
               </div>
               <div class="table-col">
                 <div class="left">
-                  Trading Fee
+                  {{ t('carousel-table-key3') }}
                 </div>
                 <div class="right">
-                  Taker (executed instantly):0.075% <br>
-                  Maker (pending orders):0.025%
+                  {{ t('carousel-table-val3') }}
                 </div>
               </div>
               <div class="table-col">
                 <div class="left">
-                  Leverage
+                  {{ t('carousel-table-key4') }}
                 </div>
                 <div class="right">
-                  1-125x
+                  {{ t('carousel-table-val4') }} <br>
+                  {{ t('carousel-table-val4-2') }}
+                </div>
+              </div>
+              <div class="table-col">
+                <div class="left">
+                  {{ t('carousel-table-key5') }}
+                </div>
+                <div class="right">
+                  {{ t('carousel-table-val5') }}
                 </div>
               </div>
             </div>
@@ -408,18 +372,13 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              Copy Trading
+              {{ t('block4-tab4') }}
             </template>
             <div class="carousel-title">
-              What is Copy Trading?
+              {{ t('block4-tab4-title') }}
             </div>
             <div class="carousel-des">
-              Copy Trading is a feature that allows copiers to copy the trades
-              of multiple elite traders by automatically aligning with traders'
-              trading activities and thus generating profits or losses. Copy
-              trading saves users from the trouble of opening and closing
-              positions and monitoring the market for themselves as all trades
-              of the trader that they copy will be automatically copied.
+              {{ t('block4-tab4-des') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="4">
@@ -431,15 +390,13 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              ACE Global Referral Program
+              {{ t('block4-tab5') }}
             </template>
             <div class="carousel-title">
-              What is ACE Global Referral Program?
+              {{ t('block4-tab5-title') }}
             </div>
             <div class="carousel-des">
-              In the ACE Global referral program, you can invite your friends to
-              ACE Global Exchange and get a portion of their trading fees
-              (including spot and futures trading) as a commission.
+              {{ t('block4-tab5-des') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="5">
@@ -451,16 +408,13 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              NFT MarketPlace
+              {{ t('block4-tab6') }}
             </template>
             <div class="carousel-title">
-              What is NFT MarketPlace
+              {{ t('block4-tab6-title') }}
             </div>
             <div class="carousel-des">
-              The NFT marketplace is a marketplace that features all forms of
-              digital artworks and collectibles, the ACE Global NFT marketplace
-              provides a high liquidity platform for users to launch and trade
-              NFTs.
+              {{ t('block4-tab6-des') }}
             </div>
           </el-collapse-item>
         </el-collapse>
