@@ -1,7 +1,7 @@
 <template>
   <div
     id="block3"
-    class="block"
+    class="block slide"
   >
     <div class="container">
       <div class="description">
@@ -12,7 +12,7 @@
           {{ $t('block3-des2') }}
         </div>
       </div>
-      <div class="video">
+      <div class="video-ace">
         <iframe
           height="100%"
           width="100%"
@@ -70,7 +70,7 @@ align-items: center;
     }
   }
 }
-.video {
+.video-ace {
     position: relative;
     margin:  0 auto;
     width: 100%;
