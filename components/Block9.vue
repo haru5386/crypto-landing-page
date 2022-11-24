@@ -1,6 +1,7 @@
 <template>
   <div
     id="block9"
+    class="slide"
   >
     <div class="container">
       <h2>{{ $t('block9-title') }}</h2>
@@ -32,7 +33,7 @@
 <script setup lang="ts">
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 #block9 {
   color: $color_gray_White;
@@ -85,10 +86,13 @@
         height: 354px;
         margin-left: 40px;
         z-index: 10;
+        opacity: 0;
         @include mobile {
           width: 90%;
           height: auto;
           margin-bottom: 30px;
+          opacity: 1;
+
         }
       }
     }
@@ -96,11 +100,15 @@
   .block9-bg {
     position: absolute;
     bottom: -95px;
+    opacity: 0;
     @include pad {
       width: 1200px;
       left: 50%;
       transform: translateX(-50%);
       bottom: 0px;
+    }
+    @include mobile {
+      opacity: 1;
     }
   }
 }

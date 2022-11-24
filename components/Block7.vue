@@ -1,6 +1,7 @@
 <template>
   <div
     id="block7"
+    class="slide7"
   >
     <div class="container">
       <div class="title">
@@ -167,7 +168,7 @@ const roadMapData4 = [{
 }]
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 #block7 {
   color: $color_gray_White;
@@ -243,8 +244,10 @@ const roadMapData4 = [{
       display: flex;
       align-items: center;
       position: absolute;
+      opacity: 0;
       @include mobile {
         position: relative;
+        opacity: 1;
       }
       .year {
         font-size: 40px;
@@ -320,9 +323,11 @@ const roadMapData4 = [{
       position: absolute;
       width: 15%;
       white-space: pre-line;
+      opacity: 0;
       @include mobile {
           position: relative;
           width: 100%;
+          opacity: 1;
         }
       .content-list {
         margin-top: 16px;

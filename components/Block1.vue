@@ -1,13 +1,15 @@
 <template>
   <div
     id="block1"
+    ref="block1"
     class="block"
   >
-    <div class="video">
+    <div class="video-earth">
       <video
         autoplay
         muted
         loop
+        class="video-earth-video"
       >
         <source
           src="../assets/video/globe-animation.mp4"
@@ -16,25 +18,27 @@
       </video>
     </div>
     <div class="container">
-      <h2 class="des1">
-        {{ $t('block1-des1') }}
-      </h2>
-      <h1>{{ $t('block1-title') }}</h1>
-      <h2 class="des2">
-        {{ $t('block1-des2') }}
-      </h2>
-      <div class="signUp">
-        <input
-          v-model="email"
-          name="email"
-          type="text"
-          placeholder="YourEmail@example.com"
-        >
-        <div
-          class="signUpBtn"
-          @click="signUp()"
-        >
-          {{ $t('block1-content') }}
+      <div class="animation-group">
+        <h2 class="des1">
+          {{ $t('block1-des1') }}
+        </h2>
+        <h1>{{ $t('block1-title') }}</h1>
+        <h2 class="des2">
+          {{ $t('block1-des2') }}
+        </h2>
+        <div class="signUp">
+          <input
+            v-model="email"
+            name="email"
+            type="text"
+            placeholder="YourEmail@example.com"
+          >
+          <div
+            class="signUpBtn"
+            @click="signUp()"
+          >
+            {{ $t('block1-content') }}
+          </div>
         </div>
       </div>
     </div>
@@ -42,16 +46,22 @@
 </template>
 
 <script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
 const email = ref<string>('')
 const runtimeConfig = useRuntimeConfig()
 const env = { ...runtimeConfig.public }
+const block1 = inject('ref')
 
 const signUp = () => {
   window.location.href = `${env.BASE_URL}/register?email=${email.value}`
 }
+
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 #block1 {
   background-color: #000;
@@ -59,22 +69,22 @@ const signUp = () => {
   text-align: center;
   position: relative;
   z-index: 0;
-  .video {
+  .video-earth {
     position: absolute;
     width: 100%;
     height: calc(100% - 64px);
     overflow: hidden;
     z-index: -1;
+    opacity: 0;
   }
   video{
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 50%;
+    top: 30%;
     left:0;
     object-fit: cover;
     z-index: -1;
-    overflow: hidden;
     @include pad {
       top:20%;
     }
@@ -82,6 +92,9 @@ const signUp = () => {
       top: 20%;
     }
 }
+  .animation-group {
+    opacity: 0;
+  }
   .des1 {
     margin-top: 150px;
     font-size: 38px;
