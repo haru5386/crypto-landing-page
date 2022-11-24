@@ -37,7 +37,6 @@ function gsapSet () {
     '(min-width: 768px)': () => {},
     '(max-width: 768px)': () => {},
     all: () => {
-      block1Scroll()
       block3Scroll()
       block7Scroll()
       block9Scroll()
@@ -447,7 +446,6 @@ function block7Scroll () {
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
-      roadMapIn()
     }
   })
 }

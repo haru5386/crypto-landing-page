@@ -1,3 +1,36 @@
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+    }
+  })
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
+</script>
 <template>
   <div class="rightPC">
     <div class="shield">
@@ -71,9 +104,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style lang="scss" scoped>
 @import '../assets/scss/index.scss';
