@@ -33,7 +33,7 @@
 <script setup lang="ts">
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 #block9 {
   color: $color_gray_White;

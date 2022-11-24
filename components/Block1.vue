@@ -9,6 +9,7 @@
         autoplay
         muted
         loop
+        class="video-earth-video"
       >
         <source
           src="../assets/video/globe-animation.mp4"
@@ -60,7 +61,7 @@ const signUp = () => {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 #block1 {
   background-color: #000;
@@ -80,11 +81,10 @@ const signUp = () => {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 50%;
+    top: 30%;
     left:0;
     object-fit: cover;
     z-index: -1;
-    overflow: hidden;
     @include pad {
       top:20%;
     }

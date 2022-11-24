@@ -2,7 +2,9 @@
   <div class="page-index">
     <!-- content -->
     <block1 />
+    <block2 />
     <block3 />
+    <block4 />
     <block5 />
     <block7 />
     <block9 />
@@ -38,11 +40,11 @@ function gsapSet () {
     all: () => {
       block1Scroll()
       block3Scroll()
-      // block5Scroll()
       block7Scroll()
       block9Scroll()
       badgeIn()
       shieldIn()
+      animatedEarthOut()
     }
   })
 }
@@ -73,6 +75,26 @@ function animatedEarthIn () {
     delay: 0.2
   }, '<')
 }
+// Earth 離開動畫
+function animatedEarthOut () {
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '#block2',
+      markers: true,
+      start: 'top 95%',
+      end: 'top 30%',
+      scrub: true
+    }
+  }).to('.video-earth-video', {
+    duration: 1,
+    ease: 'easeIn',
+    y: -400
+  }).to('.animation-group', {
+    duration: 1,
+    ease: 'easeIn',
+    y: -900
+  }, '<')
+}
 
 // video-ace 進入動畫
 function aceVideoIn () {
@@ -90,7 +112,7 @@ function shieldIn () {
   ScrollTrigger.create({
     // 以box2作為觸發時機
     trigger: '.shield',
-    markers: true,
+    markers: false,
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
@@ -123,7 +145,7 @@ function badgeIn () {
   ScrollTrigger.create({
     // 以box2作為觸發時機
     trigger: '.badge',
-    markers: true,
+    markers: false,
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
@@ -271,7 +293,7 @@ function block1Scroll () {
   ScrollTrigger.create({
     // 以box2作為觸發時機
     trigger: '#block1',
-    markers: true,
+    markers: false,
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
@@ -280,8 +302,6 @@ function block1Scroll () {
 
     // 向下滾動超過end點時觸發callback
     onLeave: function () {
-      // animatedEarthReset()
-      // hide(box2)
     },
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
@@ -295,9 +315,9 @@ function block1Scroll () {
 // scroll block3 觸發
 function block3Scroll () {
   ScrollTrigger.create({
-    // 以box2作為觸發時機
+    // 以block3作為觸發時機
     trigger: '#block3',
-    markers: true,
+    markers: false,
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
@@ -306,12 +326,11 @@ function block3Scroll () {
 
     // 向下滾動超過end點時觸發callback
     onLeave: function () {
-      // hide(box2)
     },
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
-      // animatedEarthOut()
+      aceVideoIn()
     }
 
   })
@@ -322,7 +341,7 @@ function block7Scroll () {
   ScrollTrigger.create({
     // 以block7作為觸發時機
     trigger: '#block7',
-    markers: true,
+    markers: false,
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {
@@ -346,7 +365,7 @@ function block9Scroll () {
   ScrollTrigger.create({
     // 以block9作為觸發時機
     trigger: '#block9',
-    markers: true,
+    markers: false,
 
     // 向下滾動進入start點時觸發callback
     onEnter: function () {

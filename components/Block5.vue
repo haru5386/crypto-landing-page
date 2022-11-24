@@ -75,7 +75,7 @@
 <script setup lang="ts">
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 .rightPC {
   position: absolute;
@@ -143,7 +143,6 @@
     }
     .left {
       width:50%;
-      position: relative;
       @include pad {
         width:50%;
         }
@@ -151,7 +150,6 @@
         width: 100%;
       }
       .left-con {
-        position: absolute;
         width: 357px;
         right: 0;
         @include pad {

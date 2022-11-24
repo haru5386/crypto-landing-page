@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" scoped>
 const videoUrl = ref<string>('https://www.youtube.com/embed/cSgFSrEnLxQ')
 </script>
 
