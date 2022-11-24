@@ -28,7 +28,38 @@
 </template>
 
 <script setup lang="ts" scoped>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
 const videoUrl = ref<string>('https://www.youtube.com/embed/cSgFSrEnLxQ')
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+    }
+  })
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <style lang="scss">

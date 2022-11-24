@@ -1,5 +1,35 @@
-<script lang="ts" setup>
-const { t } = useLang()
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+    }
+  })
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <template>
@@ -22,18 +52,18 @@ const { t } = useLang()
       <div class="section">
         <div class="item1">
           <h2 class="title">
-            {{ t('block2-title1') }}
+            {{ $t('block2-title1') }}
           </h2>
           <p class="des">
-            {{ t('block2-des1') }}
+            {{ $t('block2-des1') }}
           </p>
         </div>
         <div class="item2">
           <h2 class="title">
-            {{ t('block2-title2') }}
+            {{ $t('block2-title2') }}
           </h2>
           <p class="des">
-            {{ t('block2-des2') }}
+            {{ $t('block2-des2') }}
           </p>
         </div>
       </div>
