@@ -1,13 +1,23 @@
 <template>
+  <div class="rightPC">
+    <div class="shield">
+      <img
+        src="../assets/images/block3-shield@2x.webp"
+        alt="shield"
+      >
+    </div>
+  </div>
   <div
     id="block5"
     class="block"
   >
-    <div class="block5-bg">
-      <img
-        src="../assets/images/block3-bg@2x.webp"
-        alt="背景"
-      >
+    <div class="mask">
+      <div class="block5-bg">
+        <img
+          src="../assets/images/block3-bg@2x.webp"
+          alt="背景"
+        >
+      </div>
     </div>
     <div class="container">
       <div class="left">
@@ -67,25 +77,59 @@
 
 <style lang="scss">
 @import '../assets/scss/index.scss';
+.rightPC {
+  position: absolute;
+  max-width: 1200px;
+  width: 100vw;
+  height: 100vw;
+  margin: 0 auto;
+  @include mobile {
+    display: none
+  }
+  .shield {
+    position: absolute;
+    width: 433px;
+    height: 567px;
+    top: 140px;
+    right: 4%;
+    opacity: 0;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    @include pad {
+      top: 30vh;
+      width: 274.6px;
+      height: 359.7px;
+      margin: 0 auto;
+    }
+  }
+}
 #block5 {
   color: $color_gray_White;
   position: relative;
-  overflow: hidden;
-  .block5-bg {
+
+  .mask {
     position: absolute;
-    width: 100%;
-    bottom: -60%;
-    @include pad {
-      bottom: -40%;
-    }
-    @include mobile {
-      bottom: -20%;
-    }
-    img{
-      width: 140%;
-    }
-    @include mobile {
-      width: 200%;
+    width: 100vw;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+    .block5-bg {
+      position: absolute;
+      width: 100%;
+      bottom: -60%;
+      @include pad {
+        bottom: -40%;
+      }
+      @include mobile {
+        bottom: -20%;
+      }
+      img{
+        width: 140%;
+      }
+      @include mobile {
+        width: 200%;
+      }
     }
   }
   .container {
@@ -98,14 +142,22 @@
       padding: 0 36px;
     }
     .left {
-      flex:4;
+      width:50%;
       position: relative;
+      @include pad {
+        width:50%;
+        }
       @include mobile {
+        width: 100%;
       }
       .left-con {
         position: absolute;
         width: 357px;
         right: 0;
+        @include pad {
+          left: 0;
+          margin: 0 auto;
+        }
         @include mobile {
         position: relative;
         width: 100%;
@@ -137,6 +189,7 @@
         display: flex;
         flex-direction: column;
         margin-top: 58px;
+        opacity: 0;
         .top, .bottom{
           display: flex;
           align-items: center;
@@ -147,6 +200,8 @@
         }
         @include mobile {
           margin-top: 27px;
+          opacity: 1;
+
         }
         img{
           width: 100%;
@@ -174,11 +229,10 @@
     .right {
       flex:5;
       position: relative;
-      @include pad {
-        flex: 3;
-      }
+      display: none;
       @include mobile {
         overflow: hidden;
+        display: block;
       }
       .shield {
         position: absolute;
@@ -190,10 +244,10 @@
           height: 100%;
         }
         @include pad {
-          right: 0;
           top: 30vh;
           width: 274.6px;
           height: 359.7px;
+          margin: 0 auto;
         }
         @include mobile {
           position: relative;

@@ -5,7 +5,7 @@ const { t } = useLang()
 <template>
   <div
     id="block2"
-    class="block"
+    class="block slide"
   >
     <video
       class="block2-video"
