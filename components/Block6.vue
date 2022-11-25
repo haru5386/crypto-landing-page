@@ -1,3 +1,115 @@
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+      block6In()
+      block6Out()
+    }
+  })
+}
+
+// block6 進入動畫
+function block6In () {
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '#block6',
+      markers: false,
+      start: 'top 100%',
+      end: 'top 50%'
+    }
+  }).fromTo(
+    '.block6-bg-bg',
+    {
+      ease: 'circ.out',
+      y: 200
+    },
+    {
+      duration: 0.5,
+      ease: 'circ.out',
+      y: 0
+    }
+  ).fromTo(
+    '.block6-bg-eth',
+    {
+      ease: 'circ.out',
+      opacity: 0
+    },
+    {
+      duration: 0.5,
+      opacity: 1
+    }
+  ).fromTo(
+    '.block6-right',
+    {
+      ease: 'circ.out',
+      y: 1000
+    },
+    {
+      duration: 1.5,
+      y: 0
+    }
+  ).fromTo(
+    '.block6-right',
+    {
+      ease: 'circ.out',
+      opacity: 0
+    },
+    {
+      duration: 0.3,
+      opacity: 1
+    }, '<'
+  )
+}
+
+// block6 離開動畫
+function block6Out () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block7',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: true
+      }
+    })
+    .to('#block6 .container', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -180
+    })
+    .to('.block6-bg-eth', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -160
+    }, '<')
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
+</script>
 <template>
   <div
     id="block6"
@@ -5,18 +117,18 @@
   >
     <div class="block6-bg">
       <img
-        class="eth"
+        class="block6-bg-eth"
         src="../assets/images/block6-img.svg"
         alt="背景"
       >
       <img
-        class="bg"
+        class="block6-bg-bg"
         src="../assets/images/block6-bg.webp"
         alt="背景"
       >
     </div>
     <div class="container">
-      <div class="left">
+      <div class="block6-left">
         <h2 class="title">
           AGET
         </h2>
@@ -35,7 +147,7 @@
         >More detail
         </a>
       </div>
-      <div class="right">
+      <div class="block6-right">
         <div class="title">
           Specifications
         </div>
@@ -60,14 +172,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
-
 <style lang="scss">
 @import '../assets/scss/index.scss';
 #block6 {
   color: $color_gray_White;
   position: relative;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   @include mobile {
@@ -85,14 +194,15 @@
       right: -150px;
       bottom: -100px;
     }
-    .bg {
+    .block6-bg-bg {
       width: 1110px;
       margin: 0 auto;
     }
-    .eth {
+    .block6-bg-eth {
       z-index: 0;
       width: 337px;
       margin-bottom: -290px;
+      opacity: 0;
       @include mobile {
         margin-bottom: -290px;
         // left: -50px;
@@ -113,7 +223,7 @@
       align-items: flex-end;
     }
 
-    .left {
+    .block6-left {
       position: relative;
       padding-left: 100px;
       @include pad {
@@ -152,7 +262,7 @@
         color: $color_identity_Primary;
       }
     }
-    .right {
+    .block6-right {
       width: 256px;
       margin-right: 10%;
       @include pad {

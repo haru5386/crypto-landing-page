@@ -1,14 +1,167 @@
-<script lang="ts" setup>
-const { t } = useLang()
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+      block2VideoOut()
+    },
+    '(min-width: 768px)': () => {
+      block2VideoOut()
+    },
+    '(max-width: 768px)': () => {
+      block2VideoOutMobile()
+    },
+    all: () => {
+      animatedEarthOut()
+    }
+  })
+}
+
+function animatedEarthOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block2',
+        markers: false,
+        start: 'top 95%',
+        end: 'top 30%',
+        scrub: true
+      }
+    })
+    .to('.video-earth-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -400
+    })
+    .to(
+      '.animation-group',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -900
+      },
+      '<'
+    )
+}
+
+// block2VideoMobile 離開動畫
+function block2VideoOutMobile () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '.block2-video',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: true
+      }
+    })
+    .to('.block2-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -200
+    })
+    .to(
+      '.item1',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -100
+      },
+      '<'
+    ).to(
+      '.item2',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -100
+      },
+      '<'
+    )
+}
+
+// block2Video 離開動畫
+function block2VideoOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '.block2-video',
+        markers: false,
+        start: 'top 90%',
+        end: 'top 30%',
+        scrub: true
+      }
+    })
+    .to('.block2-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -300
+    })
+    .to(
+      '.item1',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -200
+      },
+      '<'
+    ).to(
+      '.item2',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -200
+      },
+      '<'
+    )
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <template>
   <div
     id="block2"
-    class="block slide"
   >
+    <div class="container">
+      <div class="section">
+        <div class="item1">
+          <h2 class="title">
+            {{ $t('block2-title1') }}
+          </h2>
+          <p class="des">
+            {{ $t('block2-des1') }}
+          </p>
+        </div>
+        <div class="item2">
+          <h2 class="title">
+            {{ $t('block2-title2') }}
+          </h2>
+          <p class="des">
+            {{ $t('block2-des2') }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block2-video">
     <video
-      class="block2-video"
       autoplay
       muted
       loop
@@ -18,49 +171,46 @@ const { t } = useLang()
         type="video/mp4"
       >
     </video>
-    <div class="container">
-      <div class="section">
-        <div class="item1">
-          <h2 class="title">
-            {{ t('block2-title1') }}
-          </h2>
-          <p class="des">
-            {{ t('block2-des1') }}
-          </p>
-        </div>
-        <div class="item2">
-          <h2 class="title">
-            {{ t('block2-title2') }}
-          </h2>
-          <p class="des">
-            {{ t('block2-des2') }}
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 
+.block2-video {
+  width: 100vw;
+  height: 20vh;
+  z-index: 0;
+  max-width: 1680px;
+  @include pad {
+    height: 10vh;
+  }
+  video{
+    width: 100%;
+    margin-left: 50vw;
+    transform: translate(-50%);
+    margin-top: -50%;
+    z-index: -1;
+    @include pad {
+      width: 130%;
+      margin-top: -40%;
+  }
+    @include mobile {
+        width: 150%;
+        margin-top: -20vh;
+    }
+  }
+
+  }
 #block2 {
   z-index: 1;
   position: relative;
   overflow: hidden;
-  .block2-video {
-    width: 100%;
-    position: absolute;
-    top: 400px;
-    z-index: -1;
-    @include mobile {
-      width: 150%;
-      top: auto;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -50px;
-    }
+  height: 120vh;
+  @include pad {
+    height: 80vh;
   }
+
 }
 .container {
   .section {
@@ -97,6 +247,11 @@ const { t } = useLang()
     .item2 {
       width: 588px;
       min-width: 588px;
+      @include pad {
+        width: auto;
+        min-width: auto;
+        flex:3
+      }
       @include mobile {
         width: 100%;
         min-width: 100%;

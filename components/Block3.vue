@@ -1,7 +1,6 @@
 <template>
   <div
     id="block3"
-    class="block slide"
   >
     <div class="container">
       <div class="description">
@@ -28,7 +27,76 @@
 </template>
 
 <script setup lang="ts" scoped>
-const videoUrl = ref<string>('https://www.youtube.com/embed/cSgFSrEnLxQ')
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+const videoUrl = ref<string>('https://www.youtube.com/embed/IOpaj8ZQxzs')
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+      block3Scroll()
+    }
+  })
+}
+
+// video-ace 進入動畫
+function aceVideoIn () {
+  gsap.timeline().fromTo(
+    '.video-ace',
+    {
+      ease: 'circ.out',
+      y: 200
+    },
+    {
+      duration: 1,
+      ease: 'circ.out',
+      y: 0
+    }
+  )
+}
+// scroll block3 觸發
+function block3Scroll () {
+  ScrollTrigger.create({
+    // 以block3作為觸發時機
+    trigger: '.video-ace',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      aceVideoIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+      aceVideoIn()
+    }
+  })
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <style lang="scss">
@@ -38,6 +106,13 @@ color: $color_gray_White;
 display: flex;
 justify-content: center;
 align-items: center;
+z-index: 10;
+overflow: hidden;
+height: 100vh;
+@include pad {
+height: 70vh;
+
+}
 @include mobile {
   align-items: start;
 }
@@ -49,6 +124,7 @@ align-items: center;
   font-size: 20px;
   font-weight: normal;
   line-height: 1.6;
+  z-index: 10;
   @include mobile {
     flex-direction: column;
     margin-top: 74px;

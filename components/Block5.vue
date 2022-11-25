@@ -1,3 +1,218 @@
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+      block5Out()
+      shieldIn()
+    },
+    '(min-width: 768px)': () => {
+      block5Out()
+      shieldIn()
+    },
+    '(max-width: 768px)': () => {
+      block5MobileOut()
+    },
+    all: () => {
+      badgeIn()
+      block5Scroll()
+    }
+  })
+}
+// shield 進入動畫
+function shieldIn () {
+  ScrollTrigger.create({
+    // 以box2作為觸發時機
+    trigger: '.shield',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      gsap.timeline().fromTo(
+        '.shield',
+        {
+          ease: 'circ.out',
+          y: -700,
+          opacity: 0
+        },
+        {
+          duration: 2,
+          ease: 'circ.out',
+          y: 0,
+          opacity: 1
+        }
+      )
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {
+      // hide(box2)
+    },
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+      // animatedEarthOut()
+    }
+  })
+}
+// badge block5-bg 進入動畫
+function badgeIn () {
+  ScrollTrigger.create({
+    // 以box2作為觸發時機
+    trigger: '#block5',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      gsap
+        .timeline()
+        .fromTo(
+          '.badge',
+          {
+            ease: 'circ.out',
+            y: 100,
+            opacity: 0
+          },
+          {
+            duration: 1,
+            ease: 'circ.out',
+            y: 0,
+            opacity: 1
+          }
+        )
+        .fromTo(
+          '.block5-bg',
+          {
+            ease: 'circ.out',
+            y: 100
+          },
+          {
+            duration: 1,
+            ease: 'circ.out',
+            y: 0,
+            delay: 0.2
+          },
+          '<'
+        )
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {
+      // hide(box2)
+    },
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+      // animatedEarthOut()
+    }
+  })
+}
+
+// left-word 進入動畫
+function leftWordIn () {
+  gsap.timeline().fromTo(
+    '.left-word',
+    {
+      ease: 'circ.out',
+      y: 300
+    },
+    {
+      duration: 1.5,
+      ease: 'circ.out',
+      y: 0
+    }
+  )
+}
+
+// scroll block5 觸發
+function block5Scroll () {
+  ScrollTrigger.create({
+    // 以block5作為觸發時機
+    trigger: '#block5',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      leftWordIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+    }
+  })
+}
+
+// shield badge left-word 離開動畫
+function block5Out () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block6',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 5%',
+        scrub: true
+      }
+    })
+    .to('.badge', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -180
+    }).to('.shield', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -170
+    }, '<').to('.left-word', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -200
+    }, '<').to('.block5-bg', {
+      duration: 1,
+      ease: 'easeIn',
+      y: 1300
+    }, '<')
+}
+
+// block5-mobile 離開動畫
+function block5MobileOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block6',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 5%',
+        scrub: true
+      }
+    })
+    .to('.block5-bg', {
+      duration: 1,
+      ease: 'easeIn',
+      y: 1300
+    })
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
+</script>
 <template>
   <div class="rightPC">
     <div class="shield">
@@ -7,26 +222,28 @@
       >
     </div>
   </div>
+  <div class="block5-bg-mask">
+    <div class="block5-bg">
+      <img
+        src="../assets/images/block3-bg@2x.webp"
+        alt="背景"
+      >
+    </div>
+  </div>
   <div
     id="block5"
     class="block"
   >
-    <div class="mask">
-      <div class="block5-bg">
-        <img
-          src="../assets/images/block3-bg@2x.webp"
-          alt="背景"
-        >
-      </div>
-    </div>
     <div class="container">
       <div class="left">
         <div class="left-con">
-          <div class="title">
-            {{ $t('block5-title') }}
-          </div>
-          <div class="description">
-            {{ $t('block5-des') }}
+          <div class="left-word">
+            <div class="title">
+              {{ $t('block5-title') }}
+            </div>
+            <div class="description">
+              {{ $t('block5-des') }}
+            </div>
           </div>
           <div class="badge">
             <div class="top">
@@ -72,9 +289,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
-
 <style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 .rightPC {
@@ -83,6 +297,7 @@
   width: 100vw;
   height: 100vw;
   margin: 0 auto;
+  z-index: 10;
   @include mobile {
     display: none
   }
@@ -105,21 +320,25 @@
     }
   }
 }
-#block5 {
-  color: $color_gray_White;
-  position: relative;
-
-  .mask {
+.block5-bg-mask {
     position: absolute;
     width: 100vw;
-    height: calc(100vh - 64px);
+    height: 180vh;
     overflow: hidden;
+    @include pad {
+      height: 140vh;
+      margin-top: 64px;
+    }
+    @include mobile {
+      height: 120vh;
+    }
     .block5-bg {
       position: absolute;
       width: 100%;
-      bottom: -60%;
+      bottom: 10%;
       @include pad {
-        bottom: -40%;
+        bottom: 10%;
+        width: 120%;
       }
       @include mobile {
         bottom: -20%;
@@ -132,10 +351,14 @@
       }
     }
   }
+#block5 {
+  color: $color_gray_White;
+  position: relative;
+
   .container {
     display: flex;
     margin-top: 40px;
-    overflow: hidden;
+    // overflow: hidden;
     height: calc(100% - 40px);
     @include mobile {
       display: block;

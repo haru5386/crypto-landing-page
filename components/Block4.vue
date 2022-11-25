@@ -7,14 +7,100 @@ import {
   ElCollapseItem
 } from 'element-plus'
 import { CaretRight } from '@element-plus/icons-vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // import { Ref } from 'vue'
 const activeIndx = ref(0)
 const carouselBlock4 = ref<any | null>(null)
-const { t } = useLang()
 const setActiveItem = (idx: number) => {
   carouselBlock4.value?.setActiveItem(idx)
   activeIndx.value = idx
 }
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+      block4Scroll()
+      rotateBgOut()
+    }
+  })
+}
+
+// block4-bg-rotate 進入動畫
+function rotateBgIn () {
+  gsap.timeline().fromTo(
+    '.block4-bg-rotate',
+    {
+      ease: 'circ.out',
+      y: 300
+    },
+    {
+      duration: 1.5,
+      ease: 'circ.out',
+      y: 0
+    }
+  )
+}
+// scroll block4 觸發
+function block4Scroll () {
+  ScrollTrigger.create({
+    // 以block4作為觸發時機
+    trigger: '#block4',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      rotateBgIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+    }
+  })
+}
+// // block4-bg-rotate 離開動畫
+function rotateBgOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block5',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 00%',
+        scrub: true
+      }
+    })
+    .to('.block4-bg-rotate', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -400
+    })
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <template>
@@ -22,15 +108,10 @@ const setActiveItem = (idx: number) => {
     id="block4"
     class="block"
   >
-    <img
-      class="block4-bg rotate-ani"
-      src="../assets/images/block4-img.webp"
-    >
-
     <div class="container">
       <div class="section desktop">
         <div class="title">
-          {{ t('block4-title') }}
+          {{ $t('block4-title') }}
         </div>
         <div class="carousel-labels">
           <div class="tab-items">
@@ -46,7 +127,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab1') }}
+              {{ $t('block4-tab1') }}
             </div>
             <div
               class="tab-item"
@@ -60,7 +141,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab2') }}
+              {{ $t('block4-tab2') }}
             </div>
             <div
               class="tab-item"
@@ -74,7 +155,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab3') }}
+              {{ $t('block4-tab3') }}
             </div>
             <div
               class="tab-item"
@@ -88,7 +169,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab4') }}
+              {{ $t('block4-tab4') }}
             </div>
             <div
               class="tab-item"
@@ -102,7 +183,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab5') }}
+              {{ $t('block4-tab5') }}
             </div>
             <div
               class="tab-item"
@@ -116,7 +197,7 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab6') }}
+              {{ $t('block4-tab6') }}
             </div>
           </div>
           <el-carousel
@@ -128,87 +209,87 @@ const setActiveItem = (idx: number) => {
             <!-- 1 -->
             <el-carousel-item>
               <div class="carousel-title">
-                {{ t('block4-tab1-title1') }}
+                {{ $t('block4-tab1-title1') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab1-des1') }}
+                {{ $t('block4-tab1-des1') }}
               </div>
               <div class="carousel-title">
-                {{ t('block4-tab1-title2') }}
+                {{ $t('block4-tab1-title2') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab1-des2') }}
+                {{ $t('block4-tab1-des2') }}
               </div>
             </el-carousel-item>
             <!-- 2 -->
             <el-carousel-item>
               <div class="carousel-title">
-                {{ t('block4-tab2-title1') }}
+                {{ $t('block4-tab2-title1') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab2-des1') }}
+                {{ $t('block4-tab2-des1') }}
               </div>
               <div class="carousel-title">
-                {{ t('block4-tab1-title2') }}
+                {{ $t('block4-tab1-title2') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab2-des2') }}
+                {{ $t('block4-tab2-des2') }}
               </div>
             </el-carousel-item>
             <!-- 3 -->
             <el-carousel-item>
               <div class="carousel-title">
-                {{ t('block4-tab3-title1') }}
+                {{ $t('block4-tab3-title1') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab3-des1') }}
+                {{ $t('block4-tab3-des1') }}
               </div>
               <div class="carousel-title">
-                {{ t('block4-tab1-title2') }}
+                {{ $t('block4-tab1-title2') }}
               </div>
               <div class="carousel-table">
                 <div class="carousel-table-title">
-                  {{ t('carousel-table-title') }}
+                  {{ $t('carousel-table-title') }}
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    {{ t('carousel-table-key1') }}
+                    {{ $t('carousel-table-key1') }}
                   </div>
                   <div class="right">
-                    {{ t('carousel-table-val1') }}
-                  </div>
-                </div>
-                <div class="table-col">
-                  <div class="left">
-                    {{ t('carousel-table-key2') }}
-                  </div>
-                  <div class="right">
-                    {{ t('carousel-table-val2') }}
+                    {{ $t('carousel-table-val1') }}
                   </div>
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    {{ t('carousel-table-key3') }}
+                    {{ $t('carousel-table-key2') }}
                   </div>
                   <div class="right">
-                    {{ t('carousel-table-val3') }}
+                    {{ $t('carousel-table-val2') }}
                   </div>
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    {{ t('carousel-table-key4') }}
+                    {{ $t('carousel-table-key3') }}
                   </div>
                   <div class="right">
-                    {{ t('carousel-table-val4') }} <br>
-                    {{ t('carousel-table-val4-2') }}
+                    {{ $t('carousel-table-val3') }}
                   </div>
                 </div>
                 <div class="table-col">
                   <div class="left">
-                    {{ t('carousel-table-key5') }}
+                    {{ $t('carousel-table-key4') }}
                   </div>
                   <div class="right">
-                    {{ t('carousel-table-val5') }}
+                    {{ $t('carousel-table-val4') }} <br>
+                    {{ $t('carousel-table-val4-2') }}
+                  </div>
+                </div>
+                <div class="table-col">
+                  <div class="left">
+                    {{ $t('carousel-table-key5') }}
+                  </div>
+                  <div class="right">
+                    {{ $t('carousel-table-val5') }}
                   </div>
                 </div>
               </div>
@@ -216,28 +297,28 @@ const setActiveItem = (idx: number) => {
             <!-- 4 -->
             <el-carousel-item>
               <div class="carousel-title">
-                {{ t('block4-tab4-title') }}
+                {{ $t('block4-tab4-title') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab4-des') }}
+                {{ $t('block4-tab4-des') }}
               </div>
             </el-carousel-item>
             <!-- 5 -->
             <el-carousel-item>
               <div class="carousel-title">
-                {{ t('block4-tab5-title') }}
+                {{ $t('block4-tab5-title') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab5-des') }}
+                {{ $t('block4-tab5-des') }}
               </div>
             </el-carousel-item>
             <!-- 6 -->
             <el-carousel-item>
               <div class="carousel-title">
-                {{ t('block4-tab6-title') }}
+                {{ $t('block4-tab6-title') }}
               </div>
               <div class="carousel-des">
-                {{ t('block4-tab6-des') }}
+                {{ $t('block4-tab6-des') }}
               </div>
             </el-carousel-item>
           </el-carousel>
@@ -245,7 +326,7 @@ const setActiveItem = (idx: number) => {
       </div>
       <div class="section phone">
         <div class="title">
-          {{ t('block4-title') }}
+          {{ $t('block4-title') }}
         </div>
         <el-collapse accordion>
           <el-collapse-item name="0">
@@ -257,19 +338,19 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab1') }}
+              {{ $t('block4-tab1') }}
             </template>
             <div class="carousel-title">
-              {{ t('block4-tab1-title1') }}
+              {{ $t('block4-tab1-title1') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab1-des1') }}
+              {{ $t('block4-tab1-des1') }}
             </div>
             <div class="carousel-title">
-              {{ t('block4-tab1-title2') }}
+              {{ $t('block4-tab1-title2') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab1-des2') }}
+              {{ $t('block4-tab1-des2') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="1">
@@ -281,19 +362,19 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab2') }}
+              {{ $t('block4-tab2') }}
             </template>
             <div class="carousel-title">
-              {{ t('block4-tab2-title1') }}
+              {{ $t('block4-tab2-title1') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab2-des1') }}
+              {{ $t('block4-tab2-des1') }}
             </div>
             <div class="carousel-title">
-              {{ t('block4-tab1-title2') }}
+              {{ $t('block4-tab1-title2') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab2-des2') }}
+              {{ $t('block4-tab2-des2') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="2">
@@ -305,60 +386,60 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab3') }}
+              {{ $t('block4-tab3') }}
             </template>
             <div class="carousel-title">
-              {{ t('block4-tab3-title1') }}
+              {{ $t('block4-tab3-title1') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab3-des1') }}
+              {{ $t('block4-tab3-des1') }}
             </div>
             <div class="carousel-title">
-              {{ t('block4-tab1-title2') }}
+              {{ $t('block4-tab1-title2') }}
             </div>
             <div class="carousel-table">
               <div class="carousel-table-title">
-                {{ t('carousel-table-title') }}
+                {{ $t('carousel-table-title') }}
               </div>
               <div class="table-col">
                 <div class="left">
-                  {{ t('carousel-table-key1') }}
+                  {{ $t('carousel-table-key1') }}
                 </div>
                 <div class="right">
-                  {{ t('carousel-table-val1') }}
-                </div>
-              </div>
-              <div class="table-col">
-                <div class="left">
-                  {{ t('carousel-table-key2') }}
-                </div>
-                <div class="right">
-                  {{ t('carousel-table-val2') }}
+                  {{ $t('carousel-table-val1') }}
                 </div>
               </div>
               <div class="table-col">
                 <div class="left">
-                  {{ t('carousel-table-key3') }}
+                  {{ $t('carousel-table-key2') }}
                 </div>
                 <div class="right">
-                  {{ t('carousel-table-val3') }}
+                  {{ $t('carousel-table-val2') }}
                 </div>
               </div>
               <div class="table-col">
                 <div class="left">
-                  {{ t('carousel-table-key4') }}
+                  {{ $t('carousel-table-key3') }}
                 </div>
                 <div class="right">
-                  {{ t('carousel-table-val4') }} <br>
-                  {{ t('carousel-table-val4-2') }}
+                  {{ $t('carousel-table-val3') }}
                 </div>
               </div>
               <div class="table-col">
                 <div class="left">
-                  {{ t('carousel-table-key5') }}
+                  {{ $t('carousel-table-key4') }}
                 </div>
                 <div class="right">
-                  {{ t('carousel-table-val5') }}
+                  {{ $t('carousel-table-val4') }} <br>
+                  {{ $t('carousel-table-val4-2') }}
+                </div>
+              </div>
+              <div class="table-col">
+                <div class="left">
+                  {{ $t('carousel-table-key5') }}
+                </div>
+                <div class="right">
+                  {{ $t('carousel-table-val5') }}
                 </div>
               </div>
             </div>
@@ -372,13 +453,13 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab4') }}
+              {{ $t('block4-tab4') }}
             </template>
             <div class="carousel-title">
-              {{ t('block4-tab4-title') }}
+              {{ $t('block4-tab4-title') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab4-des') }}
+              {{ $t('block4-tab4-des') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="4">
@@ -390,13 +471,13 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab5') }}
+              {{ $t('block4-tab5') }}
             </template>
             <div class="carousel-title">
-              {{ t('block4-tab5-title') }}
+              {{ $t('block4-tab5-title') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab5-des') }}
+              {{ $t('block4-tab5-des') }}
             </div>
           </el-collapse-item>
           <el-collapse-item name="5">
@@ -408,18 +489,25 @@ const setActiveItem = (idx: number) => {
               >
                 <CaretRight />
               </el-icon>
-              {{ t('block4-tab6') }}
+              {{ $t('block4-tab6') }}
             </template>
             <div class="carousel-title">
-              {{ t('block4-tab6-title') }}
+              {{ $t('block4-tab6-title') }}
             </div>
             <div class="carousel-des">
-              {{ t('block4-tab6-des') }}
+              {{ $t('block4-tab6-des') }}
             </div>
           </el-collapse-item>
         </el-collapse>
       </div>
     </div>
+    <div class="block4-bg-rotate">
+      <img
+        class="block4-bg rotate-ani"
+        src="../assets/images/block4-img.webp"
+      >
+    </div>
+    <div class="blank" />
   </div>
 </template>
 
@@ -427,25 +515,47 @@ const setActiveItem = (idx: number) => {
 // desktop
 @import '@/assets/scss/index.scss';
 
-#block4 {
-  z-index: 1;
+.blank {
+  height: 20vh;
+  @include pad {
+    height: 0px;
+  }
+}
+
+.block4-bg-rotate {
+  width: 100vw;
+  height: 40vh;
   position: relative;
-  overflow: hidden;
+  transform: translateY(-50%);
+  @include pad {
+    height: 10vh;
+  }
+  @include mobile {
+    height: 20vh;
+  }
   .block4-bg {
     width: 80%;
     position: absolute;
-    top: 700px;
     left: 50%;
     margin-left: -40%;
-    z-index: -1;
+    z-index: 10;
+    top: -20vh;
+    @include pad {
+      top: -500px;
+    }
     @include mobile {
       width: 120%;
-      top: auto;
+      top: 10vh;
       left: 0;
       margin-left: -10%;
       bottom: -300px;
     }
   }
+}
+#block4 {
+  z-index: 1;
+  position: relative;
+
 }
 .container {
   .section {
