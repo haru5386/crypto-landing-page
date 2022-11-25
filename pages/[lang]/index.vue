@@ -22,8 +22,8 @@ const BaseStore = useBaseStore()
 const UserStore = useUserStore()
 
 // 引入 store action
-const { BASE_DATA_INIT, NO_READ_MSG } = BaseStore
-const { USER_DATA_INIT } = UserStore
+const { BASE_DATA_INIT } = BaseStore
+const { USER_DATA_INIT, NO_READ_MSG } = UserStore
 // 引入 ScrollTrigger
 const triggers = ScrollTrigger.getAll()
 // 引入 ref

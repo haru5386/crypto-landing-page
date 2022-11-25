@@ -18,7 +18,7 @@ const localeSetting = useState<string>('locale.setting')
 
 // stores
 const UserStore = useUserStore()
-const { ISLOGIN, USERDATA } = storeToRefs(UserStore)
+const { ISLOGIN, USERDATA, NOREADMSG } = storeToRefs(UserStore)
 
 // data
 const openMainDrawer = ref(false)
@@ -254,7 +254,10 @@ const changeLang = (lang: string) => {
           </div>
 
           <!-- 通知 -->
-          <div class="icon drop-down-menu">
+          <div
+            class="icon drop-down-menu"
+            @click="goPath(`/${localeSetting}/mesage`)"
+          >
             <div class="drop-down-title">
               <img
                 class="no-active"
@@ -264,9 +267,29 @@ const changeLang = (lang: string) => {
                 class="active"
                 src="@/assets/images/icons/bell-active.svg"
               >
+              <div
+                v-if="
+                  NOREADMSG?.noReadMsgCount && NOREADMSG?.noReadMsgCount > 0
+                "
+                class="has-notread"
+              />
             </div>
-            <div class="drop-down">
-              通知
+            <div class="drop-down notice">
+              <div
+                v-for="item in NOREADMSG?.userMessageList"
+                :key="item.id"
+                class="drop-down-item"
+              >
+                <div class="new">
+                  <div class="dot" />
+                </div>
+                <div class="message">
+                  {{ item.messageContent }}
+                </div>
+              </div>
+              <div class="more">
+                View all
+              </div>
             </div>
           </div>
         </div>
