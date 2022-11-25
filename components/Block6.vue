@@ -14,8 +14,87 @@ function gsapSet () {
     '(max-width: 768px)': () => {
     },
     all: () => {
+      block6In()
+      block6Out()
     }
   })
+}
+
+// block6 進入動畫
+function block6In () {
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '#false',
+      markers: true,
+      start: 'top 100%',
+      end: 'top 50%'
+    }
+  }).fromTo(
+    '.block6-bg-bg',
+    {
+      ease: 'circ.out',
+      y: 200
+    },
+    {
+      duration: 1,
+      ease: 'circ.out',
+      y: 0
+    }
+  ).fromTo(
+    '.block6-bg-eth',
+    {
+      ease: 'circ.out',
+      opacity: 0
+    },
+    {
+      duration: 1,
+      opacity: 1
+    }
+  ).fromTo(
+    '.block6-right',
+    {
+      ease: 'circ.out',
+      y: 1000
+    },
+    {
+      duration: 2,
+      y: 0
+    }
+  ).fromTo(
+    '.block6-right',
+    {
+      ease: 'circ.out',
+      opacity: 0
+    },
+    {
+      duration: 0.3,
+      opacity: 1
+    }, '<'
+  )
+}
+
+// block6 離開動畫
+function block6Out () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block7',
+        markers: true,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: true
+      }
+    })
+    .to('#block6 .container', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -180
+    })
+    .to('.block6-bg-eth', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -160
+    }, '<')
 }
 
 onUnmounted(() => {
@@ -38,18 +117,18 @@ onMounted(() => {
   >
     <div class="block6-bg">
       <img
-        class="eth"
+        class="block6-bg-eth"
         src="../assets/images/block6-img.svg"
         alt="背景"
       >
       <img
-        class="bg"
+        class="block6-bg-bg"
         src="../assets/images/block6-bg.webp"
         alt="背景"
       >
     </div>
     <div class="container">
-      <div class="left">
+      <div class="block6-left">
         <h2 class="title">
           AGET
         </h2>
@@ -68,7 +147,7 @@ onMounted(() => {
         >More detail
         </a>
       </div>
-      <div class="right">
+      <div class="block6-right">
         <div class="title">
           Specifications
         </div>
@@ -98,9 +177,9 @@ onMounted(() => {
 #block6 {
   color: $color_gray_White;
   position: relative;
-  overflow: hidden;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   @include mobile {
     height: 1220px;
   }
@@ -116,14 +195,15 @@ onMounted(() => {
       right: -150px;
       bottom: -100px;
     }
-    .bg {
+    .block6-bg-bg {
       width: 1110px;
       margin: 0 auto;
     }
-    .eth {
+    .block6-bg-eth {
       z-index: 0;
       width: 337px;
       margin-bottom: -290px;
+      opacity: 0;
       @include mobile {
         margin-bottom: -290px;
         // left: -50px;
@@ -144,7 +224,7 @@ onMounted(() => {
       align-items: flex-end;
     }
 
-    .left {
+    .block6-left {
       position: relative;
       padding-left: 100px;
       @include pad {
@@ -183,7 +263,7 @@ onMounted(() => {
         color: $color_identity_Primary;
       }
     }
-    .right {
+    .block6-right {
       width: 256px;
       margin-right: 10%;
       @include pad {

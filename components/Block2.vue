@@ -14,8 +14,112 @@ function gsapSet () {
     '(max-width: 768px)': () => {
     },
     all: () => {
+      animatedEarthOut()
+      block2Scroll()
+      block2VideoOut()
     }
   })
+}
+
+function animatedEarthOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block2',
+        markers: false,
+        start: 'top 95%',
+        end: 'top 30%',
+        scrub: true
+      }
+    })
+    .to('.video-earth-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -400
+    })
+    .to(
+      '.animation-group',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -900
+      },
+      '<'
+    )
+}
+
+// block2-video 進入動畫
+function block2VideoIn () {
+  gsap.timeline().fromTo(
+    '.block2-video',
+    {
+      ease: 'circ.out',
+      opacity: 0,
+      y: 100
+    },
+    {
+      duration: 1,
+      ease: 'circ.out',
+      opacity: 1,
+      y: 0
+    }
+  )
+}
+// scroll block2 觸發
+function block2Scroll () {
+  ScrollTrigger.create({
+    // 以block2作為觸發時機
+    trigger: '#block2',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      block2VideoIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+    }
+  })
+}
+
+// block2Video 離開動畫
+function block2VideoOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block3',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: true
+      }
+    })
+    .to('.block2-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -400
+    })
+    .to(
+      '.item1',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -200
+      },
+      '<'
+    ).to(
+      '.item2',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -200
+      },
+      '<'
+    )
 }
 
 onUnmounted(() => {
@@ -35,19 +139,8 @@ onMounted(() => {
 <template>
   <div
     id="block2"
-    class="block slide"
+    class="block"
   >
-    <video
-      class="block2-video"
-      autoplay
-      muted
-      loop
-    >
-      <source
-        src="../assets/video/digitalmap.mp4"
-        type="video/mp4"
-      >
-    </video>
     <div class="container">
       <div class="section">
         <div class="item1">
@@ -69,28 +162,46 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <video
+    class="block2-video"
+    autoplay
+    muted
+    loop
+  >
+    <source
+      src="../assets/video/digitalmap.mp4"
+      type="video/mp4"
+    >
+  </video>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 
-#block2 {
-  z-index: 1;
-  position: relative;
-  overflow: hidden;
-  .block2-video {
+.block2-video {
     width: 100%;
+    height: 80vh;
     position: absolute;
-    top: 400px;
-    z-index: -1;
+    z-index: 0;
+    opacity: 0;
+    top: 150vh;
+    @include pad {
+      width: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
     @include mobile {
       width: 150%;
-      top: auto;
       left: 50%;
       transform: translateX(-50%);
       bottom: -50px;
     }
   }
+#block2 {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+
 }
 .container {
   .section {

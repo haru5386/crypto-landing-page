@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const { t } = useLang()
 
 const members = [
@@ -38,6 +40,102 @@ const members = [
     link: ''
   }
 ]
+
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+      block8Scroll()
+      block8Out()
+    }
+  })
+}
+// block8-bg 進入動畫
+function block8BgIn () {
+  gsap.timeline().fromTo(
+    '.block8-bg-1',
+    {
+      ease: 'circ.out',
+      opacity: 0,
+      y: -200
+    },
+    {
+      duration: 1,
+      ease: 'circ.out',
+      opacity: 1,
+      y: 0
+    }
+  ).fromTo('#block8 .bottom', {
+    ease: 'circ.out',
+    opacity: 0
+  },
+  {
+    duration: 1,
+    ease: 'circ.out',
+    opacity: 1
+  })
+}
+
+// scroll block8 觸發
+function block8Scroll () {
+  ScrollTrigger.create({
+    // 以block8作為觸發時機
+    trigger: '#block8',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      block8BgIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+    }
+  })
+}
+
+// block8 離開動畫
+function block8Out () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block9',
+        markers: true,
+        start: 'top 100%',
+        end: 'top 50%',
+        scrub: true
+      }
+    })
+    .to('#block8 .bottom', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -180
+    })
+}
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <template>
@@ -46,7 +144,11 @@ const members = [
     class="block"
   >
     <div class="block8-bg">
-      <img src="../assets/images/block8-bg1.webp">
+      <div class="block8-bg-1">
+        <img
+          src="../assets/images/block8-bg1.webp"
+        >
+      </div>
       <img src="../assets/images/block8-bg2.webp">
     </div>
     <div class="container">
@@ -106,7 +208,7 @@ const members = [
 #block8 {
   color: $color_gray_White;
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   display: flex;
   justify-content: center;
 
@@ -114,12 +216,18 @@ const members = [
     position: absolute;
     width: 100%;
     height: 100%;
-    img:nth-child(1) {
+    .block8-bg-1 {
       position: absolute;
-      top: -75px;
-      left: 0;
-      @include mobile {
-        width: 100%;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      img {
+        position: absolute;
+        top: -75px;
+        left: 0;
+        @include mobile {
+          width: 100%;
+        }
       }
     }
     img:nth-child(2) {
@@ -184,6 +292,7 @@ const members = [
       display: flex;
       gap: 17px;
       margin-top: 94px;
+      opacity: 0;
       @include pad {
         margin-top: 51px;
         gap: 7px;

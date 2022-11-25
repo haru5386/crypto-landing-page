@@ -29,8 +29,64 @@ function gsapSet () {
     '(max-width: 768px)': () => {
     },
     all: () => {
+      block4Scroll()
+      rotateBgOut()
     }
   })
+}
+
+// block4-bg-rotate 進入動畫
+function rotateBgIn () {
+  gsap.timeline().fromTo(
+    '.block4-bg-rotate',
+    {
+      ease: 'circ.out',
+      y: 300
+    },
+    {
+      duration: 1.5,
+      ease: 'circ.out',
+      y: 0
+    }
+  )
+}
+// scroll block4 觸發
+function block4Scroll () {
+  ScrollTrigger.create({
+    // 以block4作為觸發時機
+    trigger: '#block4',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      rotateBgIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+    }
+  })
+}
+// // block4-bg-rotate 離開動畫
+function rotateBgOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '.block4-bg-rotate',
+        markers: false,
+        start: 'top 80%',
+        end: 'top 0%',
+        scrub: true
+      }
+    })
+    .to('.block4-bg-rotate', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -400
+    })
 }
 
 onUnmounted(() => {
@@ -52,11 +108,6 @@ onMounted(() => {
     id="block4"
     class="block"
   >
-    <img
-      class="block4-bg rotate-ani"
-      src="../assets/images/block4-img.webp"
-    >
-
     <div class="container">
       <div class="section desktop">
         <div class="title">
@@ -451,23 +502,40 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <div class="block4-bg-rotate">
+    <img
+      class="block4-bg rotate-ani"
+      src="../assets/images/block4-img.webp"
+    >
+  </div>
 </template>
 
 <style lang="scss" scoped>
 // desktop
 @import '@/assets/scss/index.scss';
 
-#block4 {
-  z-index: 1;
+.block4-bg-rotate {
+  width: 100vw;
+  height: 40vh;
   position: relative;
-  overflow: hidden;
+  transform: translateY(-50%);
+  // overflow: hidden;
+  @include pad {
+    height: 10vh;
+  }
+  @include mobile {
+    height: 20vh;
+  }
   .block4-bg {
     width: 80%;
     position: absolute;
-    top: 700px;
+    top: -100px;
     left: 50%;
     margin-left: -40%;
-    z-index: -1;
+    z-index: 10;
+    @include pad {
+      top: -400px;
+    }
     @include mobile {
       width: 120%;
       top: auto;
@@ -476,6 +544,12 @@ onMounted(() => {
       bottom: -300px;
     }
   }
+}
+#block4 {
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+
 }
 .container {
   .section {
