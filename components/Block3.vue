@@ -1,7 +1,6 @@
 <template>
   <div
     id="block3"
-    class="block slide"
   >
     <div class="container">
       <div class="description">
@@ -32,7 +31,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
-const videoUrl = ref<string>('https://www.youtube.com/embed/cSgFSrEnLxQ')
+const videoUrl = ref<string>('https://www.youtube.com/embed/IOpaj8ZQxzs')
 // 引入 ScrollTrigger
 const triggers = ScrollTrigger.getAll()
 function gsapSet () {
@@ -109,6 +108,11 @@ justify-content: center;
 align-items: center;
 z-index: 10;
 overflow: hidden;
+height: 100vh;
+@include pad {
+height: 70vh;
+
+}
 @include mobile {
   align-items: start;
 }

@@ -8,15 +8,16 @@ const triggers = ScrollTrigger.getAll()
 function gsapSet () {
   ScrollTrigger.matchMedia({
     '(min-width: 1200px)': () => {
+      block2VideoOut()
     },
     '(min-width: 768px)': () => {
+      block2VideoOut()
     },
     '(max-width: 768px)': () => {
+      block2VideoOutMobile()
     },
     all: () => {
       animatedEarthOut()
-      block2Scroll()
-      block2VideoOut()
     }
   })
 }
@@ -48,46 +49,8 @@ function animatedEarthOut () {
     )
 }
 
-// block2-video 進入動畫
-function block2VideoIn () {
-  // gsap.timeline().fromTo(
-  //   '.block2-video',
-  //   {
-  //     ease: 'circ.out',
-  //     opacity: 0,
-  //     y: 100
-  //   },
-  //   {
-  //     duration: 1,
-  //     ease: 'circ.out',
-  //     opacity: 1,
-  //     y: 0
-  //   }
-  // )
-}
-// scroll block2 觸發
-function block2Scroll () {
-  ScrollTrigger.create({
-    // 以block2作為觸發時機
-    trigger: '#block2',
-    markers: false,
-
-    // 向下滾動進入start點時觸發callback
-    onEnter: function () {
-      block2VideoIn()
-    },
-
-    // 向下滾動超過end點時觸發callback
-    onLeave: function () {},
-
-    // 向上滾動超過end點時觸發（回滾時觸發）callback
-    onEnterBack: function () {
-    }
-  })
-}
-
-// block2Video 離開動畫
-function block2VideoOut () {
+// block2VideoMobile 離開動畫
+function block2VideoOutMobile () {
   gsap
     .timeline({
       scrollTrigger: {
@@ -101,7 +64,43 @@ function block2VideoOut () {
     .to('.block2-video', {
       duration: 1,
       ease: 'easeIn',
-      y: -400
+      y: -200
+    })
+    .to(
+      '.item1',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -100
+      },
+      '<'
+    ).to(
+      '.item2',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -100
+      },
+      '<'
+    )
+}
+
+// block2Video 離開動畫
+function block2VideoOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '.block2-video',
+        markers: true,
+        start: 'top 90%',
+        end: 'top 30%',
+        scrub: true
+      }
+    })
+    .to('.block2-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -300
     })
     .to(
       '.item1',
@@ -139,7 +138,6 @@ onMounted(() => {
 <template>
   <div
     id="block2"
-    class="block"
   >
     <div class="container">
       <div class="section">
@@ -191,7 +189,7 @@ onMounted(() => {
     width: 100%;
     margin-left: 50vw;
     transform: translate(-50%);
-    margin-top: -20%;
+    margin-top: -50%;
     z-index: -1;
     @include pad {
       width: 130%;
@@ -199,7 +197,7 @@ onMounted(() => {
   }
     @include mobile {
         width: 150%;
-        margin-top: -40vh;
+        margin-top: -20vh;
     }
   }
 
@@ -208,6 +206,10 @@ onMounted(() => {
   z-index: 1;
   position: relative;
   overflow: hidden;
+  height: 120vh;
+  @include pad {
+    height: 80vh;
+  }
 
 }
 .container {
@@ -245,6 +247,11 @@ onMounted(() => {
     .item2 {
       width: 588px;
       min-width: 588px;
+      @include pad {
+        width: auto;
+        min-width: auto;
+        flex:3
+      }
       @include mobile {
         width: 100%;
         min-width: 100%;
