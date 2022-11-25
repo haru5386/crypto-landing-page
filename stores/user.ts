@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { computed, ref, Ref } from 'vue'
 import { getUserInfoApi } from '@/api/base'
+import { UserData } from '~~/types/interface/user.interface'
 
 export const useUserStore = defineStore('userStore', () => {
   // state
-  const userData = ref(null) // 使用者資料
+  const userData: Ref<UserData | undefined | null> = ref() // 使用者資料
   const isLogin: Ref<boolean> = ref(false) // 是否登入
 
   // getter

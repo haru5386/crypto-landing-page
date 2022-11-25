@@ -1,0 +1,204 @@
+@import '@/assets/scss/index.scss';
+.nav {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba($color_gray_80, 0.5);
+  backdrop-filter: blur(100px);
+  padding: 0 $spacing_4 0 $spacing_4;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  @include pad {
+    padding: 0 $spacing_2 0 $spacing_2;
+  }
+  .nav_left {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 25px;
+    }
+    .tabs {
+      display: flex;
+      .tab_item {
+        @include font('Body2-Med', #fff);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+        margin-right: $spacing_3;
+        &.active {
+          color: $color_identity_Primary;
+        }
+      }
+    }
+  }
+  .nav_right {
+    height: 100%;
+    @include font('Body2-Med', #fff);
+    display: flex;
+    align-items: center;
+    // 登出狀態顯示
+    .login-buttons {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+      @include mobile {
+        display: none;
+      }
+      .login {
+        height: 30px;
+        padding: 4px 15px;
+        @extend .button-text;
+        margin-right: $spacing_3;
+      }
+      .sign-up {
+        height: 30px;
+        padding: 4px 15px;
+        @extend .button-filled;
+      }
+    }
+
+    // 登入狀態顯示
+    .login-methods {
+      display: flex;
+      height: 100%;
+    }
+
+    .icon {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-left: $spacing_2;
+      @include pad {
+        margin-left: $spacing_2-5;
+      }
+      cursor: pointer;
+      &.burger {
+        display: none;
+      }
+    }
+
+    // 切換語言 & 幣種
+    .EnglishUSD {
+      display: flex;
+      height: 100%;
+      margin-left: 26px;
+      align-items: center;
+      cursor: pointer;
+      @include font('Cap1-Reg', #fff);
+    }
+  }
+}
+
+// 個人中心
+.drop-down-menu {
+  position: relative;
+  .drop-down-title {
+    padding: 8px;
+    height: 24px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+  }
+  .no-active {
+    display: block;
+  }
+  .active {
+    display: none;
+  }
+  &:hover {
+    color: $color_identity_Primary;
+    .no-active {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    .drop-down {
+      transition-delay: 0s;
+      opacity: 1;
+      height: auto;
+    }
+  }
+  .drop-down {
+    opacity: 0;
+    height: 0;
+    transition: all linear 0.2s;
+    transition-delay: 1s;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 8px;
+    top: 64px;
+    right: 0;
+    width: 200px;
+    background-color: $color_gray_80;
+    .member-info {
+      padding: 16px;
+      padding-left: 19px;
+      border-bottom: 1px solid #fff;
+      &:hover .email{
+        color: $color_identity_Primary;
+      }
+      .email{ 
+        color: #fff;
+      }
+      .status {
+        margin-top: 4px;
+        color: $color_gray_60;
+      }
+    }
+
+    .drop-down-item {
+      height: 50px;
+      padding: 0 10px;
+      display: flex;
+      justify-content: content;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        background-color: $color_gray_90;
+      }
+      &.active {
+        background-color: $color_gray_90;
+      }
+      .item-text {
+        flex: 1;
+        height: 56px;
+        margin-left: 11px;
+        display: flex;
+        align-items: center;
+        @include font('Body2-Med', #fff);
+        .item-icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}
+.drop-down-menu-mobile {
+  display: none !important;
+}
+
+// RWD Setting
+.pc {
+  display: flex;
+  height: 100%;
+}
+
+.pad {
+  display: none;
+}
+
+@include pad {
+  .pc {
+    display: none;
+  }
+  .pad {
+    display: flex;
+    height: 100%;
+  }
+}

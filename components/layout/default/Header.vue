@@ -18,7 +18,7 @@ const localeSetting = useState<string>('locale.setting')
 
 // stores
 const UserStore = useUserStore()
-const { ISLOGIN } = storeToRefs(UserStore)
+const { ISLOGIN, USERDATA } = storeToRefs(UserStore)
 
 // data
 const openMainDrawer = ref(false)
@@ -28,6 +28,22 @@ const isLogin = computed(() => {
 
 // tabs
 const { t } = useLang()
+
+// 帳戶狀態
+const accountStatusText = computed(() => {
+  switch (USERDATA.value?.accountStatus) {
+    case 0:
+      return t('正常')
+    case 1:
+      return t('凍結交易, 凍結提現')
+    case 2:
+      return t('凍結交易')
+    case 3:
+      return t('凍結提現')
+    default:
+      return t('正常')
+  }
+})
 // 交易 tabs
 const headTabs: HeaderInfo[] = reactive([
   // {
@@ -197,15 +213,40 @@ const changeLang = (lang: string) => {
 
           <!-- 個人中心 -->
           <div class="icon drop-down-menu">
-            <div class="drop-down-title">
-              <img src="@/assets/images/icons/account.svg">
+            <div
+              class="drop-down-title"
+              @click="goPath(`${localeSetting}/personal/userManagement`)"
+            >
+              <img
+                class="no-active"
+                src="@/assets/images/icons/account.svg"
+              >
+              <img
+                class="active"
+                src="@/assets/images/icons/account-active.svg"
+              >
             </div>
             <div class="drop-down">
+              <div
+                class="member-info"
+                @click="goPath(`${localeSetting}/personal/userManagement`)"
+              >
+                <div class="email">
+                  {{ USERDATA?.email }}
+                </div>
+                <div class="status">
+                  {{ t('帳戶狀態') }} : {{ accountStatusText }}
+                </div>
+              </div>
               <div
                 class="drop-down-item"
                 @click="UserStore.LOGOUT"
               >
                 <div class="item-text">
+                  <img
+                    class="item-icon"
+                    src="@/assets/images/icons/signout.svg"
+                  >
                   {{ t('退出') }}
                 </div>
               </div>
@@ -213,14 +254,21 @@ const changeLang = (lang: string) => {
           </div>
 
           <!-- 通知 -->
-          <!-- <div class="icon drop-down-menu">
+          <div class="icon drop-down-menu">
             <div class="drop-down-title">
-              <img src="@/assets/images/icons/bell.svg">
+              <img
+                class="no-active"
+                src="@/assets/images/icons/bell.svg"
+              >
+              <img
+                class="active"
+                src="@/assets/images/icons/bell-active.svg"
+              >
             </div>
             <div class="drop-down">
               通知
             </div>
-          </div> -->
+          </div>
         </div>
         <!-- 下載 -->
         <!-- <div class="icon drop-down-menu">
@@ -308,175 +356,5 @@ const changeLang = (lang: string) => {
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/index.scss';
-
-.nav {
-  width: 100%;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: rgba($color_gray_80, 0.5);
-  backdrop-filter: blur(100px);
-  padding: 0 $spacing_4 0 $spacing_4;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  @include pad {
-    padding: 0 $spacing_2 0 $spacing_2;
-  }
-  .nav_left {
-    display: flex;
-    align-items: center;
-    img {
-      margin-right: 25px;
-    }
-    .tabs {
-      display: flex;
-      .tab_item {
-        @include font('Body2-Med', #fff);
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        cursor: pointer;
-        margin-right: $spacing_3;
-        &.active {
-          color: $color_identity_Primary;
-        }
-      }
-    }
-  }
-  .nav_right {
-    height: 100%;
-    @include font('Body2-Med', #fff);
-    display: flex;
-    align-items: center;
-    // 登出狀態顯示
-    .login-buttons {
-      display: flex;
-      align-items: center;
-      margin-right: 15px;
-      .login {
-        height: 30px;
-        padding: 4px 15px;
-        @extend .button-text;
-        margin-right: $spacing_3;
-      }
-      .sign-up {
-        height: 30px;
-        padding: 4px 15px;
-        @extend .button-filled;
-      }
-    }
-
-    // 登入狀態顯示
-    .login-methods {
-      display: flex;
-      height: 100%;
-    }
-
-    .icon {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      margin-left: $spacing_2;
-      @include pad {
-        margin-left: $spacing_2-5;
-      }
-      cursor: pointer;
-      &.burger {
-        display: none;
-      }
-    }
-
-    // 切換語言 & 幣種
-    .EnglishUSD {
-      display: flex;
-      height: 100%;
-      margin-left: 26px;
-      align-items: center;
-      cursor: pointer;
-      @include font('Cap1-Reg', #fff);
-    }
-  }
-}
-
-// 個人中心
-.drop-down-menu {
-  position: relative;
-  .drop-down-title {
-    padding: 8px;
-    height: 24px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-  }
-  &:hover {
-    .drop-down {
-      transition-delay: 0s;
-      opacity: 1;
-      height: auto;
-    }
-  }
-  .drop-down {
-    opacity: 0;
-    height: 0;
-    transition: all linear 0.2s;
-    transition-delay: 1s;
-    overflow: hidden;
-    position: absolute;
-    border-radius: 8px;
-    top: 64px;
-    right: 0;
-    width: 200px;
-    background-color: $color_gray_80;
-
-    .drop-down-item {
-      height: 50px;
-      padding: 0 10px;
-      display: flex;
-      justify-content: content;
-      align-items: center;
-      cursor: pointer;
-      &:hover {
-        background-color: $color_gray_90;
-      }
-      &.active {
-        background-color: $color_gray_90;
-      }
-      .item-text {
-        flex: 1;
-        height: 56px;
-        margin-left: 11px;
-        display: flex;
-        align-items: center;
-        @include font('Body2-Med', #fff);
-      }
-    }
-  }
-}
-.drop-down-menu-mobile {
-  display: none !important;
-}
-
-// RWD Setting
-.pc {
-  display: flex;
-  height: 100%;
-}
-
-.pad {
-  display: none;
-}
-
-@include pad {
-  .pc {
-    display: none;
-  }
-  .pad {
-    display: flex;
-    height: 100%;
-  }
-}
+@import './scss/Header.scss';
 </style>
