@@ -16,6 +16,7 @@ function gsapSet () {
       shieldIn()
     },
     '(max-width: 768px)': () => {
+      block5MobileOut()
     },
     all: () => {
       badgeIn()
@@ -149,13 +150,13 @@ function block5Scroll () {
   })
 }
 
-// // shield badge left-word 離開動畫
+// shield badge left-word 離開動畫
 function block5Out () {
   gsap
     .timeline({
       scrollTrigger: {
         trigger: '#block6',
-        markers: true,
+        markers: false,
         start: 'top 100%',
         end: 'top 5%',
         scrub: true
@@ -178,6 +179,25 @@ function block5Out () {
       ease: 'easeIn',
       y: 1300
     }, '<')
+}
+
+// block5-mobile 離開動畫
+function block5MobileOut () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block6',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 5%',
+        scrub: true
+      }
+    })
+    .to('.block5-bg', {
+      duration: 1,
+      ease: 'easeIn',
+      y: 1300
+    })
 }
 
 onUnmounted(() => {
@@ -309,6 +329,9 @@ onMounted(() => {
       height: 140vh;
       margin-top: 64px;
     }
+    @include mobile {
+      height: 120vh;
+    }
     .block5-bg {
       position: absolute;
       width: 100%;
@@ -318,7 +341,7 @@ onMounted(() => {
         width: 120%;
       }
       @include mobile {
-        bottom: -50%;
+        bottom: -20%;
       }
       img{
         width: 140%;

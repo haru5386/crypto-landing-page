@@ -112,7 +112,7 @@ function block8Out () {
     .timeline({
       scrollTrigger: {
         trigger: '#block9',
-        markers: true,
+        markers: false,
         start: 'top 100%',
         end: 'top 50%',
         scrub: true
@@ -121,8 +121,12 @@ function block8Out () {
     .to('#block8 .bottom', {
       duration: 1,
       ease: 'easeIn',
-      y: -180
-    })
+      y: -150
+    }).to('#block8 .top', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -200
+    }, '<')
 }
 onUnmounted(() => {
   triggers.forEach((trigger) => {

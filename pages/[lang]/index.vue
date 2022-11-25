@@ -34,6 +34,8 @@ onMounted(() => {
 
 .page-index {
   background-color: #000;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .block {

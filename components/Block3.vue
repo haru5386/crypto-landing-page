@@ -108,6 +108,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 z-index: 10;
+overflow: hidden;
 @include mobile {
   align-items: start;
 }
@@ -119,6 +120,7 @@ z-index: 10;
   font-size: 20px;
   font-weight: normal;
   line-height: 1.6;
+  z-index: 10;
   @include mobile {
     flex-direction: column;
     margin-top: 74px;

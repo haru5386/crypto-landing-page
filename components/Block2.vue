@@ -50,20 +50,20 @@ function animatedEarthOut () {
 
 // block2-video 進入動畫
 function block2VideoIn () {
-  gsap.timeline().fromTo(
-    '.block2-video',
-    {
-      ease: 'circ.out',
-      opacity: 0,
-      y: 100
-    },
-    {
-      duration: 1,
-      ease: 'circ.out',
-      opacity: 1,
-      y: 0
-    }
-  )
+  // gsap.timeline().fromTo(
+  //   '.block2-video',
+  //   {
+  //     ease: 'circ.out',
+  //     opacity: 0,
+  //     y: 100
+  //   },
+  //   {
+  //     duration: 1,
+  //     ease: 'circ.out',
+  //     opacity: 1,
+  //     y: 0
+  //   }
+  // )
 }
 // scroll block2 觸發
 function block2Scroll () {
@@ -91,7 +91,7 @@ function block2VideoOut () {
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: '#block3',
+        trigger: '.block2-video',
         markers: false,
         start: 'top 100%',
         end: 'top 50%',
@@ -162,40 +162,47 @@ onMounted(() => {
       </div>
     </div>
   </div>
-  <video
-    class="block2-video"
-    autoplay
-    muted
-    loop
-  >
-    <source
-      src="../assets/video/digitalmap.mp4"
-      type="video/mp4"
+  <div class="block2-video">
+    <video
+      autoplay
+      muted
+      loop
     >
-  </video>
+      <source
+        src="../assets/video/digitalmap.mp4"
+        type="video/mp4"
+      >
+    </video>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/scss/index.scss';
 
 .block2-video {
+  width: 100vw;
+  height: 20vh;
+  z-index: 0;
+  max-width: 1680px;
+  @include pad {
+    height: 10vh;
+  }
+  video{
     width: 100%;
-    height: 80vh;
-    position: absolute;
-    z-index: 0;
-    opacity: 0;
-    top: 150vh;
+    margin-left: 50vw;
+    transform: translate(-50%);
+    margin-top: -20%;
+    z-index: -1;
     @include pad {
       width: 130%;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+      margin-top: -40%;
+  }
     @include mobile {
-      width: 150%;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -50px;
+        width: 150%;
+        margin-top: -40vh;
     }
+  }
+
   }
 #block2 {
   z-index: 1;

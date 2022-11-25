@@ -75,10 +75,10 @@ function rotateBgOut () {
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: '.block4-bg-rotate',
+        trigger: '#block5',
         markers: false,
-        start: 'top 80%',
-        end: 'top 0%',
+        start: 'top 100%',
+        end: 'top 00%',
         scrub: true
       }
     })
@@ -501,12 +501,13 @@ onMounted(() => {
         </el-collapse>
       </div>
     </div>
-  </div>
-  <div class="block4-bg-rotate">
-    <img
-      class="block4-bg rotate-ani"
-      src="../assets/images/block4-img.webp"
-    >
+    <div class="block4-bg-rotate">
+      <img
+        class="block4-bg rotate-ani"
+        src="../assets/images/block4-img.webp"
+      >
+    </div>
+    <div class="blank" />
   </div>
 </template>
 
@@ -514,12 +515,18 @@ onMounted(() => {
 // desktop
 @import '@/assets/scss/index.scss';
 
+.blank {
+  height: 20vh;
+  @include pad {
+    height: 0px;
+  }
+}
+
 .block4-bg-rotate {
   width: 100vw;
   height: 40vh;
   position: relative;
   transform: translateY(-50%);
-  // overflow: hidden;
   @include pad {
     height: 10vh;
   }
@@ -529,16 +536,16 @@ onMounted(() => {
   .block4-bg {
     width: 80%;
     position: absolute;
-    top: -100px;
     left: 50%;
     margin-left: -40%;
     z-index: 10;
+    top: -20vh;
     @include pad {
-      top: -400px;
+      top: -500px;
     }
     @include mobile {
       width: 120%;
-      top: auto;
+      top: 10vh;
       left: 0;
       margin-left: -10%;
       bottom: -300px;
@@ -548,7 +555,6 @@ onMounted(() => {
 #block4 {
   z-index: 1;
   position: relative;
-  overflow: hidden;
 
 }
 .container {

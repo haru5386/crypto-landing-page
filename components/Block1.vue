@@ -252,13 +252,18 @@ onMounted(() => {
     }
     .signUpBtn {
       display: inline-block;
-      border-radius:  26px 0 0 26px;
+      border-radius:  0 26px 26px 0;
       font-weight: bold;
       font-stretch: normal;
       line-height: 52px;
       text-transform:uppercase;
       color: $color_identity_Primary;
+      background-color: $color_gray_Black;
       flex:4;
+      &:hover {
+        background-color: $color_identity_Primary;
+        color: $color_gray_Black;
+      }
       @include pad {
         line-height: 33px;
       }

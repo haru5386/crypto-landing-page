@@ -24,8 +24,8 @@ function gsapSet () {
 function block6In () {
   gsap.timeline({
     scrollTrigger: {
-      trigger: '#false',
-      markers: true,
+      trigger: '#block6',
+      markers: false,
       start: 'top 100%',
       end: 'top 50%'
     }
@@ -36,7 +36,7 @@ function block6In () {
       y: 200
     },
     {
-      duration: 1,
+      duration: 0.5,
       ease: 'circ.out',
       y: 0
     }
@@ -47,7 +47,7 @@ function block6In () {
       opacity: 0
     },
     {
-      duration: 1,
+      duration: 0.5,
       opacity: 1
     }
   ).fromTo(
@@ -57,7 +57,7 @@ function block6In () {
       y: 1000
     },
     {
-      duration: 2,
+      duration: 1.5,
       y: 0
     }
   ).fromTo(
@@ -79,7 +79,7 @@ function block6Out () {
     .timeline({
       scrollTrigger: {
         trigger: '#block7',
-        markers: true,
+        markers: false,
         start: 'top 100%',
         end: 'top 50%',
         scrub: true
@@ -179,7 +179,6 @@ onMounted(() => {
   position: relative;
   display: flex;
   justify-content: center;
-  overflow: hidden;
   @include mobile {
     height: 1220px;
   }
