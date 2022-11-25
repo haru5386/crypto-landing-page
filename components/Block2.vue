@@ -91,7 +91,7 @@ function block2VideoOut () {
     .timeline({
       scrollTrigger: {
         trigger: '.block2-video',
-        markers: true,
+        markers: false,
         start: 'top 90%',
         end: 'top 30%',
         scrub: true
