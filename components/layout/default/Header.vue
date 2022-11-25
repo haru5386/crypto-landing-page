@@ -21,7 +21,6 @@ const UserStore = useUserStore()
 const { ISLOGIN, USERDATA, NOREADMSG } = storeToRefs(UserStore)
 
 // data
-const openMainDrawer = ref(false)
 const isLogin = computed(() => {
   return ISLOGIN.value
 })
@@ -94,6 +93,17 @@ const goSignUp = () => {
   window.location.href = `${env.BASE_URL}/register`
 }
 
+const isOpenDrawerMain = ref(false)
+const toggleOpenDrawerMain = (value: boolean) => {
+  isOpenDrawerMain.value = value
+}
+
+const isOpenDrawerNotification = ref(false)
+
+const toggleOpenDrawerNotification = (value: boolean) => {
+  isOpenDrawerNotification.value = value
+}
+
 /*
  * 語言相關
  */
@@ -132,14 +142,6 @@ const changeLang = (lang: string) => {
     </div>
     <div class="nav_right">
       <div class="pc">
-        <!-- 選單 -->
-        <div
-          class="icon burger"
-          @click="openMainDrawer = true"
-        >
-          <!-- <img src="@/assets/images/menu.svg"> -->
-        </div>
-
         <div
           v-if="!isLogin"
           class="login-buttons"
@@ -162,7 +164,6 @@ const changeLang = (lang: string) => {
         <div
           v-if="isLogin"
           style="display: flex; height: 100%"
-          class="pc"
         >
           <!-- 資產 -->
           <div class="icon drop-down-menu">
@@ -327,26 +328,27 @@ const changeLang = (lang: string) => {
           </div>
         </div>
       </div>
+      <!-- pad版  -->
       <div class="pad">
         <div
           v-if="isLogin"
           style="display: flex"
         >
-          <div class="icon">
-            <img
-              class="menu"
-              src="@/assets/images/icons/account.svg"
-            >
-          </div>
           <!-- 通知 -->
-          <!-- <div class="icon drop-down-menu">
+          <div
+            class="icon drop-down-menu"
+            @click="isOpenDrawerNotification = !isOpenDrawerNotification"
+          >
             <div class="drop-down-title">
               <img src="@/assets/images/icons/bell.svg">
+              <div
+                v-if="
+                  NOREADMSG?.noReadMsgCount && NOREADMSG?.noReadMsgCount > 0
+                "
+                class="has-notread"
+              />
             </div>
-            <div class="drop-down">
-              通知
-            </div>
-          </div> -->
+          </div>
         </div>
         <div
           v-else
@@ -366,16 +368,27 @@ const changeLang = (lang: string) => {
             {{ $t('註冊') }}
           </button>
         </div>
-        <div class="icon">
+        <div
+          class="icon"
+          @click="isOpenDrawerMain = !isOpenDrawerMain"
+        >
           <img
             class="menu"
             src="@/assets/images/icons/menu.svg"
-            @click="$router.push({ path: '/' })"
           >
         </div>
       </div>
     </div>
   </div>
+  <DrawerMain
+    v-model="isOpenDrawerMain"
+    @update="toggleOpenDrawerMain"
+  />
+  <DrawerNotification
+    v-if="isLogin"
+    v-model="isOpenDrawerNotification"
+    @update="toggleOpenDrawerNotification"
+  />
 </template>
 
 <style lang="scss" scoped>
