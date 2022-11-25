@@ -127,6 +127,8 @@
 </template>
 
 <script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const { t } = useLang()
 const roadMapData1 = [{
   title: 'Q3',
@@ -166,6 +168,169 @@ const roadMapData4 = [{
   title: 'Q2',
   content: t('block7-2024-1')
 }]
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+
+gsap.registerPlugin(ScrollTrigger)
+
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+      roadMapIn()
+    }
+  })
+}
+// roadMap 進入動畫
+function roadMapIn () {
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.location-2021',
+      markers: false,
+      start: 'top 100%',
+      end: 'top 50%'
+    }
+  }).fromTo(
+    '.bg-roadMap',
+    {
+      ease: 'circ.out',
+      y: 250
+
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0
+    }
+  ).fromTo(
+    '.location-2021',
+    {
+      ease: 'circ.out',
+      y: -250,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    }
+  ).fromTo(
+    '.content-2021',
+    {
+      ease: 'circ.out',
+      y: 550,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    },
+    '<'
+  ).fromTo(
+    '.location-2022',
+    {
+      ease: 'circ.out',
+      y: -250,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    }
+  ).fromTo(
+    '.content-2022',
+    {
+      ease: 'circ.out',
+      y: 550,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    },
+    '<'
+  ).fromTo(
+    '.location-2023',
+    {
+      ease: 'circ.out',
+      y: -250,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    }
+  ).fromTo(
+    '.content-2023',
+    {
+      ease: 'circ.out',
+      y: 550,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    },
+    '<'
+  ).fromTo(
+    '.location-2024',
+    {
+      ease: 'circ.out',
+      y: -250,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    }
+  ).fromTo(
+    '.content-2024',
+    {
+      ease: 'circ.out',
+      y: 550,
+      opacity: 0
+    },
+    {
+      duration: 0.8,
+      ease: 'circ.out',
+      y: 0,
+      opacity: 1
+    },
+    '<'
+  )
+}
+
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
 </script>
 
 <style lang="scss" scoped>

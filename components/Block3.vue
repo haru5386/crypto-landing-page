@@ -44,6 +44,44 @@ function gsapSet () {
     '(max-width: 768px)': () => {
     },
     all: () => {
+      block3Scroll()
+    }
+  })
+}
+
+// video-ace 進入動畫
+function aceVideoIn () {
+  gsap.timeline().fromTo(
+    '.video-ace',
+    {
+      ease: 'circ.out',
+      y: 200
+    },
+    {
+      duration: 1,
+      ease: 'circ.out',
+      y: 0
+    }
+  )
+}
+// scroll block3 觸發
+function block3Scroll () {
+  ScrollTrigger.create({
+    // 以block3作為觸發時機
+    trigger: '.video-ace',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      aceVideoIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+      aceVideoIn()
     }
   })
 }
@@ -69,6 +107,7 @@ color: $color_gray_White;
 display: flex;
 justify-content: center;
 align-items: center;
+z-index: 10;
 @include mobile {
   align-items: start;
 }

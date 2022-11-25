@@ -1,3 +1,91 @@
+<script setup lang="ts">
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
+// 引入 ScrollTrigger
+const triggers = ScrollTrigger.getAll()
+function gsapSet () {
+  ScrollTrigger.matchMedia({
+    '(min-width: 1200px)': () => {
+    },
+    '(min-width: 768px)': () => {
+    },
+    '(max-width: 768px)': () => {
+    },
+    all: () => {
+      block9Scroll()
+    }
+  })
+}
+// device 進入動畫
+function deviceIn () {
+  gsap
+    .timeline()
+    .fromTo(
+      '.device',
+      {
+        ease: 'circ.out',
+        opacity: 0,
+        y: -400
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        opacity: 1,
+        y: 0
+      }
+    )
+    .fromTo(
+      '.block9-bg',
+      {
+        ease: 'circ.out',
+        opacity: 0,
+        y: 150
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        opacity: 1,
+        y: 0
+      },
+      '<'
+    )
+}
+// scroll block9 觸發
+function block9Scroll () {
+  ScrollTrigger.create({
+    // 以block9作為觸發時機
+    trigger: '#block9',
+    markers: false,
+
+    // 向下滾動進入start點時觸發callback
+    onEnter: function () {
+      deviceIn()
+    },
+
+    // 向下滾動超過end點時觸發callback
+    onLeave: function () {},
+
+    // 向上滾動超過end點時觸發（回滾時觸發）callback
+    onEnterBack: function () {
+      deviceIn()
+    }
+  })
+}
+onUnmounted(() => {
+  triggers.forEach((trigger) => {
+    trigger.kill()
+  })
+  ScrollTrigger.clearMatchMedia()
+})
+
+onMounted(() => {
+  // 觸發動畫
+  ScrollTrigger.refresh()
+  gsapSet()
+})
+</script>
 <template>
   <div
     id="block9"
@@ -29,9 +117,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style lang="scss" scoped>
 @import '../assets/scss/index.scss';
