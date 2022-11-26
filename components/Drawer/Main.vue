@@ -21,18 +21,26 @@
             </el-icon>
           </div>
         </div>
+        <!-- 登入按鈕 -->
         <div
           v-if="!isLogin"
           class="login-buttons"
         >
-          <button class="login">
+          <button
+            class="login"
+            @click="goLogin"
+          >
             {{ $t('登錄') }}
           </button>
           <!-- 註冊 -->
-          <button class="sign-up">
+          <button
+            class="sign-up"
+            @click="goSignUp"
+          >
             {{ $t('註冊') }}
           </button>
         </div>
+        <!-- 帳戶狀態 -->
         <div
           v-else
           class="account"
@@ -41,9 +49,66 @@
             {{ USERDATA?.email }}
           </div>
           <div class="status">
-            Account status : {{ accountStatusText }}
+            {{ t('帳戶狀態') }} : {{ accountStatusText }}
           </div>
         </div>
+        <div style="margin-top: 24px" />
+        <!-- 資產 -->
+        <div v-if="isLogin">
+          <el-collapse accordion>
+            <el-collapse-item name="1">
+              <template #title>
+                <div class="tab-title">
+                  <img
+                    class="icon no-active"
+                    src="../../assets/images/icons/balance.svg"
+                    alt="language"
+                  >
+                  <img
+                    class="icon active"
+                    src="../../assets/images/icons/balance-active.svg"
+                    alt="language"
+                  >
+                  {{ $t('資產') }}
+                </div>
+              </template>
+              <div>
+                <div
+                  v-for="item in assetsUrls"
+                  :key="item.text"
+                  class="drop-down-item"
+                >
+                  <div class="item-text">
+                    {{ item.text }}
+                  </div>
+                </div>
+              </div>
+            </el-collapse-item>
+          </el-collapse>
+          <div class="line" />
+        </div>
+        <!-- menu -->
+        <a
+          v-for="item in mainMenu"
+          :key="item.label"
+          class="tab-item"
+          :href="item.src"
+          :target="item.target"
+        >
+          <div
+            class="tab-title"
+            @click="UserStore.LOGOUT"
+          >
+            <img
+              class="icon"
+              :src="item.icon"
+              :alt="item.label"
+            >
+            {{ item.label }}
+          </div>
+        </a>
+        <div class="line" />
+        <!-- 語言設定 -->
         <el-collapse accordion>
           <el-collapse-item name="1">
             <template #title>
@@ -58,7 +123,7 @@
                   src="../../assets/images/icons/global-active.svg"
                   alt="language"
                 >
-                English
+                {{ currentLangName }}
               </div>
             </template>
             <div>
@@ -76,6 +141,23 @@
             </div>
           </el-collapse-item>
         </el-collapse>
+        <!-- 登出 -->
+        <div
+          v-if="isLogin"
+          class="tab-item"
+        >
+          <div
+            class="tab-title"
+            @click="UserStore.LOGOUT"
+          >
+            <img
+              class="icon"
+              src="@/assets/images/icons/signout.svg"
+              alt="language"
+            >
+            {{ t('退出') }}
+          </div>
+        </div>
       </div>
     </el-drawer>
   </ClientOnly>
@@ -87,6 +169,7 @@ import { Close } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from '~~/stores/user'
 import { availableLocales } from '@/utils/lang'
+import { getURLs } from '~~/utils/urls'
 
 const localeSetting = useState<string>('locale.setting')
 
@@ -102,6 +185,7 @@ const changeLang = (lang: string) => {
   localeSetting.value = lang
 }
 
+// v-model setting
 const emit = defineEmits(['update'])
 const props = defineProps({
   modelValue: {
@@ -113,6 +197,19 @@ const props = defineProps({
 const isOpen = computed({
   get: () => props.modelValue,
   set: value => emit('update', value)
+})
+
+const goLogin = () => {
+  window.location.href = getURLs().login
+}
+
+const goSignUp = () => {
+  window.location.href = getURLs().signUp
+}
+
+// 當前語言顯示
+const currentLangName = computed(() => {
+  return availableLocales[localeSetting.value.slice(0, 2)].name
 })
 
 // tabs
@@ -133,6 +230,25 @@ const accountStatusText = computed(() => {
       return t('正常')
   }
 })
+
+// 資產
+const assetsUrls = reactive([
+  {
+    text: t('幣幣帳戶'),
+    link: getURLs().assets.trade,
+    target: '_BLANK'
+  }
+])
+
+// menu
+const mainMenu = ref([
+  {
+    label: 'AGET',
+    icon: '../../assets/images/icons/aget.svg',
+    src: getURLs().AGET,
+    target: '_blank'
+  }
+])
 </script>
 
 <style lang="scss">
@@ -198,19 +314,26 @@ const accountStatusText = computed(() => {
   padding: 0;
 }
 
-.el-collapse {
-  padding: 16px 0;
+.tab-item {
+  cursor: pointer;
+  height: 56px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
   .tab-title {
+    @include font('Body2-Med', #fff);
     margin-right: 10px;
+    padding-right: 20px;
     display: flex;
     align-items: center;
-    padding: 17.7px 16px;
-    padding-right: 20px;
+    font-size: 14px;
     .icon {
-      margin-right: 10px;
+      margin-right: 16px;
     }
   }
+}
 
+.el-collapse {
   .el-collapse-item__header {
     padding: 24px 16px;
     background: none;
@@ -219,6 +342,17 @@ const accountStatusText = computed(() => {
   }
 
   .el-collapse-item {
+    --el-collapse-header-height: 56px;
+    .tab-title {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      padding: 17.7px 0;
+      padding-right: 20px;
+      .icon {
+        margin-right: 16px;
+      }
+    }
     .active {
       display: none;
     }
@@ -241,6 +375,12 @@ const accountStatusText = computed(() => {
 
 .el-collapse-item__content {
   padding: 0;
+}
+
+.line {
+  width: 100%;
+  border-top: 1px solid $color_gray_60;
+  margin: 8px 0;
 }
 
 // pad

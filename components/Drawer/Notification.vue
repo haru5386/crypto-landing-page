@@ -27,7 +27,7 @@
             height="21px"
             src="@/assets/images/icons/bell.svg"
           >
-          Message Center
+          {{ $t('消息中心') }}
         </div>
         <div class="icon menu">
           <div
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="more">
-            View all
+            {{ $t('查看更多') }}
           </div>
         </div>
       </div>

@@ -168,7 +168,7 @@ const changeLang = (lang: string) => {
           <!-- 資產 -->
           <div class="icon drop-down-menu">
             <div class="drop-down-title">
-              資產
+              {{ $t('資產') }}
               <img
                 style="margin-left: 5px"
                 src="@/assets/images/icons/menu-down.svg"
@@ -289,7 +289,7 @@ const changeLang = (lang: string) => {
                 </div>
               </div>
               <div class="more">
-                View all
+                {{ $t('查看更多') }}
               </div>
             </div>
           </div>
@@ -307,7 +307,7 @@ const changeLang = (lang: string) => {
         <!-- 語言 -->
         <div class="icon drop-down-menu">
           <div class="drop-down-title">
-            語言
+            {{ $t('語言') }}
             <img
               style="margin-left: 5px"
               src="@/assets/images/icons/menu-down.svg"
@@ -380,10 +380,12 @@ const changeLang = (lang: string) => {
       </div>
     </div>
   </div>
+  <!-- 主選單 -->
   <DrawerMain
     v-model="isOpenDrawerMain"
     @update="toggleOpenDrawerMain"
   />
+  <!-- 通知彈窗 -->
   <DrawerNotification
     v-if="isLogin"
     v-model="isOpenDrawerNotification"
