@@ -27,16 +27,21 @@ export const useUserStore = defineStore('userStore', () => {
     userData.value = { ...data.data }
     // 登入狀態
     isLogin.value = data.data !== null
+    clearInterval(timer.value)
+    NO_READ_MSG()
   }
 
   const NO_READ_MSG = async () => {
-    clearInterval(timer.value)
-    const data = await getNoReadMsgApi()
-    noReadMsg.value = { ...data.data }
-    timer.value = window.setInterval(async () => {
+    if (isLogin.value) {
       const data = await getNoReadMsgApi()
       noReadMsg.value = { ...data.data }
-    }, 10000)
+      timer.value = window.setInterval(async () => {
+        const data = await getNoReadMsgApi()
+        noReadMsg.value = { ...data.data }
+      }, 10000)
+    } else {
+      clearInterval(timer.value)
+    }
   }
 
   const LOGOUT = () => {

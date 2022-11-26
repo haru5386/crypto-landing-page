@@ -21,13 +21,18 @@ const UserStore = useUserStore()
 
 // 引入 store action
 const { BASE_DATA_INIT } = BaseStore
-const { USER_DATA_INIT, NO_READ_MSG } = UserStore
+const { USER_DATA_INIT } = UserStore
+
+// 語系設定
+const localeSetting = useState<string>('locale.setting')
+watch(localeSetting, (val) => {
+  window.location.href = `/${val}`
+})
 
 onMounted(() => {
   // 取得使用者資訊
   USER_DATA_INIT()
   BASE_DATA_INIT()
-  NO_READ_MSG()
 })
 </script>
 <style lang="scss">
