@@ -385,29 +385,29 @@ ul {
 
 <style scoped lang="scss">
 .footer {
-  &::v-deep {
-    .el-collapse-item__wrap {
+  & {
+    ::v-deep(.el-collapse-item__wrap) {
       background: none;
       border: none;
     }
-    .el-collapse-item__content {
+    ::v-deep(.el-collapse-item__content) {
       padding-bottom: 10px;
     }
-    .el-collapse {
+    ::v-deep(.el-collapse) {
       .el-collapse-item {
         padding: 0;
       }
       --el-collapse-header-height: 45px;
     }
-    .el-collapse-item__header i {
+    ::v-deep(.el-collapse-item__header) i {
       color: white;
     }
-    .el-collapse-item__header {
+    ::v-deep(.el-collapse-item__header) {
       padding: 0;
       background: none;
       border: none;
     }
-    .el-collapse-item__arrow {
+    ::v-deep(.el-collapse-item__arrow) {
       margin-right: 16px;
     }
   }
