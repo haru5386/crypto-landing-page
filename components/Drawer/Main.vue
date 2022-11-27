@@ -377,6 +377,11 @@ const mainMenu = ref([
   padding: 0;
 }
 
+.el-collapse-item__wrap {
+  background: none;
+  border: none;
+}
+
 .line {
   width: 100%;
   border-top: 1px solid $color_gray_60;
