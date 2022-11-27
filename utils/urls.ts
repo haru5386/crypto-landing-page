@@ -3,6 +3,8 @@ export function getURLs () {
   const localeSetting = useState<string>('locale.setting')
   const lang = localeSetting.value
   return {
+    login: `/ex/${lang}/login`,
+    signUp: `/ex/${lang}/register`,
     // 幣幣交易
     trade: `/ex/${lang}/trade`,
     // c2c交易

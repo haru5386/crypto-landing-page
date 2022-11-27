@@ -23,6 +23,12 @@ const UserStore = useUserStore()
 const { BASE_DATA_INIT } = BaseStore
 const { USER_DATA_INIT } = UserStore
 
+// 語系設定
+const localeSetting = useState<string>('locale.setting')
+watch(localeSetting, (val) => {
+  window.location.href = `/${val}`
+})
+
 onMounted(() => {
   // 取得使用者資訊
   USER_DATA_INIT()
