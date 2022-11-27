@@ -1,12 +1,12 @@
 <template>
-  <div class="footer">
+  <footer class="footer">
     <!-- desktop -->
     <div class="footer-container">
       <div class="titles">
         <img src="@/assets/images/ACE-Global_logo.png">
       </div>
       <div class="items">
-        <div
+        <ul
           v-for="item in dataList"
           :key="item.id"
           class="item-ul"
@@ -14,29 +14,40 @@
           <div class="label">
             {{ item.title }}
           </div>
-          <div
+          <a
             v-for="detail in item.footerArticleList"
             :key="'detail-' + detail.id"
             class="item-li"
-            @click="goToWhat()"
+            target="_blank"
+            :href="detail.externalLink"
           >
             {{ detail.title }}
-          </div>
-        </div>
+          </a>
+        </ul>
         <div class="item-ul">
           <div class="label">
-            title
+            Community
           </div>
           <div class="shareFootList">
-            <img
-              v-for="(item, index) in links"
-              :key="index + 6654"
-              class="social-icon"
-              :src="item.logo"
-              width="22.92px"
-              height="18.6px"
-              @click="openLink(item.url)"
+            <a
+              v-for="item2 in links"
+              :key="item2.id"
+              :href="item2.url"
+              target="_blank"
             >
+              <img
+                class="social-icon normal"
+                :src="item2.logo"
+                width="22.92px"
+                height="18.6px"
+              >
+              <img
+                class="social-icon active"
+                :src="item2.hoverLogo"
+                width="22.92px"
+                height="18.6px"
+              >
+            </a>
           </div>
         </div>
       </div>
@@ -53,7 +64,7 @@
         <el-collapse-item
           v-for="item in dataList"
           :key="item.id"
-          title="一致性 Consistency"
+          :title="item.title"
           :name="item.id"
         >
           <template #title>
@@ -61,30 +72,35 @@
               {{ item.title }}
             </div>
           </template>
-          <div
+          <a
             v-for="detail in item.footerArticleList"
             :key="'detail-' + detail.id"
             class="item-li"
-            @click="goToWhat()"
+            target="_blank"
+            :href="detail.externalLink"
           >
             {{ detail.title }}
-          </div>
+          </a>
         </el-collapse-item>
       </el-collapse>
       <div class="social-media">
         <div class="label">
-          title
+          Community
         </div>
         <div class="shareFootList">
-          <img
-            v-for="(item, index) in links"
-            :key="index + 6654"
-            class="social-icon"
-            :src="item.logo"
-            width="22.92px"
-            height="18.6px"
-            @click="openLink(item.url)"
+          <a
+            v-for="item in links"
+            :key="item.id"
+            :href="item.url"
+            target="_blank"
           >
+            <img
+              class="social-icon"
+              :src="item.logo"
+              width="22.92px"
+              height="18.6px"
+            >
+          </a>
         </div>
       </div>
 
@@ -92,106 +108,87 @@
         Copyright © 2022 ACE FORTUNE PTY. LTD. All Rights Reserved
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 <script lang="ts" setup>
 import { ElCollapse, ElCollapseItem } from 'element-plus'
 
 const dataList = reactive([
   {
-    id: 2,
-    title: 'About us',
-    lang: 'en_US',
-    sort: 0,
-    typeId: 1,
+    id: 1,
+    title: 'Corporate',
     footerArticleList: [
       {
-        id: 6,
-        title: 'Disclaimer',
-        typeId: 1,
-        lang: 'en_US',
-        content: '<p>2222222222222222222222222222</p>',
-        description: '222222222222222',
-        status: 1,
-        sort: 1,
-        articleId: 2,
+        id: '1-1',
+        title: 'About us',
         externalLink:
-          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer',
-        externalLinkFlag: 1
+          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7017988231833-%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC'
       },
       {
-        id: 22,
-        title: 'Community platform',
-        typeId: 1,
-        lang: 'en_US',
-        content: '<p>Community platform</p>',
-        status: 1,
-        sort: 1,
-        articleId: 4,
-        externalLink: 'https://linktr.ee/ace_global',
-        externalLinkFlag: 1
+        id: '1-2',
+        title: 'Contact us',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018310221337-%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC'
+      },
+      {
+        id: '1-3',
+        title: 'Disclaimer',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018401423257-%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE'
       }
     ]
   },
   {
-    id: 10,
-    title: 'Service',
-    lang: 'en_US',
-    sort: 0,
-    typeId: 3,
+    id: 2,
+    title: 'Products',
     footerArticleList: [
       {
-        id: 34,
-        title: 'Buy Crypto',
-        typeId: 3,
-        lang: 'en_US',
-        content: '<p><br></p>',
-        status: 1,
-        sort: 1,
-        articleId: 7,
-        externalLink: 'https://thirdparty.aceglobal.io/',
-        externalLinkFlag: 1
-      }
-    ]
-  },
-  {
-    id: 6,
-    title: 'Item list',
-    lang: 'en_US',
-    sort: 1,
-    typeId: 2,
-    footerArticleList: [
-      {
-        id: 50,
+        id: '2-1',
         title: 'Exchange',
-        typeId: 2,
-        lang: 'en_US',
-        status: 1,
-        sort: 1,
-        articleId: 10,
-        externalLink: 'https://www.aceglobal.io/',
-        externalLinkFlag: 1
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
+      },
+      {
+        id: '2-2',
+        title: 'C2C',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
       }
     ]
   },
   {
-    id: 14,
-    title: 'Support',
-    lang: 'en_US',
-    sort: 1,
-    typeId: 4,
+    id: 3,
+    title: 'Legal',
     footerArticleList: [
       {
-        id: 38,
-        title: 'FAQ',
-        typeId: 4,
-        lang: 'en_US',
-        content: '<p>FAQ</p>',
-        status: 1,
-        sort: 1,
-        articleId: 8,
-        externalLink: 'https://aceglobal.zendesk.com/hc/',
-        externalLinkFlag: 1
+        id: '3-1',
+        title: 'Privacy Agreement',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018482240537-%E9%9A%90%E7%A7%81%E6%9D%A1%E6%AC%BE'
+      },
+      {
+        id: '3-2',
+        title: 'User Agreement',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
+      },
+      {
+        id: '3-3',
+        title: 'Legal Statement',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018967931289-%E6%B3%95%E5%BE%8B%E5%A3%B0%E6%98%8E'
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: 'Support',
+    footerArticleList: [
+      {
+        id: '4-1',
+        title: 'Ace Global isn’t available in countries below',
+        externalLink:
+          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
       }
     ]
   }
@@ -201,35 +198,49 @@ const links = reactive([
   {
     id: 1,
     title: 'Twitter',
-    logo: 'https://ipfs.metabazaar.vip/ipfs/QmSELYYW9f5j3HnGYA9orgrJA3AmpgSiHFDK3HjQDjb4d9',
-    hoverLogo:
-      'https://ipfs.metabazaar.vip/ipfs/QmUURuaBvEo7f3JK4WPC4L1RNv2X3Fc2n4X8VMcBeTmHta',
-    url: 'https://twitter.com/exchange_ace',
-    status: 1,
-    active: false
+    logo: '../../../assets/images/icons/FilledTwitter.svg',
+    hoverLogo: '../../../assets/images/icons/FilledTwitter-active.svg',
+    url: 'https://twitter.com/exchange_ace'
   },
   {
     id: 2,
     title: 'Telegram',
-    logo: 'https://ipfs.metabazaar.vip/ipfs/Qmcvxozmo3ugmJxQebXYnyjMvwWxZhjfzjigGQB4ffBKd6',
-    hoverLogo:
-      'https://ipfs.metabazaar.vip/ipfs/QmS7U7yeQs59GS8k4yVxGNBYhrAbCPK3QYSvGMTfyJ9HWQ',
-    url: 'https://t.me/aceglobalexchangechannel',
-    status: 1,
-    active: false
+    logo: '../../../assets/images/icons/FilledTelegram.svg',
+    hoverLogo: '../../../assets/images/icons/FilledTelegram-active.svg',
+    url: 'https://t.me/aceglobalexchangechannel'
+  },
+  {
+    id: 3,
+    title: 'Facebook',
+    logo: '../../../assets/images/icons/FilledFB.svg',
+    hoverLogo: '../../../assets/images/icons/FilledFB-active.svg',
+    url: 'https://www.facebook.com/ACEGlobalExchange'
+  },
+  {
+    id: 4,
+    title: 'Medium',
+    logo: '../../../assets/images/icons/FilledMedium.svg',
+    hoverLogo: '../../../assets/images/icons/FilledMedium-active.svg',
+    url: 'https://medium.com/@aceglobalexchange'
+  },
+  {
+    id: 5,
+    title: 'more',
+    logo: '../../../assets/images/icons/filledMore.svg',
+    hoverLogo: '../../../assets/images/icons/filledMore-active.svg',
+    url: 'https://linktr.ee/ace_global'
   }
 ])
-const openLink = (url: string) => {
-  console.log(url)
-}
-
-const goToWhat = () => {
-  console.log('goToWhat')
-}
 </script>
 
 <style lang="scss">
 @import '../../../assets/scss/index.scss';
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 .footer {
   width: 100%;
@@ -251,12 +262,33 @@ const goToWhat = () => {
         .label {
           @include font('Heading3', #fff);
         }
-        .item-li {
+        a.item-li {
+          display: block;
+          text-decoration: none;
           margin-top: 16px;
           @include font('Body1-Reg', $color_gray_60);
         }
         .shareFootList {
           display: flex;
+          .normal {
+            display: block;
+          }
+          .active {
+            display: none;
+          }
+          a:hover {
+            .social-icon {
+              height: 30px;
+              margin: 16px 20px 10px 0;
+              cursor: pointer;
+            }
+            .normal {
+              display: none;
+            }
+            .active {
+              display: block;
+            }
+          }
           .social-icon {
             height: 30px;
             margin: 16px 20px 10px 0;
@@ -272,14 +304,19 @@ const goToWhat = () => {
     .collapse {
       margin-top: 8px;
       .collapse-title {
+        padding-left: 16px;
         @include font('Heading3', #fff);
       }
       .item-li {
+        display: block;
         margin-bottom: 10px;
+        margin-top: 16px;
+        padding: 0 16px;
         @include font('Body1-Reg', $color_gray_60);
       }
     }
     .social-media {
+      padding: 0 16px;
       .label {
         @include font('Heading3', #fff);
         height: 48px;
@@ -321,10 +358,10 @@ const goToWhat = () => {
     }
     .footer-container-mobile {
       display: block;
-      padding: 0 32px;
     }
     .titles {
       margin-bottom: 0px;
+      padding-left: 16px;
       .logoFootTitle {
         width: 150px;
         height: 50px;
@@ -341,32 +378,38 @@ const goToWhat = () => {
     }
     .footer-container-mobile {
       display: block;
-      padding: 0 16px;
     }
   }
 }
 </style>
 
-<style>
-.footer .el-collapse-item__header {
-  background: none;
-  border: none;
-}
-
-.footer .el-collapse-item__header i {
-  color: white;
-}
-.footer .el-collapse {
-  border: none;
-}
-.el-collapse-item__wrap {
-  background: none;
-  border: none;
-}
-.el-collapse-item__content {
-  padding-bottom: 10px;
-}
-.el-collapse {
-  --el-collapse-header-height: 45px;
+<style scoped lang="scss">
+.footer {
+  &::v-deep {
+    .el-collapse-item__wrap {
+      background: none;
+      border: none;
+    }
+    .el-collapse-item__content {
+      padding-bottom: 10px;
+    }
+    .el-collapse {
+      .el-collapse-item {
+        padding: 0;
+      }
+      --el-collapse-header-height: 45px;
+    }
+    .el-collapse-item__header i {
+      color: white;
+    }
+    .el-collapse-item__header {
+      padding: 0;
+      background: none;
+      border: none;
+    }
+    .el-collapse-item__arrow {
+      margin-right: 16px;
+    }
+  }
 }
 </style>
