@@ -18,7 +18,13 @@ const runtimeConfig : EnvConfig = {
     ENV_API: env[mode].ENV_API,
     M_BASE_URL: env[mode].M_BASE_URL,
     BASE_URL: env[mode].BASE_URL,
-    DOMAIN_NAME: env[mode].DOMAIN_NAME
+    DOMAIN_NAME: env[mode].DOMAIN_NAME,
+    GTM_CONTAINERID: env[mode].GTM_CONTAINERID,
+    GTM_AUTH: env[mode].GTM_AUTH,
+    GTM_PREVIEW: env[mode].GTM_PREVIEW,
+    GTM_ENABLED: env[mode].GTM_ENABLED,
+    GTM_DEBUG: env[mode].GTM_DEBUG
+
   }
 }
 

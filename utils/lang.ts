@@ -12,9 +12,13 @@ export const availableLocales: ILocales = {
     name: 'English',
     iso: 'en_US'
   },
-  zh: {
+  'zh-CN': {
     name: '简体中文',
     iso: 'zh_CN'
+  },
+  'zh-TW': {
+    name: '繁體中文',
+    iso: 'el_GR'
   },
   vi: {
     name: 'Tiếng Việt',
@@ -38,9 +42,13 @@ export function LanguageManager () {
   // methods
   const getSystemLocale = (): string => {
     try {
-      const foundLang = window
+      let foundLang = window
         ? window.navigator.language.substring(0, 2)
         : 'en'
+      if (foundLang === 'zh') {
+        foundLang = window.navigator.language.substring(0, 5)
+      }
+      console.log('foundLang', foundLang)
       return availableLocales[foundLang] ? availableLocales[foundLang].iso : 'en_US'
     } catch (error) {
       return 'en_US'

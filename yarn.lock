@@ -343,6 +343,20 @@
   dependencies:
     "@floating-ui/core" "^1.0.1"
 
+"@gtm-support/core@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/@gtm-support/core/-/core-2.0.0.tgz#87378d289bbf027e74cc76507243afb58a40ff19"
+  integrity sha512-32hyxR/LIB6EWnUcbbrUzjkAE6PSRtqv/AztEnQ8MuCOQ7+u+yXOssfZqNDSWlQkEBn0Co6f7aHG+vcNZCGiLw==
+
+"@gtm-support/vue-gtm@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/@gtm-support/vue-gtm/-/vue-gtm-2.0.0.tgz#2e9c56af4205dba3b8a5b71454786e985dd6c634"
+  integrity sha512-zcnCMZbjPkTGkQpMkF9U2JcCtK9JiasfoZJCYYJLGKFj0cd7abwNLPMa3/sXB89YqiFniazkP++nIzFU9kZzqw==
+  dependencies:
+    "@gtm-support/core" "^2.0.0"
+  optionalDependencies:
+    vue-router "^4.1.0"
+
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
   resolved "https://registry.npmmirror.com/@humanwhocodes/config-array/-/config-array-0.10.4.tgz#01e7366e57d2ad104feea63e72248f22015c520c"
@@ -1304,6 +1318,11 @@
   version "6.2.1"
   resolved "https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.2.1.tgz#6f2948ff002ec46df01420dfeff91de16c5b4092"
   integrity sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==
+
+"@vue/devtools-api@^6.4.5":
+  version "6.4.5"
+  resolved "https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.4.5.tgz#d54e844c1adbb1e677c81c665ecef1a2b4bb8380"
+  integrity sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==
 
 "@vue/reactivity-transform@3.2.39":
   version "3.2.39"
@@ -6227,6 +6246,13 @@ vue-i18n@^9.2.2, vue-i18n@latest:
     "@intlify/shared" "9.2.2"
     "@intlify/vue-devtools" "9.2.2"
     "@vue/devtools-api" "^6.2.1"
+
+vue-router@^4.1.0:
+  version "4.1.6"
+  resolved "https://registry.npmmirror.com/vue-router/-/vue-router-4.1.6.tgz#b70303737e12b4814578d21d68d21618469375a1"
+  integrity sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==
+  dependencies:
+    "@vue/devtools-api" "^6.4.5"
 
 vue-router@^4.1.5:
   version "4.1.5"
