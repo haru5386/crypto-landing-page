@@ -26,7 +26,7 @@
         </ul>
         <div class="item-ul">
           <div class="label">
-            Community
+            {{ $t('Community') }}
           </div>
           <div class="shareFootList">
             <a
@@ -85,7 +85,7 @@
       </el-collapse>
       <div class="social-media">
         <div class="label">
-          Community
+          {{ $t('Community') }}
         </div>
         <div class="shareFootList">
           <a
@@ -113,26 +113,28 @@
 <script lang="ts" setup>
 import { ElCollapse, ElCollapseItem } from 'element-plus'
 
+const { t } = useLang()
+
 const dataList = reactive([
   {
     id: 1,
-    title: 'Corporate',
+    title: t('Corporate'),
     footerArticleList: [
       {
         id: '1-1',
-        title: 'About us',
+        title: t('About us'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/zh-sg/articles/7017988231833-%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC'
       },
       {
         id: '1-2',
-        title: 'Contact us',
+        title: t('Contact us'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018310221337-%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC'
       },
       {
         id: '1-3',
-        title: 'Disclaimer',
+        title: t('Disclaimer'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018401423257-%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE'
       }
@@ -140,17 +142,17 @@ const dataList = reactive([
   },
   {
     id: 2,
-    title: 'Products',
+    title: t('Products'),
     footerArticleList: [
       {
         id: '2-1',
-        title: 'Exchange',
+        title: t('Exchange'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
       },
       {
         id: '2-2',
-        title: 'C2C',
+        title: t('C2C'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
       }
@@ -158,23 +160,23 @@ const dataList = reactive([
   },
   {
     id: 3,
-    title: 'Legal',
+    title: t('Legal'),
     footerArticleList: [
       {
         id: '3-1',
-        title: 'Privacy Agreement',
+        title: t('Privacy Agreement'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018482240537-%E9%9A%90%E7%A7%81%E6%9D%A1%E6%AC%BE'
       },
       {
         id: '3-2',
-        title: 'User Agreement',
+        title: t('User Agreement'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
       },
       {
         id: '3-3',
-        title: 'Legal Statement',
+        title: t('Legal Statement'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018967931289-%E6%B3%95%E5%BE%8B%E5%A3%B0%E6%98%8E'
       }
@@ -182,11 +184,11 @@ const dataList = reactive([
   },
   {
     id: 4,
-    title: 'Support',
+    title: t('Support'),
     footerArticleList: [
       {
         id: '4-1',
-        title: 'Ace Global isn’t available in countries below',
+        title: t('Ace Global isn’t available in countries below'),
         externalLink:
           'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
       }
