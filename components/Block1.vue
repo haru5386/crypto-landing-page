@@ -262,6 +262,7 @@ onMounted(() => {
       color: $color_identity_Primary;
       background-color: $color_gray_Black;
       flex:4;
+      cursor: pointer;
       &:hover {
         background-color: $color_identity_Primary;
         color: $color_gray_Black;
