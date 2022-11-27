@@ -6,6 +6,11 @@ interface EnvConfig {
       M_BASE_URL?: string
       BASE_URL?: string
       DOMAIN_NAME?: string
+      GTM_CONTAINERID: string
+      GTM_AUTH: string
+      GTM_PREVIEW: string
+      GTM_ENABLED: boolean
+      GTM_DEBUG: boolean
     }
   }
 
