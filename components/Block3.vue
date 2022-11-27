@@ -1,31 +1,3 @@
-<template>
-  <div
-    id="block3"
-  >
-    <div class="container">
-      <div class="description">
-        <div class="leftDes">
-          {{ $t('block3-des1') }}
-        </div>
-        <div class="rightDes">
-          {{ $t('block3-des2') }}
-        </div>
-      </div>
-      <div class="video-ace">
-        <iframe
-          height="100%"
-          width="100%"
-          :src="videoUrl"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        />
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts" scoped>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -98,24 +70,52 @@ onMounted(() => {
   gsapSet()
 })
 </script>
+<template>
+  <div
+    id="block3"
+  >
+    <div class="container">
+      <div class="description">
+        <div class="leftDes">
+          {{ $t('block3-des1') }}
+        </div>
+        <div class="rightDes">
+          {{ $t('block3-des2') }}
+        </div>
+      </div>
+      <div class="video-ace">
+        <iframe
+          height="100%"
+          width="100%"
+          :src="videoUrl"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      </div>
+    </div>
+  </div>
+</template>
 
 <style lang="scss">
 @import '../assets/scss/index.scss';
 #block3 {
-color: $color_gray_White;
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 10;
-overflow: hidden;
-height: 100vh;
-@include pad {
-height: 70vh;
-
-}
-@include mobile {
-  align-items: start;
-}
+  color: $color_gray_White;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  overflow: hidden;
+  height: 100vh;
+  min-height: 800px;
+  @include pad {
+    height: 70vh;
+  }
+  @include mobile {
+    align-items: start;
+    min-height: auto;
+  }
 .description {
   display: flex;
   justify-content: center;

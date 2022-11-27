@@ -1,48 +1,3 @@
-<template>
-  <div
-    id="block1"
-    class="block"
-  >
-    <div class="video-earth">
-      <video
-        autoplay
-        muted
-        loop
-        class="video-earth-video"
-      >
-        <source
-          src="../assets/video/globe-animation.mp4"
-          type="video/mp4"
-        >
-      </video>
-    </div>
-    <div class="container">
-      <div class="animation-group">
-        <h2 class="des1">
-          {{ $t('block1-des1') }}
-        </h2>
-        <h1>{{ $t('block1-title') }}</h1>
-        <h2 class="des2">
-          {{ $t('block1-des2') }}
-        </h2>
-        <div class="signUp">
-          <input
-            v-model="email"
-            name="email"
-            type="text"
-            placeholder="YourEmail@example.com"
-          >
-          <div
-            class="signUpBtn"
-            @click="signUp()"
-          >
-            {{ $t('block1-content') }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
@@ -135,6 +90,52 @@ onMounted(() => {
 })
 </script>
 
+<template>
+  <div
+    id="block1"
+    class="block"
+  >
+    <div class="video-earth">
+      <video
+        autoplay
+        muted
+        loop
+        class="video-earth-video"
+      >
+        <source
+          src="../assets/video/globe-animation.mp4"
+          type="video/mp4"
+        >
+      </video>
+    </div>
+    <div class="container">
+      <div class="animation-group">
+        <h2 class="des1">
+          {{ $t('block1-des1') }}
+        </h2>
+        <h1>{{ $t('block1-title') }}</h1>
+        <h2 class="des2">
+          {{ $t('block1-des2') }}
+        </h2>
+        <div class="signUp">
+          <input
+            v-model="email"
+            name="email"
+            type="text"
+            placeholder="YourEmail@example.com"
+          >
+          <div
+            class="signUpBtn"
+            @click="signUp()"
+          >
+            {{ $t('block1-content') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <style lang="scss" scoped>
 @import '../assets/scss/index.scss';
 #block1 {
@@ -150,6 +151,7 @@ onMounted(() => {
     overflow: hidden;
     z-index: -1;
     opacity: 0;
+    min-height: 700px;
   }
   video{
     position: absolute;
@@ -193,7 +195,7 @@ onMounted(() => {
     }
     @include mobile {
       margin-top: 12px;
-      font-size: 38px;
+      font-size: 2rem;
     }
   }
   .des2 {

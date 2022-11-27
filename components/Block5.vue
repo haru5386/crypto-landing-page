@@ -326,7 +326,8 @@ onMounted(() => {
     height: 180vh;
     overflow: hidden;
     @include pad {
-      height: 140vh;
+      height: 100vh;
+      min-height: 1000px;
       margin-top: 64px;
     }
     @include mobile {
@@ -335,13 +336,13 @@ onMounted(() => {
     .block5-bg {
       position: absolute;
       width: 100%;
-      bottom: 10%;
+      top: 20%;
       @include pad {
-        bottom: 10%;
+        top: 20%;
         width: 120%;
       }
       @include mobile {
-        bottom: -20%;
+        top: 40%;
       }
       img{
         width: 140%;
@@ -354,6 +355,11 @@ onMounted(() => {
 #block5 {
   color: $color_gray_White;
   position: relative;
+  min-height: 900px;
+  height: 100vh;
+  @include pad {
+    height: auto
+  }
 
   .container {
     display: flex;

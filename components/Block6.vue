@@ -141,7 +141,7 @@ onMounted(() => {
         </p>
         <a
           class="btn-detail"
-          href="http://"
+          href="https://aget.aceglobal.io/"
           target="_blank"
           rel="noopener noreferrer"
         >More detail

@@ -189,7 +189,7 @@ onMounted(() => {
     width: 100%;
     margin-left: 50vw;
     transform: translate(-50%);
-    margin-top: -50%;
+    margin-top: -40%;
     z-index: -1;
     @include pad {
       width: 130%;
@@ -207,8 +207,10 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   height: 120vh;
+
   @include pad {
     height: 80vh;
+    min-height: 700px;
   }
 
 }

@@ -527,6 +527,7 @@ onMounted(() => {
   height: 40vh;
   position: relative;
   transform: translateY(-50%);
+  z-index: -1;
   @include pad {
     height: 10vh;
   }
@@ -538,7 +539,7 @@ onMounted(() => {
     position: absolute;
     left: 50%;
     margin-left: -40%;
-    z-index: 10;
+    z-index: -1;
     top: -20vh;
     @include pad {
       top: -500px;
