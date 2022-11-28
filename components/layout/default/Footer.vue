@@ -130,6 +130,29 @@ import moreHover from '../../../assets/images/icons/filledMore-active.svg'
 
 const { t } = useLang()
 
+const localeSetting = useState<string>('locale.setting')
+
+const urlLang = ref('')
+
+// zendesk 語系設定
+switch (localeSetting.value) {
+  case 'en_US':
+    urlLang.value = 'en-us'
+    break
+  case 'zh_CN':
+    urlLang.value = 'zh-sg'
+    break
+  case 'el_GR':
+    urlLang.value = 'zh-sg'
+    break
+  case 'vi_VN':
+    urlLang.value = 'vi-vn'
+    break
+  default:
+    urlLang.value = 'en-us'
+    break
+}
+
 const dataList = reactive([
   {
     id: 1,
@@ -138,20 +161,12 @@ const dataList = reactive([
       {
         id: '1-1',
         title: t('About us'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7017988231833-%E5%85%B3%E4%BA%8E%E6%88%91%E4%BB%AC'
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7017988231833-About-`
       },
       {
         id: '1-2',
         title: t('Contact us'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018310221337-%E8%81%94%E7%B3%BB%E6%88%91%E4%BB%AC'
-      },
-      {
-        id: '1-3',
-        title: t('Disclaimer'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018401423257-%E7%94%A8%E6%88%B7%E5%8D%8F%E8%AE%AE'
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018310221337-Contact-Us`
       }
     ]
   },
@@ -161,15 +176,8 @@ const dataList = reactive([
     footerArticleList: [
       {
         id: '2-1',
-        title: t('Exchange'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
-      },
-      {
-        id: '2-2',
-        title: t('C2C'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
+        title: 'AGET',
+        externalLink: 'https://aget.aceglobal.io/'
       }
     ]
   },
@@ -180,20 +188,22 @@ const dataList = reactive([
       {
         id: '3-1',
         title: t('Privacy Agreement'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018482240537-%E9%9A%90%E7%A7%81%E6%9D%A1%E6%AC%BE'
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018482240537-Privacy-Agreement`
       },
       {
         id: '3-2',
         title: t('User Agreement'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018401423257-User-Agreement`
       },
       {
         id: '3-3',
         title: t('Legal Statement'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/zh-sg/articles/7018967931289-%E6%B3%95%E5%BE%8B%E5%A3%B0%E6%98%8E'
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018967931289-Legal-Statement`
+      },
+      {
+        id: '3-4',
+        title: t('Disclaimer'),
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018535884057-Disclaimer`
       }
     ]
   },
@@ -204,8 +214,12 @@ const dataList = reactive([
       {
         id: '4-1',
         title: t('Ace Global isn’t available in countries below'),
-        externalLink:
-          'https://aceglobal.zendesk.com/hc/en-us/articles/7018535884057-Disclaimer'
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018535884057-Disclaimer`
+      },
+      {
+        id: '4-2',
+        title: 'FAQ',
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/categories/5737448286105-FAQ`
       }
     ]
   }
