@@ -1,39 +1,50 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// images
+import davidImg from '../assets/images/prfiles/david.webp'
+
+import dilysImg from '../assets/images/prfiles/dilys.webp'
+
+import leongImg from '../assets/images/prfiles/leong.webp'
+
+import lincolnImg from '../assets/images/prfiles/lincoln.webp'
+
+import naserImg from '../assets/images/prfiles/naser.webp'
+
 const { t } = useLang()
 
 const members = [
   {
-    img: '../assets/images/prfiles/david.webp',
+    img: davidImg,
     name: t('role1-name'),
     position: t('role1-position'),
     company: t('role1-company'),
     link: ''
   },
   {
-    img: '../assets/images/prfiles/dilys.webp',
+    img: dilysImg,
     name: t('role2-name'),
     position: t('role2-position'),
     company: t('role2-company'),
     link: ''
   },
   {
-    img: '../assets/images/prfiles/leong.webp',
+    img: leongImg,
     name: t('role3-name'),
     position: t('role3-position'),
     company: t('role3-company'),
     link: ''
   },
   {
-    img: '../assets/images/prfiles/lincoln.webp',
+    img: lincolnImg,
     name: t('role4-name'),
     position: t('role4-position'),
     company: t('role4-company'),
     link: ''
   },
   {
-    img: '../assets/images/prfiles/naser.webp',
+    img: naserImg,
     name: t('role5-name'),
     position: t('role5-position'),
     company: t('role5-company'),
@@ -47,12 +58,9 @@ gsap.registerPlugin(ScrollTrigger)
 const triggers = ScrollTrigger.getAll()
 function gsapSet () {
   ScrollTrigger.matchMedia({
-    '(min-width: 1200px)': () => {
-    },
-    '(min-width: 768px)': () => {
-    },
-    '(max-width: 768px)': () => {
-    },
+    '(min-width: 1200px)': () => {},
+    '(min-width: 768px)': () => {},
+    '(max-width: 768px)': () => {},
     all: () => {
       block8Scroll()
       block8Out()
@@ -61,28 +69,34 @@ function gsapSet () {
 }
 // block8-bg 進入動畫
 function block8BgIn () {
-  gsap.timeline().fromTo(
-    '.block8-bg-1',
-    {
-      ease: 'circ.out',
-      opacity: 0,
-      y: -200
-    },
-    {
-      duration: 1,
-      ease: 'circ.out',
-      opacity: 1,
-      y: 0
-    }
-  ).fromTo('#block8 .bottom', {
-    ease: 'circ.out',
-    opacity: 0
-  },
-  {
-    duration: 1,
-    ease: 'circ.out',
-    opacity: 1
-  })
+  gsap
+    .timeline()
+    .fromTo(
+      '.block8-bg-1',
+      {
+        ease: 'circ.out',
+        opacity: 0,
+        y: -200
+      },
+      {
+        duration: 1,
+        ease: 'circ.out',
+        opacity: 1,
+        y: 0
+      }
+    )
+    .fromTo(
+      '#block8 .bottom',
+      {
+        ease: 'circ.out',
+        opacity: 0
+      },
+      {
+        duration: 1,
+        ease: 'circ.out',
+        opacity: 1
+      }
+    )
 }
 
 // scroll block8 觸發
@@ -101,8 +115,7 @@ function block8Scroll () {
     onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
-    onEnterBack: function () {
-    }
+    onEnterBack: function () {}
   })
 }
 
@@ -122,11 +135,16 @@ function block8Out () {
       duration: 1,
       ease: 'easeIn',
       y: -150
-    }).to('#block8 .top', {
-      duration: 1,
-      ease: 'easeIn',
-      y: -200
-    }, '<')
+    })
+    .to(
+      '#block8 .top',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -200
+      },
+      '<'
+    )
 }
 onUnmounted(() => {
   triggers.forEach((trigger) => {
@@ -149,9 +167,7 @@ onMounted(() => {
   >
     <div class="block8-bg">
       <div class="block8-bg-1">
-        <img
-          src="../assets/images/block8-bg1.webp"
-        >
+        <img src="../assets/images/block8-bg1.webp">
       </div>
       <img src="../assets/images/block8-bg2.webp">
     </div>

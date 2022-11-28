@@ -112,6 +112,21 @@
 </template>
 <script lang="ts" setup>
 import { ElCollapse, ElCollapseItem } from 'element-plus'
+// images
+import twitter from '../../../assets/images/icons/FilledTwitter.svg'
+import twitterHover from '../../../assets/images/icons/FilledTwitter-active.svg'
+
+import telegram from '../../../assets/images/icons/FilledTelegram.svg'
+import telegramHover from '../../../assets/images/icons/FilledTelegram-active.svg'
+
+import facebook from '../../../assets/images/icons/FilledFB.svg'
+import facebookHover from '../../../assets/images/icons/FilledFB-active.svg'
+
+import medium from '../../../assets/images/icons/FilledMedium.svg'
+import mediumHover from '../../../assets/images/icons/FilledMedium-active.svg'
+
+import more from '../../../assets/images/icons/filledMore.svg'
+import moreHover from '../../../assets/images/icons/filledMore-active.svg'
 
 const { t } = useLang()
 
@@ -200,36 +215,36 @@ const links = reactive([
   {
     id: 1,
     title: 'Twitter',
-    logo: '../../../assets/images/icons/FilledTwitter.svg',
-    hoverLogo: '../../../assets/images/icons/FilledTwitter-active.svg',
+    logo: twitter,
+    hoverLogo: twitterHover,
     url: 'https://twitter.com/exchange_ace'
   },
   {
     id: 2,
     title: 'Telegram',
-    logo: '../../../assets/images/icons/FilledTelegram.svg',
-    hoverLogo: '../../../assets/images/icons/FilledTelegram-active.svg',
+    logo: telegram,
+    hoverLogo: telegramHover,
     url: 'https://t.me/aceglobalexchangechannel'
   },
   {
     id: 3,
     title: 'Facebook',
-    logo: '../../../assets/images/icons/FilledFB.svg',
-    hoverLogo: '../../../assets/images/icons/FilledFB-active.svg',
+    logo: facebook,
+    hoverLogo: facebookHover,
     url: 'https://www.facebook.com/ACEGlobalExchange'
   },
   {
     id: 4,
     title: 'Medium',
-    logo: '../../../assets/images/icons/FilledMedium.svg',
-    hoverLogo: '../../../assets/images/icons/FilledMedium-active.svg',
+    logo: medium,
+    hoverLogo: mediumHover,
     url: 'https://medium.com/@aceglobalexchange'
   },
   {
     id: 5,
     title: 'more',
-    logo: '../../../assets/images/icons/filledMore.svg',
-    hoverLogo: '../../../assets/images/icons/filledMore-active.svg',
+    logo: more,
+    hoverLogo: moreHover,
     url: 'https://linktr.ee/ace_global'
   }
 ])
