@@ -399,7 +399,6 @@ onMounted(() => {
         font-weight: 700;
         line-height: 1.08;
         margin-bottom: 26px;
-        width: 80px;
         @include mobile {
           font-size: 27px;
           width: 300px;
