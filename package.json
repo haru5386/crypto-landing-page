@@ -5,11 +5,11 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "cross-env MODE=dev nuxi dev",
+    "dev": "cross-env MODE=dev nuxi dev --port=7007",
     "build-uat": "cross-env MODE=uat nuxi build",
     "build-production": "cross-env MODE=production nuxi build",
     "preview": "nuxi preview",
-    "start": "node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs --port=8188",
     "generate": "nuxi generate",
     "update": "node utils/updateLang.js"
   },
