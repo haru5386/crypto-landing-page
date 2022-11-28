@@ -24,7 +24,11 @@ const { BASE_DATA_INIT } = BaseStore
 const { USER_DATA_INIT } = UserStore
 
 // 語系設定
+const router = useRouter()
 const localeSetting = useState<string>('locale.setting')
+const routerLang = router.currentRoute.value.path.slice(1, 6)
+localeSetting.value = routerLang // 獲取 router 語言
+
 watch(localeSetting, (val) => {
   window.location.href = `/${val}`
 })

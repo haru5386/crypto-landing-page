@@ -48,7 +48,6 @@ export function LanguageManager () {
       if (foundLang === 'zh') {
         foundLang = window.navigator.language.substring(0, 5)
       }
-      console.log('foundLang', foundLang)
       return availableLocales[foundLang] ? availableLocales[foundLang].iso : 'en_US'
     } catch (error) {
       return 'en_US'
