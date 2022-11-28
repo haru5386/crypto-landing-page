@@ -91,7 +91,7 @@
         <a
           v-for="item in mainMenu"
           :key="item.label"
-          class="tab-item"
+          class="collapse-tab-item"
           :href="item.src"
           :target="item.target"
         >
@@ -144,7 +144,7 @@
         <!-- 登出 -->
         <div
           v-if="isLogin"
-          class="tab-item"
+          class="collapse-tab-item"
         >
           <div
             class="tab-title"
@@ -209,7 +209,15 @@ const goSignUp = () => {
 
 // 當前語言顯示
 const currentLangName = computed(() => {
-  return availableLocales[localeSetting.value.slice(0, 2)].name
+  let key = ''
+  // 中文語系額外設定
+  if (localeSetting.value.slice(0, 2) === 'zh') {
+    key = localeSetting.value.slice(0, 5).replace('_', '-')
+  } else {
+    key = localeSetting.value.slice(0, 2)
+  }
+
+  return availableLocales[key]?.name ? availableLocales[key]?.name : 'none'
 })
 
 // tabs
@@ -314,7 +322,7 @@ const mainMenu = ref([
   padding: 0;
 }
 
-.tab-item {
+.collapse-tab-item {
   cursor: pointer;
   height: 56px;
   padding: 0 16px;
