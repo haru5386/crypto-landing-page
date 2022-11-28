@@ -20,35 +20,35 @@ const members = [
     name: t('role1-name'),
     position: t('role1-position'),
     company: t('role1-company'),
-    link: ''
+    link: 'https://www.linkedin.com/in/pan-yi-chang-728a5673/'
   },
   {
     img: dilysImg,
     name: t('role2-name'),
     position: t('role2-position'),
     company: t('role2-company'),
-    link: ''
+    link: 'https://www.linkedin.com/in/dilys-cheng/'
   },
   {
     img: leongImg,
     name: t('role3-name'),
     position: t('role3-position'),
     company: t('role3-company'),
-    link: ''
+    link: 'https://www.linkedin.com/in/wei-ping-leong-905173258/'
   },
   {
     img: lincolnImg,
     name: t('role4-name'),
     position: t('role4-position'),
     company: t('role4-company'),
-    link: ''
+    link: 'https://www.linkedin.com/in/lincolnteo/'
   },
   {
     img: naserImg,
     name: t('role5-name'),
     position: t('role5-position'),
     company: t('role5-company'),
-    link: ''
+    link: 'https://www.linkedin.com/in/naser-muheyeldin-16a60472/'
   }
 ]
 
@@ -208,7 +208,8 @@ onMounted(() => {
           </div>
           <a
             class="linkedin"
-            href="linkedin"
+            :href="item.link"
+            target="_blank"
           >
             <img
               src="../assets/images/linkedin.png"
