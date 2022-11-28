@@ -524,9 +524,12 @@ onMounted(() => {
 
 .block4-bg-rotate {
   width: 100vw;
+  max-width: 1450px;
   height: 40vh;
+  min-height: 400px;
   position: relative;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%);
   z-index: -1;
   @include pad {
     height: 10vh;
