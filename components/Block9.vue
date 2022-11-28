@@ -137,6 +137,7 @@ onMounted(() => {
   .container {
     margin-top: 84px;
     display: inline-block;
+    z-index: 10;
     @include mobile {
         text-align: center;
       }

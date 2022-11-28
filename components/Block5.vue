@@ -296,8 +296,9 @@ onMounted(() => {
   max-width: 1200px;
   width: 100vw;
   height: 100vw;
-  margin: 0 auto;
   z-index: 10;
+  left: 50%;
+  transform: translate(-50%);
   @include mobile {
     display: none
   }
@@ -357,6 +358,7 @@ onMounted(() => {
   position: relative;
   min-height: 900px;
   height: 100vh;
+  z-index: 10;
   @include pad {
     height: auto
   }
