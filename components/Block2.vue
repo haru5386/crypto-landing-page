@@ -181,7 +181,7 @@ onMounted(() => {
   width: 100vw;
   height: 20vh;
   z-index: 0;
-  max-width: 1680px;
+  max-width: 1380px;
   @include pad {
     height: 10vh;
   }

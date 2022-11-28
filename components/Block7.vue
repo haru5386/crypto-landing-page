@@ -340,7 +340,7 @@ onMounted(() => {
   padding-top: 100px;
   width: 100vw;
   overflow: hidden;
-  padding-bottom: 100px;
+  padding-bottom: 130px;
   .container {
     position: relative;
     padding-bottom: 400px;

@@ -147,11 +147,14 @@ onMounted(() => {
   .video-earth {
     position: absolute;
     width: 100%;
-    height: calc(100% - 64px);
+    max-width: 1280px;
+    height: 100%;
+    min-height: 700px;
+    left: 50%;
+    transform: translateX(-50%);
     overflow: hidden;
     z-index: -1;
     opacity: 0;
-    min-height: 700px;
   }
   video{
     position: absolute;
