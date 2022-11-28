@@ -30,7 +30,7 @@ const localeSetting = useState<string>('locale.setting')
 //   window.location.href = `/${val}`
 // })
 
-const router = useRouter()
+// const router = useRouter()
 
 onMounted(() => {
   BASE_DATA_INIT()
@@ -38,7 +38,8 @@ onMounted(() => {
   // ? localeSetting.value
   // : window.navigator.language
   // console.log('language', language)
-  router.push(`/${language}`)
+  window.location.href = `/${language}`
+  // router.push(`/${language}`)
 })
 </script>
 <style lang="scss" scoped>

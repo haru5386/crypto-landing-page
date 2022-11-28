@@ -176,8 +176,9 @@ function block5Out () {
       y: -200
     }, '<').to('.block5-bg', {
       duration: 1,
+      opacity: 0,
       ease: 'easeIn',
-      y: 1300
+      y: 1200
     }, '<')
 }
 
