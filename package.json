@@ -9,7 +9,7 @@
     "build-uat": "cross-env MODE=uat nuxi build",
     "build-production": "cross-env MODE=production nuxi build",
     "preview": "nuxi preview",
-    "start": "node .output/server/index.mjs",
+    "start": "cross-env PORT=8188 node .output/server/index.mjs",
     "generate": "nuxi generate",
     "update": "node utils/updateLang.js"
   },
