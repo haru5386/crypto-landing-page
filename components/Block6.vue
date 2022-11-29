@@ -287,9 +287,11 @@ onMounted(() => {
       width: 256px;
       margin-right: 10%;
       @include pad {
+        width: 256px;
         margin-right: 2%;
       }
       @include mobile {
+        width: 187px;
         margin-right: 16px;
       }
 
