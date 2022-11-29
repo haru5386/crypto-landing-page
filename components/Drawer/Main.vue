@@ -77,6 +77,7 @@
                   v-for="item in assetsUrls"
                   :key="item.text"
                   class="drop-down-item"
+                  @click="goPath(item.link)"
                 >
                   <div class="item-text">
                     {{ item.text }}
@@ -167,10 +168,10 @@ import { ElDrawer, ElIcon, ElCollapse, ElCollapseItem } from 'element-plus'
 import { defineProps } from 'vue'
 import { Close } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
+import AGET from '../../assets/images/icons/aget.svg'
 import { useUserStore } from '~~/stores/user'
 import { availableLocales } from '@/utils/lang'
 import { getURLs } from '~~/utils/urls'
-
 const localeSetting = useState<string>('locale.setting')
 
 // stores
@@ -205,6 +206,9 @@ const goLogin = () => {
 
 const goSignUp = () => {
   window.location.href = getURLs().signUp
+}
+const goPath = (link: string) => {
+  window.location.href = link
 }
 
 // 當前語言顯示
@@ -251,7 +255,7 @@ const assetsUrls = reactive([
 const mainMenu = ref([
   {
     label: 'AGET',
-    icon: '../../assets/images/icons/aget.svg',
+    icon: AGET,
     src: getURLs().AGET,
     target: '_blank'
   }
