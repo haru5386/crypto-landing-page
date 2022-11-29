@@ -74,7 +74,8 @@ function block2VideoOutMobile () {
         y: -100
       },
       '<'
-    ).to(
+    )
+    .to(
       '.item2',
       {
         duration: 1,
@@ -110,7 +111,8 @@ function block2VideoOut () {
         y: -200
       },
       '<'
-    ).to(
+    )
+    .to(
       '.item2',
       {
         duration: 1,
@@ -136,9 +138,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    id="block2"
-  >
+  <div id="block2">
     <div class="container">
       <div class="section">
         <div class="item1">
@@ -185,7 +185,7 @@ onMounted(() => {
   @include pad {
     height: 10vh;
   }
-  video{
+  video {
     width: 100%;
     margin-left: 50vw;
     transform: translate(-50%);
@@ -194,14 +194,13 @@ onMounted(() => {
     @include pad {
       width: 130%;
       margin-top: -40%;
-  }
+    }
     @include mobile {
-        width: 150%;
-        margin-top: -20vh;
+      width: 150%;
+      margin-top: -20vh;
     }
   }
-
-  }
+}
 #block2 {
   z-index: 1;
   position: relative;
@@ -212,22 +211,37 @@ onMounted(() => {
     height: 80vh;
     min-height: 700px;
   }
-
 }
 .container {
+  max-width: 900px;
+  padding: 0;
+  @include pad {
+    padding: 0 32px;
+  }
+
+  @include mobile {
+    padding: 0 22px;
+  }
+
   .section {
     padding-top: 176px;
     display: flex;
-    gap: 80px;
+    gap: 16px;
     flex-direction: row;
+    @include pad {
+      gap: 26px;
+    }
     // mobile
     @include mobile {
       flex-direction: column;
       padding-top: 44px;
-      gap: 24px;
+      gap: 15px;
     }
     .item1 {
-      flex: 1;
+      width: 256px;
+      @include mobile {
+        width: 100%;
+      }
       .title {
         font-family: Barlow;
         font-size: 28px;
@@ -240,6 +254,9 @@ onMounted(() => {
         font-size: 20px;
         line-height: 1.6;
         color: #fff;
+        @include pad {
+          font-size: 16px;
+        }
         @include mobile {
           margin-top: 17px;
           font-size: 16px;
@@ -247,17 +264,16 @@ onMounted(() => {
       }
     }
     .item2 {
-      width: 588px;
-      min-width: 588px;
+      flex: 1;
       @include pad {
         width: auto;
         min-width: auto;
-        flex:3
+        flex: 3;
       }
       @include mobile {
         width: 100%;
         min-width: 100%;
-        margin-top: 20px;
+        margin-top: 15px;
       }
       .title {
         font-family: Barlow;
@@ -265,6 +281,9 @@ onMounted(() => {
         font-weight: 600;
         color: #fff;
         line-height: 1.08;
+        @include pad {
+          font-size: 28px;
+        }
         @include mobile {
           font-size: 27.3px;
           line-height: 1.2;
@@ -276,8 +295,12 @@ onMounted(() => {
         font-size: 20px;
         line-height: 1.6;
         color: #fff;
+        @include pad {
+          font-size: 16px;
+          margin-top: 16px;
+        }
         @include mobile {
-          margin-top: 19px;
+          margin-top: 15px;
         }
       }
     }
