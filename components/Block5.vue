@@ -63,7 +63,7 @@ function shieldIn () {
 // badge block5-bg 進入動畫
 function badgeIn () {
   ScrollTrigger.create({
-    // 以box2作為觸發時機
+    // 以block5作為觸發時機
     trigger: '#block5',
     markers: false,
 
@@ -294,7 +294,7 @@ onMounted(() => {
 @import '../assets/scss/index.scss';
 .rightPC {
   position: absolute;
-  max-width: 1200px;
+  max-width: 900px;
   width: 100vw;
   height: 100vw;
   z-index: 10;
@@ -305,7 +305,7 @@ onMounted(() => {
   }
   .shield {
     position: absolute;
-    width: 433px;
+    width: 432px;
     height: 567px;
     top: 140px;
     right: 4%;
@@ -315,10 +315,11 @@ onMounted(() => {
       height: 100%;
     }
     @include pad {
-      top: 30vh;
-      width: 274.6px;
-      height: 359.7px;
-      margin: 0 auto;
+      top: 450px;
+      width: 298px;
+      height: 392px;
+      margin: 0 22px 0 0;
+      right: 0%;
     }
   }
 }
@@ -329,7 +330,7 @@ onMounted(() => {
     overflow: hidden;
     @include pad {
       height: 100vh;
-      min-height: 1000px;
+      min-height: 1400px;
       margin-top: 64px;
     }
     @include mobile {
@@ -337,20 +338,26 @@ onMounted(() => {
     }
     .block5-bg {
       position: absolute;
-      width: 100%;
-      top: 20%;
+      width: 90%;
+      top: 0%;
+      right: -5%;
+      @include md_pc {
+        width: 100%;
+        left: 10%;
+        top: 10%;
+      }
       @include pad {
         top: 20%;
-        width: 120%;
-      }
-      @include mobile {
-        top: 40%;
-      }
-      img{
+        left: -5%;
         width: 140%;
       }
       @include mobile {
-        width: 200%;
+        top: 15%;
+        left: -30%;
+        width: 240%;
+      }
+      img{
+        width: 140%;
       }
     }
   }
@@ -360,23 +367,22 @@ onMounted(() => {
   min-height: 900px;
   height: 100vh;
   z-index: 10;
-  @include pad {
-    height: auto
-  }
 
   .container {
     display: flex;
     margin-top: 40px;
-    // overflow: hidden;
     height: calc(100% - 40px);
+    max-width: 900px;
+    padding: 0 0 0 66px;
     @include mobile {
       display: block;
-      padding: 0 36px;
+      padding: 0 22px;
+
     }
     .left {
       width:50%;
       @include pad {
-        width:50%;
+        width:60%;
         }
       @include mobile {
         width: 100%;
@@ -386,7 +392,7 @@ onMounted(() => {
         right: 0;
         @include pad {
           left: 0;
-          margin: 0 auto;
+          margin: 0;
         }
         @include mobile {
         position: relative;
@@ -399,9 +405,9 @@ onMounted(() => {
         font-weight: 700;
         line-height: 1.08;
         margin-bottom: 26px;
+        width: 100%;
         @include mobile {
-          font-size: 27px;
-          width: 300px;
+          font-size: 28px;
           line-height: 1.26;
         }
       }
@@ -423,6 +429,9 @@ onMounted(() => {
           display: flex;
           align-items: center;
           justify-content: center;
+          @include mobile {
+            justify-content: start;
+          }
         }
         .bottom {
           margin-top: 20px;

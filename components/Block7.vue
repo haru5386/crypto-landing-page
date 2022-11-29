@@ -350,6 +350,7 @@ onMounted(() => {
     }
     @include mobile {
       height: auto;
+      padding: 0 22px;
     }
     .title {
       position: absolute;
@@ -359,10 +360,11 @@ onMounted(() => {
       @include pad {
         font-size: 34px;
         top: -70px;
-        left: 100px;
+        right: 67px;
         z-index: 10;
       }
       @include mobile {
+        font-size: 28px;
         position: relative;
         right: 0;
         left: 0;
@@ -423,6 +425,8 @@ onMounted(() => {
         }
         @include mobile {
           font-size: 40px;
+          margin-left: 15px;
+
         }
       }
       img {
@@ -512,7 +516,7 @@ onMounted(() => {
           background-color: $color_identity_Primary;
           @include mobile {
             display: block;
-            margin: 8px 25px 0 10px;
+            margin: 8px 35px 0 10px;
           }
         }
 
@@ -521,7 +525,10 @@ onMounted(() => {
           font-weight: bold;
           @include pad {
             font-size: 20px;
-        }
+          }
+          @include mobile {
+            font-size: 25px;
+          }
         }
         .year-content-content {
           font-size: 14px;
@@ -530,7 +537,7 @@ onMounted(() => {
             font-size: 12px;
           }
           @include mobile {
-            font-size: 14px;
+            font-size: 16px;
           }
         }
       }
@@ -548,11 +555,11 @@ onMounted(() => {
       }
     }
     .content-2021 {
-      top: 30%;
+      top: 26%;
       left: 16%;
       @include pad {
-        top: 32%;
-        left: 15.5%;
+        top: 29%;
+        left: 16%;
       }
       @include mobile {
         top:0;
@@ -560,11 +567,11 @@ onMounted(() => {
       }
     }
     .content-2022 {
-      top: 59%;
+      top: 51%;
       left: 28%;
       @include pad {
-        top: 59%;
-        left: 28.5%;
+        top: 56%;
+        left: 29%;
       }
       @include mobile {
         top:0;
@@ -572,11 +579,11 @@ onMounted(() => {
       }
     }
     .content-2023 {
-      top: 53%;
+      top: 46%;
       left: 48%;
       width: 20%;
       @include pad {
-        top: 53%;
+        top: 49%;
         left: 48%;
       }
       @include mobile {
@@ -586,11 +593,11 @@ onMounted(() => {
       }
     }
     .content-2024 {
-      top: 72%;
+      top: 68%;
       left: 72%;
       @include pad {
-        top: 71%;
-        left: 72%;
+        top: 69%;
+        left: 72.7%;
       }
       @include mobile {
         top:0;
