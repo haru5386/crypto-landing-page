@@ -294,7 +294,10 @@ onMounted(() => {
         line-height: 2;
         @include mobile {
           font-size: 20px;
-          margin-top: 15px;
+          margin-top: 16px;
+        }
+        .title {
+          line-height: 1.4;
         }
         .des {
           font-size: 20px;
@@ -364,7 +367,7 @@ onMounted(() => {
           font-size: 14px;
           font-weight: normal;
           color: #fff;
-          margin-top: 20px;
+          margin-top: 15px;
         }
 
         .linkedin {

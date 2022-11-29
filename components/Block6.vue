@@ -209,7 +209,7 @@ onMounted(() => {
     .block6-bg-eth {
       z-index: 0;
       width: 300px;
-      margin-bottom: -290px;
+      margin-bottom: -220px;
       opacity: 0;
       @include mobile {
         margin-bottom: -290px;
