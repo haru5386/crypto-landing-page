@@ -209,15 +209,14 @@ const goSignUp = () => {
 
 // 當前語言顯示
 const currentLangName = computed(() => {
-  let key = ''
+  let result = ''
   // 中文語系額外設定
-  if (localeSetting.value.slice(0, 2) === 'zh') {
-    key = localeSetting.value.slice(0, 5).replace('_', '-')
-  } else {
-    key = localeSetting.value.slice(0, 2)
+  for (const key in availableLocales) {
+    if (availableLocales[key].iso === localeSetting.value) {
+      result = availableLocales[key]?.name
+    }
   }
-
-  return availableLocales[key]?.name ? availableLocales[key]?.name : 'none'
+  return result || ''
 })
 
 // tabs
