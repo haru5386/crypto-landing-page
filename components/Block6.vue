@@ -7,12 +7,9 @@ gsap.registerPlugin(ScrollTrigger)
 const triggers = ScrollTrigger.getAll()
 function gsapSet () {
   ScrollTrigger.matchMedia({
-    '(min-width: 1200px)': () => {
-    },
-    '(min-width: 768px)': () => {
-    },
-    '(max-width: 768px)': () => {
-    },
+    '(min-width: 1200px)': () => {},
+    '(min-width: 768px)': () => {},
+    '(max-width: 768px)': () => {},
     all: () => {
       block6In()
       block6Out()
@@ -22,55 +19,61 @@ function gsapSet () {
 
 // block6 進入動畫
 function block6In () {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '#block6',
-      markers: false,
-      start: 'top 100%',
-      end: 'top 50%'
-    }
-  }).fromTo(
-    '.block6-bg-bg',
-    {
-      ease: 'circ.out',
-      y: 200
-    },
-    {
-      duration: 0.5,
-      ease: 'circ.out',
-      y: 0
-    }
-  ).fromTo(
-    '.block6-bg-eth',
-    {
-      ease: 'circ.out',
-      opacity: 0
-    },
-    {
-      duration: 0.5,
-      opacity: 1
-    }
-  ).fromTo(
-    '.block6-right',
-    {
-      ease: 'circ.out',
-      y: 1000
-    },
-    {
-      duration: 1.5,
-      y: 0
-    }
-  ).fromTo(
-    '.block6-right',
-    {
-      ease: 'circ.out',
-      opacity: 0
-    },
-    {
-      duration: 0.3,
-      opacity: 1
-    }, '<'
-  )
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block6',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 50%'
+      }
+    })
+    .fromTo(
+      '.block6-bg-bg',
+      {
+        ease: 'circ.out',
+        y: 200
+      },
+      {
+        duration: 0.5,
+        ease: 'circ.out',
+        y: 0
+      }
+    )
+    .fromTo(
+      '.block6-bg-eth',
+      {
+        ease: 'circ.out',
+        opacity: 0
+      },
+      {
+        duration: 0.5,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.block6-right',
+      {
+        ease: 'circ.out',
+        y: 1000
+      },
+      {
+        duration: 1.5,
+        y: 0
+      }
+    )
+    .fromTo(
+      '.block6-right',
+      {
+        ease: 'circ.out',
+        opacity: 0
+      },
+      {
+        duration: 0.3,
+        opacity: 1
+      },
+      '<'
+    )
 }
 
 // block6 離開動畫
@@ -90,11 +93,15 @@ function block6Out () {
       ease: 'easeIn',
       y: -180
     })
-    .to('.block6-bg-eth', {
-      duration: 1,
-      ease: 'easeIn',
-      y: -160
-    }, '<')
+    .to(
+      '.block6-bg-eth',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -160
+      },
+      '<'
+    )
 }
 
 onUnmounted(() => {
@@ -133,39 +140,37 @@ onMounted(() => {
           AGET
         </h2>
         <p class="des">
-          AGET (ACE Global Exchange Token) is the Token that poweres ACE Global
-          Exchange Ecosystem. <br>
-
-          AGET Holders can also benefits from various features such as referral
-          bonus, broker system, staking and more.
+          {{ $t('block6-des1') }}<br>
+          <br>
+          {{ $t('block6-des2') }}
         </p>
         <a
           class="btn-detail"
           href="https://aget.aceglobal.io/"
           target="_blank"
           rel="noopener noreferrer"
-        >More detail
+        >{{ $t('block6-btn') }}
         </a>
       </div>
       <div class="block6-right">
         <div class="title">
-          Specifications
+          {{ $t('block6-right-title') }}
         </div>
-        <h3>Name</h3>
-        <p>ACE Global Exchange Token (AGET)</p>
-        <h3>Total Insurance</h3>
+        <h3>{{ $t('block6-right-des1') }}</h3>
+        <p>{{ $t('block6-right-des2') }}</p>
+        <h3>{{ $t('block6-right-des3') }}</h3>
         <p>500,000,000</p>
-        <h3>Protocol</h3>
-        <p>Ethereum</p>
-        <h3>Contract</h3>
+        <h3>{{ $t('block6-right-des4') }}</h3>
+        <p>{{ $t('block6-right-des5') }}</p>
+        <h3>{{ $t('block6-right-des6') }}</h3>
         <p>0xb7C3cBc6D630bdcd43b690c617A8D9ead73c66a4</p>
-        <h3>Token Category</h3>
-        <p>Platform</p>
-        <h3>Token Type</h3>
-        <p>Functional Token</p>
-        <h3>Private Sale Price</h3>
+        <h3>{{ $t('block6-right-des7') }}</h3>
+        <p>{{ $t('block6-right-des8') }}</p>
+        <h3>{{ $t('block6-right-des9') }}</h3>
+        <p>{{ $t('block6-right-des10') }}</p>
+        <h3>{{ $t('block6-right-des11') }}</h3>
         <p>0.16 USDT</p>
-        <h3>IEO Price</h3>
+        <h3>{{ $t('block6-right-des12') }}</h3>
         <p>0.2 USDT</p>
       </div>
     </div>
@@ -189,23 +194,29 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     position: absolute;
+    @include pad {
+      left: -100px;
+      bottom: -200px;
+    }
     @include mobile {
-      left: auto;
-      right: -150px;
-      bottom: -100px;
+      left: -420px;
+      bottom: 100px;
     }
     .block6-bg-bg {
-      width: 1110px;
+      width: 900px;
       margin: 0 auto;
     }
     .block6-bg-eth {
       z-index: 0;
-      width: 337px;
+      width: 300px;
       margin-bottom: -290px;
       opacity: 0;
       @include mobile {
         margin-bottom: -290px;
         // left: -50px;
+      }
+      @include mobile {
+        margin-bottom: -230px;
       }
     }
   }
@@ -230,7 +241,7 @@ onMounted(() => {
         padding-left: 20px;
       }
       @include mobile {
-        padding: 0 23px;
+        padding: 0;
         width: 100%;
         margin-bottom: 50px;
       }
@@ -241,6 +252,9 @@ onMounted(() => {
         font-weight: bold;
         line-height: 1.08;
         color: #fff;
+        @include pad {
+          font-size: 28px;
+        }
       }
       .des {
         width: 350px;
@@ -249,6 +263,9 @@ onMounted(() => {
         font-size: 20px;
         line-height: 1.6;
         color: #fff;
+        @include pad {
+          font-size: 16px;
+        }
         @include mobile {
           width: 100%;
         }
@@ -258,15 +275,18 @@ onMounted(() => {
         height: 44px;
         @extend .button-outline;
         margin-top: 30px;
+
         border-color: $color_identity_Primary;
         color: $color_identity_Primary;
+        @include pad {
+          margin-top: 15px;
+        }
       }
     }
     .block6-right {
       width: 256px;
       margin-right: 10%;
       @include pad {
-        width: 187px;
         margin-right: 2%;
       }
       @include mobile {
@@ -288,7 +308,7 @@ onMounted(() => {
         color: #fff;
         margin-top: 20px;
         margin-bottom: 3px;
-        @include mobile {
+        @include pad {
           font-size: 20px;
         }
       }
@@ -299,7 +319,7 @@ onMounted(() => {
         line-height: 1.6;
         color: #fff;
         word-break: break-all;
-        @include mobile {
+        @include pad {
           font-size: 16px;
         }
       }
