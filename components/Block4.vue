@@ -22,12 +22,9 @@ gsap.registerPlugin(ScrollTrigger)
 const triggers = ScrollTrigger.getAll()
 function gsapSet () {
   ScrollTrigger.matchMedia({
-    '(min-width: 1200px)': () => {
-    },
-    '(min-width: 768px)': () => {
-    },
-    '(max-width: 768px)': () => {
-    },
+    '(min-width: 1200px)': () => {},
+    '(min-width: 768px)': () => {},
+    '(max-width: 768px)': () => {},
     all: () => {
       block4Scroll()
       rotateBgOut()
@@ -66,8 +63,7 @@ function block4Scroll () {
     onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
-    onEnterBack: function () {
-    }
+    onEnterBack: function () {}
   })
 }
 // // block4-bg-rotate 離開動畫
@@ -559,9 +555,13 @@ onMounted(() => {
 #block4 {
   z-index: 1;
   position: relative;
-
 }
 .container {
+  max-width: 900px;
+  padding: 0;
+  @include pad {
+    padding: 0 66px;
+  }
   .section {
     padding-top: 136px;
     &.phone {
@@ -598,6 +598,7 @@ onMounted(() => {
           display: flex;
           @include pad {
             margin-bottom: 32px;
+            font-size: 16px;
           }
           .icon {
             display: none;
@@ -623,6 +624,9 @@ onMounted(() => {
               font-weight: bold;
               color: #fff;
               line-height: 1.5;
+              @include pad {
+                font-size: 20px;
+              }
             }
             .carousel-des {
               font-family: Barlow;
@@ -634,7 +638,10 @@ onMounted(() => {
               opacity: 0.7;
               margin-bottom: 15px;
               @include pad {
-                font-size: 18px;
+                font-size: 16px;
+              }
+              @include mobile {
+                font-size: 16px;
               }
             }
             .carousel-table {
@@ -649,7 +656,7 @@ onMounted(() => {
                 width: 100%;
                 text-align: center;
                 font-family: Barlow;
-                font-size: 10px;
+                font-size: 14px;
                 line-height: 3.2;
               }
               .table-col {
@@ -705,8 +712,9 @@ onMounted(() => {
 // mobile
 @include mobile {
   .container {
+    padding: 0;
     .section {
-      padding: 45px 26px;
+      padding: 45px 23px;
       &.desktop {
         display: none;
       }
@@ -715,8 +723,8 @@ onMounted(() => {
       }
 
       .title {
-        font-size: 27px;
-        margin-bottom: 40px;
+        font-size: 28px;
+        margin-bottom: 20px;
       }
 
       .carousel-title {
@@ -728,7 +736,7 @@ onMounted(() => {
       }
       .carousel-des {
         font-family: Barlow;
-        font-size: 20px;
+        font-size: 16px !important;
         font-weight: normal;
         color: #fff;
         margin-top: 13px;
@@ -751,13 +759,16 @@ onMounted(() => {
           width: 100%;
           text-align: center;
           font-family: Barlow;
-          font-size: 10px;
+          font-size: 14px;
           line-height: 3.2;
         }
         .table-col {
           display: flex;
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: rgba(37, 37, 37, 0.6);
           padding: 15px 15px 15px 15px;
+          &:nth-child(2n) {
+            background-color: rgba(0, 0, 0, 0.6);
+          }
           @include pad {
             font-size: 15px;
           }
@@ -784,6 +795,7 @@ onMounted(() => {
   font-family: Barlow;
   font-size: 20px;
   font-weight: 600;
+  padding: 0;
   text-align: center;
   color: #fff;
   border: none;
@@ -794,14 +806,16 @@ onMounted(() => {
   }
   &.is-active {
     color: rgba(255, 255, 255, 0.43);
+    margin-left: -10px;
+
     .icon {
       display: block;
     }
   }
 }
 
-.el-collapse-item__content {
-  padding: 16px;
+#block4 .el-collapse-item__content {
+  padding: 16px !important;
 }
 
 .el-collapse {
