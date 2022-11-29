@@ -89,7 +89,6 @@ onMounted(() => {
 <template>
   <div
     id="block9"
-    class="slide"
   >
     <div class="container">
       <h2>{{ $t('block9-title') }}</h2>
@@ -138,8 +137,12 @@ onMounted(() => {
     margin-top: 84px;
     display: inline-block;
     z-index: 10;
+    max-width: 915px;
+    padding: 0 66px;
     @include mobile {
-        text-align: center;
+        text-align: left;
+        padding: 0 22px;
+
       }
     h2 {
       font-size: 52px;
@@ -153,18 +156,27 @@ onMounted(() => {
       font-size: 20px;
       font-weight: 400;
       margin: 20px 0;
+      @include mobile {
+        margin: 15px 0 ;
+      }
     }
     .pic {
       display: flex;
       z-index: 10;
+      @include pad {
+        margin-top: 75px;
+      }
+      @include small_pc {
+        margin-top: 50px;
+      }
       @include mobile {
-        flex-direction: column;
-        align-items: center;
+        margin-top: 0px;
+        display: block;
       }
       .soon {
         @include mobile {
           width: 50%;
-          margin: 30px 0;
+          margin: 0px;
         }
       }
       .device {
@@ -173,10 +185,11 @@ onMounted(() => {
         margin-left: 40px;
         z-index: 10;
         opacity: 0;
+
         @include mobile {
-          width: 90%;
+          width: 100%;
           height: auto;
-          margin-bottom: 30px;
+          margin: 35px 0 30px 0;
           opacity: 1;
 
         }
@@ -185,16 +198,21 @@ onMounted(() => {
   }
   .block9-bg {
     position: absolute;
-    bottom: -95px;
+    bottom: -135px;
     opacity: 0;
+    @include md_pc {
+      width: 120%;
+    }
     @include pad {
       width: 1200px;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 0px;
+      bottom: -20px;
     }
     @include mobile {
-      opacity: 1;
+      width: 130%;
+      bottom: -10px;
+
     }
   }
 }

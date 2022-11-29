@@ -114,13 +114,22 @@ onMounted(() => {
   }
   @include mobile {
     align-items: start;
-    min-height: auto;
+    min-height: 700px;
+
   }
+.container {
+  max-width: 900px;
+  @include pad {
+    padding: 0 67px
+  }
+  @include mobile {
+    padding: 0 22px
+  }
+}
 .description {
   display: flex;
   justify-content: center;
   margin: 0 auto 50px auto;
-  width: 80%;
   font-size: 20px;
   font-weight: normal;
   line-height: 1.6;

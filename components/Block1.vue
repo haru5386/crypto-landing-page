@@ -155,6 +155,9 @@ onMounted(() => {
     overflow: hidden;
     z-index: -1;
     opacity: 0;
+    @include md_pc {
+      top: -5%
+    }
     @include pad {
       width: 100%;
       max-width: 1624px;
@@ -194,7 +197,7 @@ onMounted(() => {
       font-size: 25px;
     }
     @include mobile {
-      font-size: 16px;
+      font-size: 20x;
       margin-top: 57px;
 
     }
@@ -208,8 +211,8 @@ onMounted(() => {
       font-size: 43px;
     }
     @include mobile {
-      margin-top: 12px;
-      font-size: 2rem;
+      margin-top: 20px;
+      font-size:37px;
     }
   }
   .des2 {
@@ -220,13 +223,13 @@ onMounted(() => {
       font-size: 25px;
     }
     @include mobile {
-      margin-top: 42px;
-      font-size: 21px;
+      margin-top: 20px;
+      font-size: 20px;
     }
   }
   .signUp {
     height: 52px;
-    width: 50%;
+    width: 513px;
     margin: 0 auto;
     margin-top: 54px;
     max-width: 514px;
@@ -237,15 +240,14 @@ onMounted(() => {
     font-size: 20px;
     z-index: 10;
     @include pad {
-      height: 33px;
-      font-size: 13px;
+      height: 46px;
+      font-size: 15px;
       margin-top: 30px;
+      width: 378px;
     }
     @include mobile {
-      height: 26px;
       font-size: 10px;
-      max-width: 350px;
-      width: 80%;
+      width: 311px;
     }
 
     input {
@@ -255,14 +257,17 @@ onMounted(() => {
       font-weight: 500;
       padding:0 20px;
       border-radius:  26px 0 0 26px;
-      flex:6;
+      width: 326px;
+      height: 50px;
       @include pad {
         font-size: 13px;
         padding:0 20px 0 20px;
+        height: 44px;
+        width: 232px;
       }
       @include mobile {
         font-size: 10px;
-        padding:0 10px 0 10px;
+        width: 197px;
       }
 
     }
@@ -282,10 +287,10 @@ onMounted(() => {
         color: $color_gray_Black;
       }
       @include pad {
-        line-height: 33px;
+        line-height: 46px;
       }
       @include mobile {
-        line-height: 26px;
+        line-height: 46px;
       }
     }
   }
