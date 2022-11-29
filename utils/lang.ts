@@ -1,9 +1,10 @@
 import { useI18n } from 'vue-i18n'
-
+// 語系 interface
 export interface ILocales {
+  // 瀏覽器預設key
   [key: string]: {
-    name: string
-    iso: string
+    name: string // 專案顯示文字
+    iso: string // 專案用 iso
   }
 }
 
