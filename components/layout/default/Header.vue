@@ -9,10 +9,6 @@ import { HeaderInfo } from '@/types/interface/base.interface'
 
 import { getURLs } from '@/utils/urls'
 
-// env data
-const runtimeConfig = useRuntimeConfig()
-const env = { ...runtimeConfig.public }
-
 // const route = useRoute()
 const localeSetting = useState<string>('locale.setting')
 
@@ -86,11 +82,11 @@ const goPath = (link: string) => {
 }
 
 const goLogin = () => {
-  window.location.href = `${env.BASE_URL}/login`
+  window.location.href = getURLs().login
 }
 
 const goSignUp = () => {
-  window.location.href = `${env.BASE_URL}/register`
+  window.location.href = getURLs().signUp
 }
 
 const isOpenDrawerMain = ref(false)
