@@ -9,15 +9,16 @@ function gsapSet () {
   ScrollTrigger.matchMedia({
     '(min-width: 1200px)': () => {
       block2VideoOut()
+      animatedEarthOut()
     },
     '(min-width: 768px)': () => {
       block2VideoOut()
     },
     '(max-width: 768px)': () => {
       block2VideoOutMobile()
+      animatedEarthOut()
     },
     all: () => {
-      animatedEarthOut()
     }
   })
 }
