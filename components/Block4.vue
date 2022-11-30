@@ -522,33 +522,35 @@ onMounted(() => {
   width: 100vw;
   max-width: 1450px;
   height: 40vh;
-  min-height: 400px;
+  min-height: 700px;
   position: relative;
   left: 50%;
   transform: translate(-50%);
   z-index: -1;
+  top: -300px;
+  display: flex;
+  justify-content: center;
   @include pad {
-    height: 10vh;
+    height: 200px;
+    min-height: 0;
   }
   @include mobile {
-    height: 20vh;
+    height: 500px;
   }
   .block4-bg {
-    width: 80%;
+    width: 1166px;
     position: absolute;
-    left: 50%;
-    margin-left: -40%;
     z-index: -1;
-    top: -20vh;
+    top: -2vh;
     @include pad {
-      top: -500px;
+      width: 90%;
+      top: -200px;
     }
     @include mobile {
       width: 120%;
-      top: 10vh;
+      top: 500px;
       left: 0;
       margin-left: -10%;
-      bottom: -300px;
     }
   }
 }
@@ -661,8 +663,11 @@ onMounted(() => {
               }
               .table-col {
                 display: flex;
-                background-color: rgba(255, 255, 255, 0.1);
                 padding: 15px 15px 15px 15px;
+                background-color: rgba(37, 37, 37, 0.6);
+                &:nth-child(2n) {
+                  background-color: rgba(0, 0, 0, 0.6);
+                }
                 @include pad {
                   font-size: 15px;
                 }
