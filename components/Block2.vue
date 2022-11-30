@@ -205,6 +205,7 @@ onMounted(() => {
   z-index: 1;
   position: relative;
   overflow: hidden;
+  min-height: 900px;
   height: 120vh;
 
   @include pad {

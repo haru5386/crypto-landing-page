@@ -373,7 +373,9 @@ onMounted(() => {
     margin-top: 40px;
     height: calc(100% - 40px);
     max-width: 900px;
-    padding: 0 0 0 66px;
+    @include pad {
+      padding: 0 0 0 66px;
+    }
     @include mobile {
       display: block;
       padding: 0 22px;
