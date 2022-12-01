@@ -239,12 +239,12 @@ onMounted(() => {
       <div class="left">
         <div class="left-con">
           <div class="left-word">
-            <div class="title">
+            <h2 class="title">
               {{ $t('block5-title') }}
-            </div>
-            <div class="description">
+            </h2>
+            <h3 class="description">
               {{ $t('block5-des') }}
-            </div>
+            </h3>
           </div>
           <div class="badge">
             <div class="top">
@@ -315,7 +315,7 @@ onMounted(() => {
       height: 100%;
     }
     @include pad {
-      top: 450px;
+      top: 300px;
       width: 298px;
       height: 392px;
       margin: 0 22px 0 0;
@@ -408,8 +408,10 @@ onMounted(() => {
         line-height: 1.08;
         margin-bottom: 26px;
         width: 100%;
-        @include mobile {
+        @include pad {
           font-size: 28px;
+        }
+        @include mobile {
           line-height: 1.26;
         }
       }
@@ -417,8 +419,10 @@ onMounted(() => {
         font-size: 30px;
         font-weight: bold;
         width: 357px;
-        @include mobile {
+        @include pad {
           font-size: 20px;
+        }
+        @include mobile {
           width: 100%;
         }
       }
