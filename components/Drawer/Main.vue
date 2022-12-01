@@ -170,7 +170,7 @@ import { Close } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
 import AGET from '../../assets/images/icons/aget.svg'
 import { useUserStore } from '~~/stores/user'
-import { availableLocales } from '@/utils/lang'
+import { getAvailableLocales } from '@/utils/lang'
 import { getURLs } from '~~/utils/urls'
 const localeSetting = useState<string>('locale.setting')
 
@@ -178,6 +178,8 @@ const localeSetting = useState<string>('locale.setting')
 const UserStore = useUserStore()
 const { ISLOGIN, USERDATA } = storeToRefs(UserStore)
 
+// lanList
+const availableLocales = await getAvailableLocales()
 // data
 const isLogin = computed(() => {
   return ISLOGIN.value
