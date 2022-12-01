@@ -190,7 +190,7 @@ onMounted(() => {
     width: 100%;
     margin-left: 50vw;
     transform: translate(-50%);
-    margin-top: -40%;
+    margin-top: -48%;
     z-index: -1;
     @include pad {
       width: 130%;

@@ -589,7 +589,7 @@ onMounted(() => {
       display: flex;
       justify-content: space-between;
       .tab-items {
-        width: 30%;
+        width: 40%;
         .tab-item {
           font-family: Barlow;
           font-size: 20px;
@@ -615,7 +615,7 @@ onMounted(() => {
         }
       }
       .el-carousel {
-        width: 70%;
+        width: 60%;
         .el-carousel__container {
           height: 950px;
           .el-carousel__item {

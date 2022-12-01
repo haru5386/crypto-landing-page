@@ -211,12 +211,7 @@ onMounted(() => {
             :href="item.link"
             target="_blank"
           >
-            <img
-              src="../assets/images/linkedin.png"
-              alt="linkedin"
-              width="24px"
-              height="24px"
-            >
+            <div class="box">in</div>
           </a>
         </div>
       </div>
@@ -261,6 +256,7 @@ onMounted(() => {
     }
   }
   .container {
+    max-width: 900px;
     padding-top: 129px;
     @include mobile {
       padding-top: 36px;
@@ -279,6 +275,7 @@ onMounted(() => {
         line-height: 1.08;
         color: #fff;
         margin-right: 16px;
+        word-break: keep-all;
         @include mobile {
           width: 100%;
           font-size: 28px;
@@ -333,7 +330,7 @@ onMounted(() => {
         flex: 1;
         display: flex;
         flex-direction: column;
-        height: 480px;
+        height: 430px;
         @include pad {
           height: 450px;
         }
@@ -373,6 +370,23 @@ onMounted(() => {
         .linkedin {
           position: absolute;
           bottom: 0;
+          .box {
+            width: 24px;
+            height: 24px;
+            color: #000;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 24px;
+            text-align: center;
+            background: #fff;
+            border-radius: 5px;
+            opacity: 0.7;
+            &:hover {
+              color: #fff;
+              background: #0077b5;
+              opacity: 1;
+            }
+          }
           @include mobile {
             position: initial;
             margin-top: 16px;
