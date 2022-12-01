@@ -344,6 +344,8 @@ onMounted(() => {
   .container {
     position: relative;
     padding-bottom: 400px;
+    width: 100%;
+    max-width: 1557px;
     @include pad {
       padding-bottom: 0;
       height: 900px;

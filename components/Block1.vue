@@ -144,28 +144,40 @@ onMounted(() => {
   text-align: center;
   position: relative;
   z-index: 0;
+  min-height: 1000px;
+  @include pad {
+    min-height: auto;
+    height: 1200px;
+  }
+  @include mobile {
+    min-height: 900px;
+    height: 100vh;
+  }
   .video-earth {
     position: absolute;
     width: 100%;
     max-width: 1366px;
-    height: 100%;
+    height: 150%;
     min-height: 1027px;
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
     opacity: 0;
+    top: -350px;
     @include md_pc {
-      top: -5%
+      top: -350px;
     }
     @include pad {
       width: 100%;
       max-width: 1624px;
       height: 100%;
-      min-height: 1027px;
+      top:0;
+      bottom: 0;
     }
     @include mobile {
       width: 546px;
       max-width: 546px;
+      top: 140px
     }
   }
   video{
@@ -180,8 +192,8 @@ onMounted(() => {
       top:20%;
     }
     @include mobile {
-      top: 15%;
-      height: 546px;
+      width: 100%;
+      height: auto;
     }
 }
   .animation-group {

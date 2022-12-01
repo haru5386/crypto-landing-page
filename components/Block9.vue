@@ -147,8 +147,8 @@ onMounted(() => {
     h2 {
       font-size: 52px;
       font-weight: bold;
-      @include mobile {
-        font-size: 35px;
+      @include pad {
+        font-size: 28px;
       }
     }
     p {
@@ -156,6 +156,9 @@ onMounted(() => {
       font-size: 20px;
       font-weight: 400;
       margin: 20px 0;
+      @include pad {
+        font-size: 16px;
+      }
       @include mobile {
         margin: 15px 0 ;
       }
