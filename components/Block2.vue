@@ -193,6 +193,7 @@ onMounted(() => {
       autoplay
       muted
       loop
+      playsinline
     >
       <source
         src="../assets/video/digitalmap.mp4"

@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,12 +10,9 @@ const env = { ...runtimeConfig.public }
 const triggers = ScrollTrigger.getAll()
 function gsapSet () {
   ScrollTrigger.matchMedia({
-    '(min-width: 1200px)': () => {
-    },
-    '(min-width: 768px)': () => {
-    },
-    '(max-width: 768px)': () => {
-    },
+    '(min-width: 1200px)': () => {},
+    '(min-width: 768px)': () => {},
+    '(max-width: 768px)': () => {},
     all: () => {
       block1Scroll()
     }
@@ -24,29 +20,41 @@ function gsapSet () {
 }
 // Earth 進入動畫
 function animatedEarthIn () {
-  gsap.timeline().fromTo('.animation-group', {
-    duration: 1,
-    ease: 'circ.out',
-    y: -100,
-    opacity: 0
-  }, {
-    duration: 1,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1
-  }).fromTo('.video-earth', {
-    duration: 1,
-    ease: 'circ.out',
-    y: 100,
-    opacity: 0,
-    delay: 0.2
-  }, {
-    duration: 1,
-    ease: 'circ.out',
-    y: 0,
-    opacity: 1,
-    delay: 0.2
-  }, '<')
+  gsap
+    .timeline()
+    .fromTo(
+      '.animation-group',
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: -100,
+        opacity: 0
+      },
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.video-earth',
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: 100,
+        opacity: 0,
+        delay: 0.2
+      },
+      {
+        duration: 1,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1,
+        delay: 0.2
+      },
+      '<'
+    )
 }
 // scroll block1 觸發
 function block1Scroll () {
@@ -61,14 +69,12 @@ function block1Scroll () {
     },
 
     // 向下滾動超過end點時觸發callback
-    onLeave: function () {
-    },
+    onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
     onEnterBack: function () {
       animatedEarthIn()
     }
-
   })
 }
 
@@ -100,6 +106,7 @@ onMounted(() => {
         autoplay
         muted
         loop
+        playsinline
         class="video-earth-video"
       >
         <source
@@ -171,31 +178,31 @@ onMounted(() => {
       width: 100%;
       max-width: 1624px;
       height: 100%;
-      top:0;
+      top: 0;
       bottom: 0;
     }
     @include mobile {
       width: 546px;
       max-width: 546px;
-      top: 140px
+      top: 140px;
     }
   }
-  video{
+  video {
     position: absolute;
     width: 100%;
     top: 30%;
-    left:0;
+    left: 0;
     object-fit: cover;
     z-index: -1;
     @include pad {
-      top:20%;
+      top: 20%;
       height: 100%;
     }
     @include mobile {
       width: 100%;
       height: auto;
     }
-}
+  }
   .animation-group {
     opacity: 0;
   }
@@ -203,27 +210,26 @@ onMounted(() => {
     margin-top: 150px;
     font-size: 38px;
     font-weight: 600;
-    text-transform:uppercase;
+    text-transform: uppercase;
     @include pad {
       font-size: 25px;
     }
     @include mobile {
       font-size: 20x;
       margin-top: 57px;
-
     }
   }
   h1 {
     margin-top: 22px;
     font-size: 65px;
     font-weight: 400;
-    text-transform:uppercase;
+    text-transform: uppercase;
     @include pad {
       font-size: 43px;
     }
     @include mobile {
       margin-top: 20px;
-      font-size:37px;
+      font-size: 37px;
     }
   }
   .des2 {
@@ -246,7 +252,7 @@ onMounted(() => {
     max-width: 514px;
     display: flex;
     border: 1px solid $color_identity_Primary;
-    border-radius:  26px;
+    border-radius: 26px;
     background-color: $color_gray_Black;
     font-size: 20px;
     z-index: 10;
@@ -266,13 +272,13 @@ onMounted(() => {
       display: inline-block;
       font-size: 20px;
       font-weight: 500;
-      padding:0 20px;
-      border-radius:  26px 0 0 26px;
+      padding: 0 20px;
+      border-radius: 26px 0 0 26px;
       width: 326px;
       height: 50px;
       @include pad {
         font-size: 13px;
-        padding:0 20px 0 20px;
+        padding: 0 20px 0 20px;
         height: 44px;
         width: 232px;
       }
@@ -280,18 +286,17 @@ onMounted(() => {
         font-size: 10px;
         width: 197px;
       }
-
     }
     .signUpBtn {
       display: inline-block;
-      border-radius:  0 26px 26px 0;
+      border-radius: 0 26px 26px 0;
       font-weight: bold;
       font-stretch: normal;
       line-height: 52px;
-      text-transform:uppercase;
+      text-transform: uppercase;
       color: $color_identity_Primary;
       background-color: $color_gray_Black;
-      flex:4;
+      flex: 4;
       cursor: pointer;
       &:hover {
         background-color: $color_identity_Primary;
@@ -306,5 +311,4 @@ onMounted(() => {
     }
   }
 }
-
 </style>
