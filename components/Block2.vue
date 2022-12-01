@@ -18,8 +18,7 @@ function gsapSet () {
       block2VideoOutMobile()
       animatedEarthOut()
     },
-    all: () => {
-    }
+    all: () => {}
   })
 }
 
@@ -190,7 +189,7 @@ onMounted(() => {
     width: 100%;
     margin-left: 50vw;
     transform: translate(-50%);
-    margin-top: -48%;
+    margin-top: -40%;
     z-index: -1;
     @include pad {
       width: 130%;
@@ -217,6 +216,7 @@ onMounted(() => {
 .container {
   max-width: 900px;
   padding: 0;
+  margin-top: 200px;
   @include pad {
     padding: 0 32px;
   }
