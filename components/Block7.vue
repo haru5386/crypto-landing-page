@@ -341,6 +341,10 @@ onMounted(() => {
   width: 100vw;
   overflow: hidden;
   padding-bottom: 130px;
+  margin-top: 240px;
+  @include pad {
+    margin-top: 0px;
+  }
   .container {
     position: relative;
     padding-bottom: 400px;
@@ -356,7 +360,7 @@ onMounted(() => {
     }
     .title {
       position: absolute;
-      right: 10px;
+      right:  236px;
       font-size: 52px;
       font-weight: bold;
       @include pad {

@@ -66,7 +66,6 @@ export async function getAvailableLocales () {
 
     availableLocales[lanKey] = { name: lan.name, iso: lan.id }
   })
-  // console.log('data', data.data.value.data.lan.lanList)
   return availableLocales
 }
 
