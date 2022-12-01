@@ -187,7 +187,7 @@ onMounted(() => {
     position: absolute;
     @include pad {
       left: -100px;
-      bottom: -200px;
+      bottom: 0px;
     }
     @include mobile {
       left: -420px;
