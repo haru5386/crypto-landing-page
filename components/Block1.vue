@@ -146,8 +146,8 @@ onMounted(() => {
   z-index: 0;
   min-height: 1000px;
   @include pad {
-    min-height: auto;
-    height: 1200px;
+    min-height: 1200px;
+    height: 100vh;
   }
   @include mobile {
     min-height: 900px;
@@ -163,7 +163,7 @@ onMounted(() => {
     transform: translateX(-50%);
     z-index: -1;
     opacity: 0;
-    top: -350px;
+    top: -300px;
     @include md_pc {
       top: -350px;
     }
@@ -183,13 +183,13 @@ onMounted(() => {
   video{
     position: absolute;
     width: 100%;
-    height: 100%;
     top: 30%;
     left:0;
     object-fit: cover;
     z-index: -1;
     @include pad {
       top:20%;
+      height: 100%;
     }
     @include mobile {
       width: 100%;

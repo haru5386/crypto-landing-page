@@ -25,3 +25,8 @@ export const getIndexDataApi = () => {
 export const getHeadAndFooterApi = (data:any) => {
   return useAsyncFetchData.post('fe-ex-api/common/footer_and_header', data)
 }
+
+// 要在伺服器獲取語言
+export const getAsyncBaseDataApi = () => {
+  return useAsyncFetchData.post('fe-ex-api/common/public_info_v4')
+}

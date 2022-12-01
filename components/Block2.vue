@@ -13,10 +13,11 @@ function gsapSet () {
     },
     '(min-width: 768px)': () => {
       block2VideoOut()
+      animatedEarthOut()
     },
     '(max-width: 768px)': () => {
       block2VideoOutMobile()
-      animatedEarthOut()
+      animatedEarthOutMobile()
     },
     all: () => {}
   })
@@ -36,7 +37,34 @@ function animatedEarthOut () {
     .to('.video-earth-video', {
       duration: 1,
       ease: 'easeIn',
-      y: -400
+      y: -500
+    })
+    .to(
+      '.animation-group',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -900
+      },
+      '<'
+    )
+}
+
+function animatedEarthOutMobile () {
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#block2',
+        markers: false,
+        start: 'top 95%',
+        end: 'top 30%',
+        scrub: true
+      }
+    })
+    .to('.video-earth-video', {
+      duration: 1,
+      ease: 'easeIn',
+      y: -300
     })
     .to(
       '.animation-group',
