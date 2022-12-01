@@ -70,29 +70,28 @@ export async function getAvailableLocales () {
   return availableLocales
 }
 
-export async function LanguageManager () {
+export function LanguageManager () {
   // composable
   const { locale } = useI18n()
   const localeUserSetting = useCookie('lan')
-  const availableLocales = await getAvailableLocales()
 
-  // methods
-  const getSystemLocale = (): string => {
-    try {
-      let foundLang = window ? window.navigator.language.substring(0, 2) : 'en'
-      if (foundLang === 'zh') {
-        foundLang = window.navigator.language.substring(0, 5)
-        console.log('foundLang', foundLang)
-      }
-      return availableLocales[foundLang]
-        ? availableLocales[foundLang].iso
-        : 'en_US'
-    } catch (error) {
-      return 'en_US'
-    }
-  }
+  // methods 不從 server 判斷瀏覽器語言，改從router判斷
+  // const getSystemLocale = (): string => {
+  //   try {
+  //     let foundLang = window ? window.navigator.language.substring(0, 2) : 'en'
+  //     if (foundLang === 'zh') {
+  //       foundLang = window.navigator.language.substring(0, 5)
+  //       console.log('foundLang', foundLang)
+  //     }
+  //     return availableLocales[foundLang]
+  //       ? availableLocales[foundLang].iso
+  //       : 'en_US'
+  //   } catch (error) {
+  //     return 'en_US'
+  //   }
+  // }
   const getUserLocale = (): string =>
-    localeUserSetting.value || getSystemLocale()
+    localeUserSetting.value || ''
 
   // state
   const localeSetting = useState<string>('locale.setting', () =>
