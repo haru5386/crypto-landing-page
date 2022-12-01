@@ -4,6 +4,7 @@ import { getUserInfoApi, getNoReadMsgApi } from '@/api/base'
 import { NoReadMsg, UserData } from '~~/types/interface/user.interface'
 export const useUserStore = defineStore('userStore', () => {
   // state
+  const isLoading : Ref<boolean> = ref(true)
   const userData: Ref<UserData | null> = ref(null) // 使用者資料
   const isLogin: Ref<boolean> = ref(false) // 是否登入
 
@@ -11,6 +12,9 @@ export const useUserStore = defineStore('userStore', () => {
   const timer = ref(0)
 
   // getter
+  const ISLOADING_USERDATA = computed(() => {
+    return isLoading.value
+  })
   const USERDATA = computed(() => {
     return userData.value
   })
@@ -23,10 +27,12 @@ export const useUserStore = defineStore('userStore', () => {
 
   // action
   const USER_DATA_INIT = async () => {
+    isLoading.value = true
     const data = await getUserInfoApi()
     userData.value = { ...data.data }
     // 登入狀態
     isLogin.value = data.data !== null
+    isLoading.value = false
     clearInterval(timer.value)
     NO_READ_MSG()
   }
@@ -53,6 +59,7 @@ export const useUserStore = defineStore('userStore', () => {
 
   return {
     ISLOGIN,
+    ISLOADING_USERDATA,
     USERDATA,
     NOREADMSG,
     NO_READ_MSG,

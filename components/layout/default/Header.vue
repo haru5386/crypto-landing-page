@@ -14,7 +14,7 @@ const localeSetting = useState<string>('locale.setting')
 
 // stores
 const UserStore = useUserStore()
-const { ISLOGIN, USERDATA, NOREADMSG } = storeToRefs(UserStore)
+const { ISLOGIN, USERDATA, NOREADMSG, ISLOADING_USERDATA } = storeToRefs(UserStore)
 
 // data
 const isLogin = computed(() => {
@@ -137,7 +137,10 @@ const changeLang = (lang: string) => {
         </div>
       </div>
     </div>
-    <div class="nav_right">
+    <div
+      v-if="!ISLOADING_USERDATA"
+      class="nav_right"
+    >
       <div class="pc">
         <div
           v-if="!isLogin"
