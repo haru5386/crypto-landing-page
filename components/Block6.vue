@@ -40,6 +40,20 @@ function block6In () {
         y: 0
       }
     )
+
+    .fromTo(
+      '.block6-right',
+      {
+        ease: 'circ.out',
+        y: 1000,
+        opacity: 0
+      },
+      {
+        duration: 1.5,
+        y: 0,
+        opacity: 1
+      }
+    )
     .fromTo(
       '.block6-bg-eth',
       {
@@ -47,32 +61,9 @@ function block6In () {
         opacity: 0
       },
       {
-        duration: 0.5,
+        duration: 3,
         opacity: 1
       }
-    )
-    .fromTo(
-      '.block6-right',
-      {
-        ease: 'circ.out',
-        y: 1000
-      },
-      {
-        duration: 1.5,
-        y: 0
-      }
-    )
-    .fromTo(
-      '.block6-right',
-      {
-        ease: 'circ.out',
-        opacity: 0
-      },
-      {
-        duration: 0.3,
-        opacity: 1
-      },
-      '<'
     )
 }
 
