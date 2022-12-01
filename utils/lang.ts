@@ -69,14 +69,15 @@ export async function getAvailableLocales () {
   return availableLocales
 }
 
-export async function LanguageManager () {
+export function LanguageManager () {
   // composable
   const { locale } = useI18n()
   const localeUserSetting = useCookie('lan')
-  const availableLocales = await getAvailableLocales()
 
   // methods
-  const getSystemLocale = (): string => {
+  const getSystemLocale = async () => {
+    const availableLocales = await getAvailableLocales()
+
     try {
       let foundLang = window ? window.navigator.language.substring(0, 2) : 'en'
       if (foundLang === 'zh') {
@@ -90,11 +91,11 @@ export async function LanguageManager () {
       return 'en_US'
     }
   }
-  const getUserLocale = (): string =>
+  const getUserLocale = () =>
     localeUserSetting.value || getSystemLocale()
 
   // state
-  const localeSetting = useState<string>('locale.setting', () =>
+  const localeSetting = useState<any>('locale.setting', () =>
     getUserLocale()
   )
 
@@ -105,8 +106,8 @@ export async function LanguageManager () {
   })
 
   // init locale
-  const init = () => {
-    localeSetting.value = getUserLocale()
+  const init = async () => {
+    localeSetting.value = await getUserLocale()
     console.log('localeUserSetting', localeUserSetting)
   }
   locale.value = localeSetting.value
