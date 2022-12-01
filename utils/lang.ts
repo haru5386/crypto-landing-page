@@ -4,9 +4,9 @@ import { getAsyncBaseDataApi } from '../api/base'
 export interface ILocales {
   // 瀏覽器預設key
   [key: string]: {
-    name: string // 專案顯示文字
-    iso: string // 專案用 iso
-  }
+    name: string; // 專案顯示文字
+    iso: string; // 專案用 iso
+  };
 }
 
 // export const availableLocales: ILocales = {
@@ -40,7 +40,10 @@ export async function getAvailableLocales () {
   // 獲取後台語言
   const availableLocales: ILocales = {}
   const data = await getAsyncBaseDataApi()
-  const localeLanList = data.data.value.data.lan.lanList
+  const localeLanList = data.data.value?.data.lan.lanList
+    ? data.data.value?.data.lan.lanList
+    : [{ name: 'English', id: 'en_US' }]
+
   localeLanList.forEach((lan: any) => {
     let lanKey = ''
     switch (lan.id) {
@@ -89,13 +92,10 @@ export function LanguageManager () {
   //     return 'en_US'
   //   }
   // }
-  const getUserLocale = (): string =>
-    localeUserSetting.value || ''
+  const getUserLocale = (): string => localeUserSetting.value || ''
 
   // state
-  const localeSetting = useState<any>('locale.setting', () =>
-    getUserLocale()
-  )
+  const localeSetting = useState<any>('locale.setting', () => getUserLocale())
 
   // watchers
   watch(localeSetting, (localeSetting) => {
