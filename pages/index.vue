@@ -22,8 +22,9 @@ const { BASE_DATA_INIT } = BaseStore
 // 引入 store state / getter
 // const { BASEDATA, WSURL, NOREADMSG } = storeToRefs(BaseStore)
 
-// 語言
-const localeSetting = useState<string>('locale.setting')
+// 語言 不拿 i18n 裡的 直接拿 cookie 或瀏覽器預設
+// const localeSetting = useState<string>('locale.setting')
+const localeUserSetting = useCookie('lan')
 
 // 更新語言重新整理
 // watch(localeSetting, (val) => {
@@ -34,11 +35,35 @@ const localeSetting = useState<string>('locale.setting')
 
 onMounted(() => {
   BASE_DATA_INIT()
-  const language = localeSetting.value
-  // ? localeSetting.value
-  // : window.navigator.language
-  // console.log('language', language)
-  window.location.href = `/${language}`
+  let lan = ''
+
+  if (localeUserSetting.value) {
+    lan = localeUserSetting.value
+  } else {
+    lan = window.navigator.language
+    switch (lan) {
+      case 'zh-TW':
+        lan = 'el_GR'
+        break
+      case 'zh-CN':
+        lan = 'zh_CN'
+        break
+      case 'en-US':
+        lan = 'en_US'
+        break
+      case 'ja':
+        lan = 'ja_JP'
+        break
+      case 'ko':
+        lan = 'ko_KR'
+        break
+      case 'vi':
+        lan = 'vi_VN'
+        break
+    }
+  }
+
+  window.location.href = `/${lan}`
   // router.push(`/${language}`)
 })
 </script>
@@ -47,5 +72,6 @@ onMounted(() => {
 .page-index {
   padding-top: 60px;
   text-align: center;
+  height: 100vh;
 }
 </style>
