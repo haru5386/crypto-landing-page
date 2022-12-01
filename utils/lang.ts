@@ -38,10 +38,10 @@ export interface ILocales {
 
 export async function getAvailableLocales () {
   // 獲取後台語言
-  const availableLocales :ILocales = {}
+  const availableLocales: ILocales = {}
   const data = await getAsyncBaseDataApi()
   const localeLanList = data.data.value.data.lan.lanList
-  localeLanList.forEach((lan:any) => {
+  localeLanList.forEach((lan: any) => {
     let lanKey = ''
     switch (lan.id) {
       case 'el_GR':
@@ -67,7 +67,6 @@ export async function getAvailableLocales () {
     availableLocales[lanKey] = { name: lan.name, iso: lan.id }
   })
   // console.log('data', data.data.value.data.lan.lanList)
-  console.log('availableLocale', availableLocales)
   return availableLocales
 }
 
@@ -80,14 +79,14 @@ export async function LanguageManager () {
   // methods
   const getSystemLocale = (): string => {
     try {
-      let foundLang = window
-        ? window.navigator.language.substring(0, 2)
-        : 'en'
+      let foundLang = window ? window.navigator.language.substring(0, 2) : 'en'
       if (foundLang === 'zh') {
         foundLang = window.navigator.language.substring(0, 5)
         console.log('foundLang', foundLang)
       }
-      return availableLocales[foundLang] ? availableLocales[foundLang].iso : 'en_US'
+      return availableLocales[foundLang]
+        ? availableLocales[foundLang].iso
+        : 'en_US'
     } catch (error) {
       return 'en_US'
     }
