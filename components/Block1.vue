@@ -183,8 +183,8 @@ onMounted(() => {
     }
     @include mobile {
       height: auto;
-      width: 546px;
-      max-width: 546px;
+      width: 100%;
+      min-width: 546px;
       top: 140px;
     }
   }
@@ -200,7 +200,8 @@ onMounted(() => {
       height: 100%;
     }
     @include mobile {
-      width: 100%;
+      width: 120%;
+      left: -10%;
       height: auto;
     }
   }
