@@ -6,7 +6,7 @@
 </template>
 <script setup lang="ts">
 // import { storeToRefs } from 'pinia'
-import { useBaseStore } from '../stores/base.js'
+// import { useBaseStore } from '../stores/base.js'
 
 // env setting
 // const runtimeConfig = useRuntimeConfig()
@@ -16,9 +16,9 @@ import { useBaseStore } from '../stores/base.js'
 // console.log(env)
 
 // fetch 資料
-const BaseStore = useBaseStore()
+// const BaseStore = useBaseStore()
 // 引入 store action
-const { BASE_DATA_INIT } = BaseStore
+// const { BASE_DATA_INIT } = BaseStore
 // 引入 store state / getter
 // const { BASEDATA, WSURL, NOREADMSG } = storeToRefs(BaseStore)
 
@@ -34,9 +34,8 @@ const localeUserSetting = useCookie('lan')
 // const router = useRouter()
 
 onMounted(() => {
-  BASE_DATA_INIT()
+  // BASE_DATA_INIT()
   let lan = ''
-
   if (localeUserSetting.value) {
     lan = localeUserSetting.value
   } else {

@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { computed, ref } from 'vue'
 import { useUserStore } from '@/stores/user.js'
 // import i18n from '@/utils/i18n'
-import { getAvailableLocales } from '@/utils/lang'
+import { availableLocales } from '@/utils/lang'
 import { HeaderInfo } from '@/types/interface/base.interface'
 // import { getHeadAndFooterApi } from '@/api/base'
 
@@ -68,7 +68,7 @@ const headTabs: HeaderInfo[] = reactive([
   }
 ])
 // 獲取語言
-const availableLocales = await getAvailableLocales()
+// const availableLocales = await getAvailableLocales()
 const assetsUrls = reactive([
   {
     text: t('幣幣帳戶'),

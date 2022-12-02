@@ -9,32 +9,32 @@ export interface ILocales {
   };
 }
 
-// export const availableLocales: ILocales = {
-//   en: {
-//     name: 'English',
-//     iso: 'en_US'
-//   },
-//   'zh-CN': {
-//     name: '简体中文',
-//     iso: 'zh_CN'
-//   },
-//   'zh-TW': {
-//     name: '繁體中文',
-//     iso: 'el_GR'
-//   },
-//   vi: {
-//     name: 'Tiếng Việt',
-//     iso: 'vi_VN'
-//   },
-//   ja: {
-//     name: '日本語',
-//     iso: 'ja_JP'
-//   },
-//   ko: {
-//     name: '한국어',
-//     iso: 'ko_KR'
-//   }
-// }
+export const availableLocales: ILocales = {
+  en: {
+    name: 'English',
+    iso: 'en_US'
+  },
+  'zh-CN': {
+    name: '简体中文',
+    iso: 'zh_CN'
+  },
+  'zh-TW': {
+    name: '繁體中文',
+    iso: 'el_GR'
+  }
+  // vi: {
+  //   name: 'Tiếng Việt',
+  //   iso: 'vi_VN'
+  // },
+  // ja: {
+  //   name: '日本語',
+  //   iso: 'ja_JP'
+  // },
+  // ko: {
+  //   name: '한국어',
+  //   iso: 'ko_KR'
+  // }
+}
 
 export async function getAvailableLocales () {
   // 獲取後台語言
@@ -104,8 +104,8 @@ export function LanguageManager () {
   })
 
   // init locale
-  const init = async () => {
-    localeSetting.value = await getUserLocale()
+  const init = () => {
+    localeSetting.value = getUserLocale()
   }
   locale.value = localeSetting.value
 
