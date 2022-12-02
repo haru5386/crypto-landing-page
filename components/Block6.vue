@@ -311,7 +311,7 @@ onMounted(() => {
         font-size: 20px;
         line-height: 1.6;
         color: #fff;
-        word-break: break-all;
+        word-break: break-word;
         @include pad {
           font-size: 16px;
         }

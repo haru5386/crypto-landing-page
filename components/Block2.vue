@@ -226,7 +226,7 @@ onMounted(() => {
     }
     @include mobile {
       width: 150%;
-      margin-top: -20vh;
+      margin-top: -6vh;
     }
   }
 }
