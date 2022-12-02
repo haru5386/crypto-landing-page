@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // images
 import davidImg from '../assets/images/prfiles/david.webp'
 
-import dilysImg from '../assets/images/prfiles/dilys.webp'
+import dilysImg from '../assets/images/prfiles/dilys2.webp'
 
 import leongImg from '../assets/images/prfiles/leong.webp'
 
