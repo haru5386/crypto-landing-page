@@ -186,10 +186,12 @@ onMounted(() => {
     align-items: center;
     position: absolute;
     @include pad {
-      left: -100px;
-      bottom: 0px;
+      left: auto;
+      right: 150px;
+      bottom: 160px;
     }
     @include mobile {
+      right: auto;
       left: -420px;
       bottom: 100px;
     }

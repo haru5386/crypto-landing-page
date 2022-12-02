@@ -650,7 +650,6 @@ onMounted(() => {
               color: #fff;
               width: 100%;
               margin-top: 24px;
-              opacity: 0.7;
               @include pad {
                 margin-top: 12px;
               }
@@ -665,6 +664,7 @@ onMounted(() => {
                 display: flex;
                 padding: 15px 15px 15px 15px;
                 background-color: rgba(37, 37, 37, 0.6);
+                opacity: 0.7;
                 &:nth-child(2n) {
                   background-color: rgba(0, 0, 0, 0.6);
                 }
@@ -756,7 +756,6 @@ onMounted(() => {
         color: #fff;
         width: 100%;
         margin-top: 24px;
-        opacity: 0.7;
         @include pad {
           margin-top: 12px;
         }
@@ -768,6 +767,7 @@ onMounted(() => {
           line-height: 3.2;
         }
         .table-col {
+          opacity: 0.7;
           display: flex;
           background-color: rgba(37, 37, 37, 0.6);
           padding: 15px 15px 15px 15px;
