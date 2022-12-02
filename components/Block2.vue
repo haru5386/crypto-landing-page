@@ -248,9 +248,11 @@ onMounted(() => {
   margin-top: 200px;
   @include pad {
     padding: 0 32px;
+    margin-top: 0px;
   }
 
   @include mobile {
+    margin-top: 0px;
     padding: 0 22px;
   }
 

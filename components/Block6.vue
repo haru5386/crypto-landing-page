@@ -272,6 +272,10 @@ onMounted(() => {
         @include pad {
           margin-top: 15px;
         }
+        @include mobile {
+          font-weight: bold;
+          font-size: 20px;
+        }
       }
     }
     .block6-right {
