@@ -92,7 +92,7 @@ export function LanguageManager () {
   //     return 'en_US'
   //   }
   // }
-  const getUserLocale = (): string => localeUserSetting.value || ''
+  const getUserLocale = (): string => localeUserSetting.value || 'en_US'
 
   // state
   const localeSetting = useState<any>('locale.setting', () => getUserLocale())
