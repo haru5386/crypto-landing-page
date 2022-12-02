@@ -42,7 +42,7 @@ export default defineNuxtConfig({
         content: 'ACE Global'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: 'https://ace-global-exchange.oss-me-east-1.aliyuncs.com/upload/20220411093408013.png' }]
   },
 
   // css

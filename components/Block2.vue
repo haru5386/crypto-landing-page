@@ -194,6 +194,7 @@ onMounted(() => {
       muted
       loop
       playsinline
+      poster="../assets/images/block-video-poster.png"
     >
       <source
         src="../assets/video/digitalmap.mp4"

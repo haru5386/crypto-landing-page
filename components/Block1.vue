@@ -107,6 +107,7 @@ onMounted(() => {
         muted
         loop
         playsinline
+        poster="../assets/images/earth-video-poster.png"
         class="video-earth-video"
       >
         <source
