@@ -7,14 +7,16 @@
       <div class="title">
         {{ $t('block7-title') }}
       </div>
-      <div class="bg-roadMap ">
+      <div class="bg-roadMap">
         <img
+          loading="lazy"
           src="../assets/images/roadMap@2x.webp"
           alt="roadMap"
         >
         <div class="roadMap-line" />
         <div class="location location-2021">
           <img
+            loading="lazy"
             src="../assets/images/location@2x.webp"
             alt="location"
           >
@@ -42,6 +44,7 @@
         </div>
         <div class="location location-2022">
           <img
+            loading="lazy"
             src="../assets/images/location@2x.webp"
             alt="location"
           >
@@ -69,6 +72,7 @@
         </div>
         <div class="location location-2023">
           <img
+            loading="lazy"
             src="../assets/images/location@2x.webp"
             alt="location"
           >
@@ -96,6 +100,7 @@
         </div>
         <div class="location location-2024">
           <img
+            loading="lazy"
             src="../assets/images/location@2x.webp"
             alt="location"
           >
@@ -130,44 +135,52 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const { t } = useLang()
-const roadMapData1 = [{
-  title: 'Q3',
-  content: t('block7-2021-1')
-}]
-const roadMapData2 = [{
-  title: 'Q1',
-  content: t('block7-2022-1')
-},
-{
-  title: 'Q3',
-  content: t('block7-2022-2')
-},
-{
-  title: 'Q4',
-  content: t('block7-2022-3')
-}]
+const roadMapData1 = [
+  {
+    title: 'Q3',
+    content: t('block7-2021-1')
+  }
+]
+const roadMapData2 = [
+  {
+    title: 'Q1',
+    content: t('block7-2022-1')
+  },
+  {
+    title: 'Q3',
+    content: t('block7-2022-2')
+  },
+  {
+    title: 'Q4',
+    content: t('block7-2022-3')
+  }
+]
 
-const roadMapData3 = [{
-  title: 'Q1',
-  content: t('block7-2023-1')
-},
-{
-  title: 'Q2',
-  content: t('block7-2023-2')
-},
-{
-  title: 'Q3',
-  content: t('block7-2023-3')
-},
-{
-  title: 'Q4',
-  content: t('block7-2023-3')
-}]
+const roadMapData3 = [
+  {
+    title: 'Q1',
+    content: t('block7-2023-1')
+  },
+  {
+    title: 'Q2',
+    content: t('block7-2023-2')
+  },
+  {
+    title: 'Q3',
+    content: t('block7-2023-3')
+  },
+  {
+    title: 'Q4',
+    content: t('block7-2023-3')
+  }
+]
 
-const roadMapData4 = [{
-  title: 'Q2',
-  content: t('block7-2024-1')
-}]
+const roadMapData4 = [
+  {
+    title: 'Q2',
+    content: t('block7-2024-1')
+  }
+]
 
 // 引入 ScrollTrigger
 const triggers = ScrollTrigger.getAll()
@@ -176,12 +189,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 function gsapSet () {
   ScrollTrigger.matchMedia({
-    '(min-width: 1200px)': () => {
-    },
-    '(min-width: 768px)': () => {
-    },
-    '(max-width: 768px)': () => {
-    },
+    '(min-width: 1200px)': () => {},
+    '(min-width: 768px)': () => {},
+    '(max-width: 768px)': () => {},
     all: () => {
       roadMapIn()
     }
@@ -189,134 +199,143 @@ function gsapSet () {
 }
 // roadMap 進入動畫
 function roadMapIn () {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: '.location-2021',
-      markers: false,
-      start: 'top 100%',
-      end: 'top 50%'
-    }
-  }).fromTo(
-    '.bg-roadMap',
-    {
-      ease: 'circ.out',
-      y: 250
-
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0
-    }
-  ).fromTo(
-    '.location-2021',
-    {
-      ease: 'circ.out',
-      y: -250,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    }
-  ).fromTo(
-    '.content-2021',
-    {
-      ease: 'circ.out',
-      y: 550,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    },
-    '<'
-  ).fromTo(
-    '.location-2022',
-    {
-      ease: 'circ.out',
-      y: -250,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    }
-  ).fromTo(
-    '.content-2022',
-    {
-      ease: 'circ.out',
-      y: 550,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    },
-    '<'
-  ).fromTo(
-    '.location-2023',
-    {
-      ease: 'circ.out',
-      y: -250,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    }
-  ).fromTo(
-    '.content-2023',
-    {
-      ease: 'circ.out',
-      y: 550,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    },
-    '<'
-  ).fromTo(
-    '.location-2024',
-    {
-      ease: 'circ.out',
-      y: -250,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    }
-  ).fromTo(
-    '.content-2024',
-    {
-      ease: 'circ.out',
-      y: 550,
-      opacity: 0
-    },
-    {
-      duration: 0.8,
-      ease: 'circ.out',
-      y: 0,
-      opacity: 1
-    },
-    '<'
-  )
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '.location-2021',
+        markers: false,
+        start: 'top 100%',
+        end: 'top 50%'
+      }
+    })
+    .fromTo(
+      '.bg-roadMap',
+      {
+        ease: 'circ.out',
+        y: 250
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0
+      }
+    )
+    .fromTo(
+      '.location-2021',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2021',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
+    .fromTo(
+      '.location-2022',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2022',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
+    .fromTo(
+      '.location-2023',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2023',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
+    .fromTo(
+      '.location-2024',
+      {
+        ease: 'circ.out',
+        y: -250,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      }
+    )
+    .fromTo(
+      '.content-2024',
+      {
+        ease: 'circ.out',
+        y: 550,
+        opacity: 0
+      },
+      {
+        duration: 0.8,
+        ease: 'circ.out',
+        y: 0,
+        opacity: 1
+      },
+      '<'
+    )
 }
 
 onUnmounted(() => {
@@ -360,7 +379,7 @@ onMounted(() => {
     }
     .title {
       position: absolute;
-      right:  236px;
+      right: 236px;
       font-size: 52px;
       font-weight: bold;
       @include pad {
@@ -397,7 +416,7 @@ onMounted(() => {
         position: absolute;
         height: 100%;
         width: 2px;
-        border-left: 1px dashed $color_identity_Primary;;
+        border-left: 1px dashed $color_identity_Primary;
         left: 15px;
         display: none;
         @include mobile {
@@ -427,12 +446,11 @@ onMounted(() => {
         font-weight: 600;
         margin-left: 8px;
         @include pad {
-        font-size: 30px;
+          font-size: 30px;
         }
         @include mobile {
           font-size: 40px;
           margin-left: 15px;
-
         }
       }
       img {
@@ -450,12 +468,12 @@ onMounted(() => {
       top: 18%;
       left: 15%;
       @include pad {
-        top:20%;
+        top: 20%;
         left: 15%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
     .location-2022 {
@@ -466,8 +484,8 @@ onMounted(() => {
         left: 28%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
     .location-2023 {
@@ -478,8 +496,8 @@ onMounted(() => {
         left: 47%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
     .location-2024 {
@@ -490,20 +508,20 @@ onMounted(() => {
         left: 71.5%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
-    .year-content{
+    .year-content {
       position: absolute;
       width: 15%;
       white-space: pre-line;
       opacity: 0;
       @include mobile {
-          position: relative;
-          width: 100%;
-          opacity: 1;
-        }
+        position: relative;
+        width: 100%;
+        opacity: 1;
+      }
       .content-list {
         margin-top: 16px;
         @include pad {
@@ -568,8 +586,8 @@ onMounted(() => {
         left: 16%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
     .content-2022 {
@@ -580,8 +598,8 @@ onMounted(() => {
         left: 29%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
     .content-2023 {
@@ -593,8 +611,8 @@ onMounted(() => {
         left: 48%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
         width: 100%;
       }
     }
@@ -606,11 +624,10 @@ onMounted(() => {
         left: 72.7%;
       }
       @include mobile {
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
       }
     }
   }
 }
-
 </style>

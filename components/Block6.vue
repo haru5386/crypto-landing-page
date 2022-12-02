@@ -115,11 +115,13 @@ onMounted(() => {
   >
     <div class="block6-bg">
       <img
+        loading="lazy"
         class="block6-bg-eth"
         src="../assets/images/block6-img.svg"
         alt="背景"
       >
       <img
+        loading="lazy"
         class="block6-bg-bg"
         src="../assets/images/block6-bg.webp"
         alt="背景"

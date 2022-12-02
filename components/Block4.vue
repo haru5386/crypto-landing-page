@@ -499,6 +499,7 @@ onMounted(() => {
     </div>
     <div class="block4-bg-rotate">
       <img
+        loading="lazy"
         class="block4-bg rotate-ani"
         src="../assets/images/block4-img.webp"
       >

@@ -145,8 +145,7 @@ function block5Scroll () {
     onLeave: function () {},
 
     // 向上滾動超過end點時觸發（回滾時觸發）callback
-    onEnterBack: function () {
-    }
+    onEnterBack: function () {}
   })
 }
 
@@ -166,20 +165,35 @@ function block5Out () {
       duration: 1,
       ease: 'easeIn',
       y: -180
-    }).to('.shield', {
-      duration: 1,
-      ease: 'easeIn',
-      y: -170
-    }, '<').to('.left-word', {
-      duration: 1,
-      ease: 'easeIn',
-      y: -200
-    }, '<').to('.block5-bg', {
-      duration: 1,
-      opacity: 0,
-      ease: 'easeIn',
-      y: 1200
-    }, '<')
+    })
+    .to(
+      '.shield',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -170
+      },
+      '<'
+    )
+    .to(
+      '.left-word',
+      {
+        duration: 1,
+        ease: 'easeIn',
+        y: -200
+      },
+      '<'
+    )
+    .to(
+      '.block5-bg',
+      {
+        duration: 1,
+        opacity: 0,
+        ease: 'easeIn',
+        y: 1200
+      },
+      '<'
+    )
 }
 
 // block5-mobile 離開動畫
@@ -218,6 +232,7 @@ onMounted(() => {
   <div class="rightPC">
     <div class="shield">
       <img
+        loading="lazy"
         src="../assets/images/block3-shield@2x.webp"
         alt="shield"
       >
@@ -226,6 +241,7 @@ onMounted(() => {
   <div class="block5-bg-mask">
     <div class="block5-bg">
       <img
+        loading="lazy"
         src="../assets/images/block3-bg@2x.webp"
         alt="背景"
       >
@@ -250,12 +266,14 @@ onMounted(() => {
             <div class="top">
               <div class="badge-img1">
                 <img
+                  loading="lazy"
                   src="../assets/images/badge1@2x.webp"
                   alt="badge1"
                 >
               </div>
               <div class="badge-img2">
                 <img
+                  loading="lazy"
                   src="../assets/images/badge2@2x.webp"
                   alt="badge1"
                 >
@@ -264,12 +282,14 @@ onMounted(() => {
             <div class="bottom">
               <div class="badge-img3">
                 <img
+                  loading="lazy"
                   src="../assets/images/badge3@2x.webp"
                   alt="badge1"
                 >
               </div>
               <div class="badge-img4">
                 <img
+                  loading="lazy"
                   src="../assets/images/badge4@2x.webp"
                   alt="badge1"
                 >
@@ -281,6 +301,7 @@ onMounted(() => {
       <div class="right">
         <div class="shield">
           <img
+            loading="lazy"
             src="../assets/images/block3-shield@2x.webp"
             alt="shield"
           >
@@ -301,7 +322,7 @@ onMounted(() => {
   left: 50%;
   transform: translate(-50%);
   @include mobile {
-    display: none
+    display: none;
   }
   .shield {
     position: absolute;
@@ -324,43 +345,43 @@ onMounted(() => {
   }
 }
 .block5-bg-mask {
+  position: absolute;
+  width: 100vw;
+  height: 180vh;
+  overflow: hidden;
+  @include pad {
+    height: 100vh;
+    min-height: 1400px;
+    margin-top: 64px;
+  }
+  @include mobile {
+    height: 120vh;
+  }
+  .block5-bg {
     position: absolute;
-    width: 100vw;
-    height: 180vh;
-    overflow: hidden;
+    width: 90%;
+    top: 0%;
+    right: -5%;
+    @include md_pc {
+      width: 100%;
+      left: 10%;
+      top: 10%;
+    }
     @include pad {
-      height: 100vh;
-      min-height: 1400px;
-      margin-top: 64px;
+      top: 20%;
+      left: -5%;
+      width: 140%;
     }
     @include mobile {
-      height: 120vh;
+      top: 15%;
+      left: -30%;
+      width: 240%;
     }
-    .block5-bg {
-      position: absolute;
-      width: 90%;
-      top: 0%;
-      right: -5%;
-      @include md_pc {
-        width: 100%;
-        left: 10%;
-        top: 10%;
-      }
-      @include pad {
-        top: 20%;
-        left: -5%;
-        width: 140%;
-      }
-      @include mobile {
-        top: 15%;
-        left: -30%;
-        width: 240%;
-      }
-      img{
-        width: 140%;
-      }
+    img {
+      width: 140%;
     }
   }
+}
 #block5 {
   color: $color_gray_White;
   position: relative;
@@ -379,13 +400,12 @@ onMounted(() => {
     @include mobile {
       display: block;
       padding: 0 22px;
-
     }
     .left {
-      width:50%;
+      width: 50%;
       @include pad {
-        width:60%;
-        }
+        width: 60%;
+      }
       @include mobile {
         width: 100%;
       }
@@ -397,12 +417,12 @@ onMounted(() => {
           margin: 0;
         }
         @include mobile {
-        position: relative;
-        width: 100%;
-      }
+          position: relative;
+          width: 100%;
+        }
       }
       .title {
-        text-transform:uppercase;
+        text-transform: uppercase;
         font-size: 52px;
         font-weight: 700;
         line-height: 1.08;
@@ -431,7 +451,8 @@ onMounted(() => {
         flex-direction: column;
         margin-top: 58px;
         opacity: 0;
-        .top, .bottom{
+        .top,
+        .bottom {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -445,24 +466,24 @@ onMounted(() => {
         @include mobile {
           margin-top: 27px;
           opacity: 1;
-
         }
-        img{
+        img {
           width: 100%;
         }
-        .badge-img1,.badge-img3 {
+        .badge-img1,
+        .badge-img3 {
           width: 100px;
           height: 100px;
           margin-right: 30px;
           @include pad {
-
           }
           @include mobile {
             width: 78px;
             height: 78px;
           }
         }
-        .badge-img2,.badge-img4 {
+        .badge-img2,
+        .badge-img4 {
           width: 205px;
           @include mobile {
             width: 160px;
@@ -471,7 +492,7 @@ onMounted(() => {
       }
     }
     .right {
-      flex:5;
+      flex: 5;
       position: relative;
       display: none;
       @include mobile {
@@ -506,5 +527,4 @@ onMounted(() => {
     }
   }
 }
-
 </style>

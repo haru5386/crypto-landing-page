@@ -167,9 +167,15 @@ onMounted(() => {
   >
     <div class="block8-bg">
       <div class="block8-bg-1">
-        <img src="../assets/images/block8-bg1.webp">
+        <img
+          loading="lazy"
+          src="../assets/images/block8-bg1.webp"
+        >
       </div>
-      <img src="../assets/images/block8-bg2.webp">
+      <img
+        loading="lazy"
+        src="../assets/images/block8-bg2.webp"
+      >
     </div>
     <div class="container">
       <div class="top">
@@ -192,6 +198,7 @@ onMounted(() => {
           class="profile-item"
         >
           <img
+            loading="lazy"
             class="avatar"
             width="100%"
             :src="item.img"
