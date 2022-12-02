@@ -153,11 +153,11 @@ onMounted(() => {
   z-index: 0;
   min-height: 1000px;
   @include pad {
-    min-height: 1200px;
+    min-height: 1000px;
     height: 100vh;
   }
   @include mobile {
-    min-height: 900px;
+    min-height: 800px;
     height: 100vh;
   }
   .video-earth {
@@ -182,6 +182,7 @@ onMounted(() => {
       bottom: 0;
     }
     @include mobile {
+      height: auto;
       width: 546px;
       max-width: 546px;
       top: 140px;
@@ -263,7 +264,7 @@ onMounted(() => {
       width: 378px;
     }
     @include mobile {
-      font-size: 10px;
+      font-size: 15px;
       width: 311px;
     }
 
@@ -283,7 +284,8 @@ onMounted(() => {
         width: 232px;
       }
       @include mobile {
-        font-size: 10px;
+        padding:0 15px 0 15px;
+        font-size: 15px;
         width: 197px;
       }
     }
