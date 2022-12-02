@@ -14,69 +14,69 @@ function gsapSet () {
     '(min-width: 768px)': () => {},
     '(max-width: 768px)': () => {},
     all: () => {
-      block1Scroll()
+      // block1Scroll()
     }
   })
 }
 // Earth 進入動畫
-function animatedEarthIn () {
-  gsap
-    .timeline()
-    .fromTo(
-      '.animation-group',
-      {
-        duration: 1,
-        ease: 'circ.out',
-        y: -100,
-        opacity: 0
-      },
-      {
-        duration: 1,
-        ease: 'circ.out',
-        y: 0,
-        opacity: 1
-      }
-    )
-    .fromTo(
-      '.video-earth',
-      {
-        duration: 1,
-        ease: 'circ.out',
-        y: 100,
-        opacity: 0,
-        delay: 0.2
-      },
-      {
-        duration: 1,
-        ease: 'circ.out',
-        y: 0,
-        opacity: 1,
-        delay: 0.2
-      },
-      '<'
-    )
-}
+// function animatedEarthIn () {
+//   gsap
+//     .timeline()
+//     .fromTo(
+//       '.animation-group',
+//       {
+//         duration: 1,
+//         ease: 'circ.out',
+//         y: -100,
+//         opacity: 0
+//       },
+//       {
+//         duration: 1,
+//         ease: 'circ.out',
+//         y: 0,
+//         opacity: 1
+//       }
+//     )
+//     .fromTo(
+//       '.video-earth',
+//       {
+//         duration: 1,
+//         ease: 'circ.out',
+//         y: 100,
+//         opacity: 0,
+//         delay: 0.2
+//       },
+//       {
+//         duration: 1,
+//         ease: 'circ.out',
+//         y: 0,
+//         opacity: 1,
+//         delay: 0.2
+//       },
+//       '<'
+//     )
+// }
 // scroll block1 觸發
-function block1Scroll () {
-  ScrollTrigger.create({
-    // 以box2作為觸發時機
-    trigger: '#block1',
-    markers: false,
+// function block1Scroll () {
+//   ScrollTrigger.create({
+//     // 以box2作為觸發時機
+//     trigger: '#block1',
+//     markers: false,
 
-    // 向下滾動進入start點時觸發callback
-    onEnter: function () {
-      animatedEarthIn()
-    },
+//     // 向下滾動進入start點時觸發callback
+//     onEnter: function () {
+//       animatedEarthIn()
+//     },
 
-    // 向下滾動超過end點時觸發callback
-    onLeave: function () {},
+//     // 向下滾動超過end點時觸發callback
+//     onLeave: function () {},
 
-    // 向上滾動超過end點時觸發（回滾時觸發）callback
-    onEnterBack: function () {
-      animatedEarthIn()
-    }
-  })
-}
+//     // 向上滾動超過end點時觸發（回滾時觸發）callback
+//     onEnterBack: function () {
+//       animatedEarthIn()
+//     }
+//   })
+// }
 
 const signUp = () => {
   window.location.href = `${env.BASE_URL}/register?email=${email.value}`
@@ -170,7 +170,7 @@ onMounted(() => {
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
-    opacity: 0;
+    // opacity: 0;
     top: -300px;
     @include md_pc {
       top: -350px;
@@ -207,7 +207,7 @@ onMounted(() => {
     }
   }
   .animation-group {
-    opacity: 0;
+    // opacity: 0;
   }
   .des1 {
     margin-top: 150px;
