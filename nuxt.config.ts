@@ -42,7 +42,8 @@ export default defineNuxtConfig({
         content: 'ACE Global'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: 'https://ace-global-exchange.oss-me-east-1.aliyuncs.com/upload/20220411093408013.png' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: 'https://ace-global-exchange.oss-me-east-1.aliyuncs.com/upload/20220411093408013.png' }],
+    script: [{ src: 'https://static.zdassets.com/ekr/snippet.js?key=fbcad929-ca1a-42e3-a94b-aca829321b43', id: 'ze-snippet' }]
   },
 
   // css
