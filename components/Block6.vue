@@ -182,7 +182,7 @@ onMounted(() => {
   }
   .block6-bg {
     z-index: 1;
-    bottom: 0;
+    top: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -190,12 +190,11 @@ onMounted(() => {
     @include pad {
       left: auto;
       right: 50px;
-      bottom: 120px;
     }
     @include mobile {
       right: auto;
       left: -420px;
-      bottom: 100px;
+      top: 500px;
     }
     .block6-bg-bg {
       width: 900px;
