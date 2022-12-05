@@ -214,7 +214,7 @@ const dataList = reactive([
       {
         id: '4-1',
         title: t('Ace Global isn’t available in countries below'),
-        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7018535884057-Disclaimer`
+        externalLink: `https://aceglobal.zendesk.com/hc/${urlLang.value}/articles/7023884183961-Unavailable-Country`
       },
       {
         id: '4-2',
