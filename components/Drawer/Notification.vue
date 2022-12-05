@@ -26,6 +26,7 @@
             width="18px"
             height="21px"
             src="@/assets/images/icons/bell.svg"
+            alt="notice"
           >
           {{ $t('消息中心') }}
         </div>

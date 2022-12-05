@@ -14,7 +14,8 @@ const localeSetting = useState<string>('locale.setting')
 
 // stores
 const UserStore = useUserStore()
-const { ISLOGIN, USERDATA, NOREADMSG, ISLOADING_USERDATA } = storeToRefs(UserStore)
+const { ISLOGIN, USERDATA, NOREADMSG, ISLOADING_USERDATA } =
+  storeToRefs(UserStore)
 
 // data
 const isLogin = computed(() => {
@@ -120,6 +121,7 @@ const changeLang = (lang: string) => {
     <div class="nav_left">
       <!-- LOGO -->
       <img
+        alt="Ace Global Logo"
         src="@/assets/images/logo.png"
         @click="$router.push({ path: '/' })"
       >
@@ -170,6 +172,7 @@ const changeLang = (lang: string) => {
             <div class="drop-down-title">
               {{ $t('資產') }}
               <img
+                alt="menu"
                 style="margin-left: 5px"
                 src="@/assets/images/icons/menu-down.svg"
               >
@@ -220,10 +223,12 @@ const changeLang = (lang: string) => {
             >
               <img
                 class="no-active"
+                alt="account"
                 src="@/assets/images/icons/account.svg"
               >
               <img
                 class="active"
+                alt="account"
                 src="@/assets/images/icons/account-active.svg"
               >
             </div>
@@ -246,6 +251,7 @@ const changeLang = (lang: string) => {
                 <div class="item-text">
                   <img
                     class="item-icon"
+                    alt="logout"
                     src="@/assets/images/icons/signout.svg"
                   >
                   {{ t('退出') }}
@@ -262,10 +268,12 @@ const changeLang = (lang: string) => {
             <div class="drop-down-title">
               <img
                 class="no-active"
+                alt="bell"
                 src="@/assets/images/icons/bell.svg"
               >
               <img
                 class="active"
+                alt="bell"
                 src="@/assets/images/icons/bell-active.svg"
               >
               <div
@@ -310,6 +318,7 @@ const changeLang = (lang: string) => {
             {{ $t('語言') }}
             <img
               style="margin-left: 5px"
+              alt="drop-down"
               src="@/assets/images/icons/menu-down.svg"
             >
           </div>
@@ -340,7 +349,10 @@ const changeLang = (lang: string) => {
             @click="isOpenDrawerNotification = !isOpenDrawerNotification"
           >
             <div class="drop-down-title">
-              <img src="@/assets/images/icons/bell.svg">
+              <img
+                src="@/assets/images/icons/bell.svg"
+                alt="bell"
+              >
               <div
                 v-if="
                   NOREADMSG?.noReadMsgCount && NOREADMSG?.noReadMsgCount > 0
@@ -374,6 +386,7 @@ const changeLang = (lang: string) => {
         >
           <img
             class="menu"
+            alt="menu"
             src="@/assets/images/icons/menu.svg"
           >
         </div>

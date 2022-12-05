@@ -170,11 +170,13 @@ onMounted(() => {
         <img
           loading="lazy"
           src="../assets/images/block8-bg1.webp"
+          alt="background-1"
         >
       </div>
       <img
         loading="lazy"
         src="../assets/images/block8-bg2.webp"
+        alt="background-2"
       >
     </div>
     <div class="container">
@@ -202,7 +204,7 @@ onMounted(() => {
             class="avatar"
             width="100%"
             :src="item.img"
-            alt="david"
+            :alt="item.name"
           >
           <h3 class="name">
             {{ item.name }}

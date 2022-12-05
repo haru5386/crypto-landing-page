@@ -62,12 +62,12 @@
                   <img
                     class="icon no-active"
                     src="../../assets/images/icons/balance.svg"
-                    alt="language"
+                    alt="assets"
                   >
                   <img
                     class="icon active"
                     src="../../assets/images/icons/balance-active.svg"
-                    alt="language"
+                    alt="assets"
                   >
                   {{ $t('資產') }}
                 </div>
@@ -154,7 +154,7 @@
             <img
               class="icon"
               src="@/assets/images/icons/signout.svg"
-              alt="language"
+              alt="logout"
             >
             {{ t('退出') }}
           </div>

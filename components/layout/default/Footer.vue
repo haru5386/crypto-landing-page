@@ -3,7 +3,10 @@
     <!-- desktop -->
     <div class="footer-container">
       <div class="titles">
-        <img src="@/assets/images/ACE-Global_logo.png">
+        <img
+          src="@/assets/images/ACE-Global_logo.png"
+          alt="Ace Global Logo"
+        >
       </div>
       <div class="items">
         <ul
@@ -32,17 +35,20 @@
             <a
               v-for="item2 in links"
               :key="item2.id"
+              :alt="item2.title"
               :href="item2.url"
               target="_blank"
             >
               <img
                 class="social-icon normal"
+                :alt="item2.title"
                 :src="item2.logo"
                 width="22.92px"
                 height="18.6px"
               >
               <img
                 class="social-icon active"
+                :alt="item2.title"
                 :src="item2.hoverLogo"
                 width="22.92px"
                 height="18.6px"
@@ -58,7 +64,10 @@
     <!-- mobile -->
     <div class="footer-container-mobile">
       <div class="titles">
-        <img src="@/assets/images/ACE-Global_logo.png">
+        <img
+          alt="Ace Global Logo"
+          src="@/assets/images/ACE-Global_logo.png"
+        >
       </div>
       <el-collapse class="collapse">
         <el-collapse-item
@@ -97,6 +106,7 @@
             <img
               class="social-icon"
               :src="item.logo"
+              :alt="item.title"
               width="22.92px"
               height="18.6px"
             >
