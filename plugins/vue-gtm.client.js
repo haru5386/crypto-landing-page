@@ -2,7 +2,6 @@ import { createGtm } from '@gtm-support/vue-gtm'
 
 export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig().public
-  console.log('runtimeConfig.public', runtimeConfig)
 
   nuxtApp.vueApp.use(createGtm({
     id: runtimeConfig.GTM_CONTAINERID,
