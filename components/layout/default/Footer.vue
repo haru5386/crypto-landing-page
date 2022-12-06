@@ -319,7 +319,6 @@ ul {
           }
           a:hover {
             .social-icon {
-              height: 30px;
               margin: 16px 20px 10px 0;
               cursor: pointer;
             }
@@ -330,8 +329,9 @@ ul {
               display: block;
             }
           }
-          .social-icon {
-            height: 30px;
+          a > .social-icon {
+            width: 22.92px;
+            height: 19px;
             margin: 16px 20px 10px 0;
             cursor: pointer;
           }
@@ -367,6 +367,8 @@ ul {
         display: flex;
         height: 50px;
         img {
+          width: 22.92px;
+          height: 19px;
           margin: 20px 10px 10px 10px;
         }
       }
