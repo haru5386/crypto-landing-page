@@ -23,7 +23,10 @@ const UserStore = useUserStore()
 // 引入 store action
 // const { BASE_DATA_INIT } = BaseStore
 const { USER_DATA_INIT } = UserStore
-interface LanList { name: string; iso: string; }
+interface LanList {
+  name: string
+  iso: string
+}
 
 // 語系設定
 const localeUserSetting = useCookie('lan')
@@ -34,17 +37,19 @@ const localeSetting = useState<string>('locale.setting')
 const routerLang = router.currentRoute.value.path.slice(1, 6)
 const lanList = Object.values(availableLocales)
 // 比對是否為可使用語言，不行的話都倒到en_US
-const lanListFilter : number = lanList.findIndex((i : LanList) => {
+const lanListFilter: number = lanList.findIndex((i: LanList) => {
   return i.iso === routerLang
 })
-if (lanListFilter < 0) { router.push('/en_US') }
+if (lanListFilter < 0) {
+  router.push('/en_US')
+}
 
 localeSetting.value = routerLang // 獲取 router 語言
 localeUserSetting.value = routerLang
 
-watch(localeSetting, (val) => {
-  window.location.href = `/${val}`
-})
+// watch(localeSetting, (val) => {
+//   window.location.href = `/${val}`
+// })
 
 onMounted(() => {
   // 取得使用者資訊

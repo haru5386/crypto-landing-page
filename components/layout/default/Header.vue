@@ -108,7 +108,7 @@ const toggleOpenDrawerNotification = (value: boolean) => {
 
 // 更新語言
 const changeLang = (lang: string) => {
-  localeSetting.value = lang
+  window.location.href = `/${lang}`
 }
 
 // 取得 header 呈現資訊
