@@ -335,12 +335,15 @@ onMounted(() => {
       width: 100%;
       height: 100%;
     }
+    @include md_pc {
+      top: 120px;
+      right: 0%;
+    }
     @include pad {
       top: 300px;
       width: 298px;
       height: 392px;
       margin: 0 22px 0 0;
-      right: 0%;
     }
   }
 }

@@ -267,6 +267,9 @@ onMounted(() => {
   .container {
     max-width: 900px;
     padding-top: 129px;
+    @include md_pc {
+      max-width: 790px;
+    }
     @include mobile {
       padding-top: 36px;
     }

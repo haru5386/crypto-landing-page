@@ -212,6 +212,9 @@ onMounted(() => {
   height: 20vh;
   z-index: 0;
   max-width: 1380px;
+  @include md_pc {
+      max-width: 1228px;
+    }
   @include pad {
     height: 10vh;
   }
@@ -221,6 +224,9 @@ onMounted(() => {
     transform: translate(-50%);
     margin-top: -40%;
     z-index: -1;
+    @include md_pc {
+      margin-top: -30%;
+    }
     @include pad {
       width: 130%;
       margin-top: -40%;
@@ -237,7 +243,9 @@ onMounted(() => {
   overflow: hidden;
   min-height: 900px;
   height: 120vh;
-
+  @include md_pc {
+    min-height: 1100px;
+    }
   @include pad {
     height: 80vh;
     min-height: 700px;
@@ -262,6 +270,10 @@ onMounted(() => {
     display: flex;
     gap: 16px;
     flex-direction: row;
+    @include md_pc {
+      max-width: 790px;
+      margin: 0 auto;
+    }
     @include pad {
       gap: 26px;
     }

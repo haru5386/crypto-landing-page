@@ -127,6 +127,12 @@ onMounted(() => {
   overflow: hidden;
   display: flex;
   justify-content: center;
+  @include md_pc {
+    height: 600px;
+  }
+  @include pad {
+    height: 700px;
+  }
   @include mobile {
     height: auto;
   }
@@ -139,6 +145,9 @@ onMounted(() => {
     z-index: 10;
     max-width: 915px;
     padding: 0 66px;
+    @include md_pc {
+      padding: 0 75px;
+    }
     @include mobile {
         text-align: left;
         padding: 0 22px;
@@ -205,6 +214,7 @@ onMounted(() => {
     opacity: 0;
     @include md_pc {
       width: 120%;
+      bottom: -220px;
     }
     @include pad {
       width: 1200px;

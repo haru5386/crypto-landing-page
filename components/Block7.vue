@@ -581,6 +581,9 @@ onMounted(() => {
     .content-2021 {
       top: 26%;
       left: 16%;
+      @include md_pc {
+        top: 24.7%;
+      }
       @include pad {
         top: 29%;
         left: 16%;
@@ -593,6 +596,9 @@ onMounted(() => {
     .content-2022 {
       top: 51%;
       left: 28%;
+      @include md_pc {
+        top: 49.6%;
+      }
       @include pad {
         top: 56%;
         left: 29%;
@@ -606,6 +612,9 @@ onMounted(() => {
       top: 46%;
       left: 48%;
       width: 20%;
+      @include md_pc {
+        top: 44.6%;
+      }
       @include pad {
         top: 49%;
         left: 48%;
@@ -619,6 +628,9 @@ onMounted(() => {
     .content-2024 {
       top: 68%;
       left: 72%;
+      @include md_pc {
+        top: 66.6%;
+      }
       @include pad {
         top: 69%;
         left: 72.7%;

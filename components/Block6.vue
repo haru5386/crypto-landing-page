@@ -177,6 +177,10 @@ onMounted(() => {
   position: relative;
   display: flex;
   justify-content: center;
+  min-height: 900px;
+  @include pad {
+    min-height: 1100px;
+  }
   @include mobile {
     height: 1220px;
   }
@@ -187,6 +191,9 @@ onMounted(() => {
     flex-direction: column;
     align-items: center;
     position: absolute;
+    @include md_pc {
+      top: 350px;
+    }
     @include pad {
       left: auto;
       right: 50px;
@@ -197,8 +204,11 @@ onMounted(() => {
       top: 500px;
     }
     .block6-bg-bg {
-      width: 900px;
+      width: 976px;
       margin: 0 auto;
+      @include pad {
+        width: 900px;
+      }
     }
     .block6-bg-eth {
       z-index: 0;
