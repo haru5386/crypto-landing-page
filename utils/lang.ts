@@ -105,9 +105,10 @@ export function LanguageManager () {
 
   // init locale
   const init = () => {
-    localeSetting.value = getUserLocale()
+    // localeSetting.value = getUserLocale()
+    // console.log('useRouter', useRouter().currentRoute.value.params.lang)
   }
-  locale.value = localeSetting.value
+  locale.value = `${useRouter().currentRoute.value.params.lang}`
 
   // lifecycle
   onBeforeMount(() => init())
