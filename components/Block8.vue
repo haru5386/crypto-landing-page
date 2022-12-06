@@ -353,6 +353,7 @@ onMounted(() => {
           min-height: 400px;
         }
         .avatar {
+          width: 100%;
           border: 1px solid rgb(42, 239, 232);
         }
 
