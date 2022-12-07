@@ -122,7 +122,7 @@ const changeLang = (lang: string) => {
       <!-- LOGO -->
       <img
         alt="Ace Global Logo"
-        src="@/assets/images/logo.png"
+        src="@/assets/images/logo.svg"
         @click="$router.push({ path: '/' })"
       >
       <div class="pc">

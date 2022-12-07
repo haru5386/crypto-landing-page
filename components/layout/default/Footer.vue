@@ -4,7 +4,7 @@
     <div class="footer-container">
       <div class="titles">
         <img
-          src="@/assets/images/ACE-Global_logo.png"
+          src="@/assets/images/logo.svg"
           alt="Ace Global Logo"
         >
       </div>
@@ -66,7 +66,7 @@
       <div class="titles">
         <img
           alt="Ace Global Logo"
-          src="@/assets/images/ACE-Global_logo.png"
+          src="@/assets/images/logo.svg"
         >
       </div>
       <el-collapse class="collapse">
