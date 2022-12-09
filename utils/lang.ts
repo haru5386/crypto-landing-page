@@ -21,11 +21,11 @@ export const availableLocales: ILocales = {
   'zh-TW': {
     name: '繁體中文',
     iso: 'el_GR'
+  },
+  vi: {
+    name: 'Tiếng Việt',
+    iso: 'vi_VN'
   }
-  // vi: {
-  //   name: 'Tiếng Việt',
-  //   iso: 'vi_VN'
-  // },
   // ja: {
   //   name: '日本語',
   //   iso: 'ja_JP'
