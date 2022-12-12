@@ -14,12 +14,14 @@
 </template>
 <script setup lang="ts">
 // import { useBaseStore } from '../../stores/base.js'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import { useUserStore } from '../../stores/user.js'
 import { availableLocales } from '../../utils/lang'
 // fetch 資料
 // const BaseStore = useBaseStore()
 const UserStore = useUserStore()
-
+const exp = new Date()
+const runtimeConfig = useRuntimeConfig()
 // 引入 store action
 // const { BASE_DATA_INIT } = BaseStore
 const { USER_DATA_INIT } = UserStore
@@ -29,7 +31,8 @@ interface LanList {
 }
 
 // 語系設定
-const localeUserSetting = useCookie('lan')
+const localeUserSetting = useCookies(['lan'])
+
 // const availableLocales = await getAvailableLocales()
 
 const router = useRouter()
@@ -45,7 +48,12 @@ if (lanListFilter < 0) {
 }
 
 localeSetting.value = routerLang // 獲取 router 語言
-localeUserSetting.value = routerLang
+
+exp.setTime(exp.getTime() + 36500 * 24 * 60 * 60 * 1000)
+localeUserSetting.set('lan', routerLang, {
+  domain: runtimeConfig.public.DOMAIN_NAME,
+  expires: exp
+})
 
 // watch(localeSetting, (val) => {
 //   window.location.href = `/${val}`
@@ -56,6 +64,7 @@ onMounted(() => {
   USER_DATA_INIT()
   // BASE_DATA_INIT()
 })
+
 </script>
 <style lang="scss">
 @import '../assets/scss';

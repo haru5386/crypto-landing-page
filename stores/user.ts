@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref, Ref } from 'vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import { getUserInfoApi, getNoReadMsgApi } from '@/api/base'
 import { NoReadMsg, UserData } from '~~/types/interface/user.interface'
 export const useUserStore = defineStore('userStore', () => {
@@ -10,6 +11,7 @@ export const useUserStore = defineStore('userStore', () => {
 
   const noReadMsg :Ref<NoReadMsg | null> = ref(null) // 通知資訊
   const timer = ref(0)
+  const runtimeConfig = useRuntimeConfig()
 
   // getter
   const ISLOADING_USERDATA = computed(() => {
@@ -54,7 +56,10 @@ export const useUserStore = defineStore('userStore', () => {
     userData.value = null
     // 登入狀態
     isLogin.value = false
-    useCookie('token').value = ''
+    const cookie = useCookies(['token'])
+    cookie.remove('token', {
+      domain: runtimeConfig.public.DOMAIN_NAME
+    })
   }
 
   return {

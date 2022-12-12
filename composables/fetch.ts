@@ -1,4 +1,5 @@
 import { ElMessage } from 'element-plus'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import i18n from '../utils/i18n'
 const { t } = i18n.global
 //  types
@@ -9,8 +10,9 @@ enum AsyncApiMethod {
   delete = 'delete'
 }
 
-const token: string = process.server ? '' : useCookie('token').value
-const lang: string = process.server ? '' : useCookie('lan').value
+const cookie = useCookies()
+const token: string = process.server ? '' : cookie.get('token')
+const lang: string = process.server ? '' : cookie.get('lan')
 
 // API 基礎設定
 const fetchData = (reqUrl:string, method:AsyncApiMethod, data?:any) => {

@@ -54,7 +54,7 @@ const headTabs: HeaderInfo[] = reactive([
   // },
   // {
   //   text: t('法幣交易'),
-  //   link: `https://otc.${env.DOMAIN_NAME}`,
+  //   link: `https://otc${env.DOMAIN_NAME}`,
   //   target: ''
   // }
   // {
