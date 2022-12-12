@@ -1,5 +1,7 @@
 import { useI18n } from 'vue-i18n'
+import { useCookies } from '@vueuse/integrations/useCookies'
 import { getAsyncBaseDataApi } from '../api/base'
+
 // 語系 interface
 export interface ILocales {
   // 瀏覽器預設key
@@ -75,7 +77,10 @@ export async function getAvailableLocales () {
 export function LanguageManager () {
   // composable
   const { locale } = useI18n()
-  const localeUserSetting = useCookie('lan')
+  const localeUserSetting = useCookies(['lan'])
+  const exp = new Date()
+  const runtimeConfig = useRuntimeConfig()
+  exp.setTime(exp.getTime() + 36500 * 24 * 60 * 60 * 1000)
 
   // methods 不從 server 判斷瀏覽器語言，改從router判斷
   // const getSystemLocale = (): string => {
@@ -92,14 +97,18 @@ export function LanguageManager () {
   //     return 'en_US'
   //   }
   // }
-  const getUserLocale = (): string => localeUserSetting.value || 'en_US'
+  const getUserLocale = (): string => localeUserSetting.get('lan') || 'en_US'
 
   // state
   const localeSetting = useState<any>('locale.setting', () => getUserLocale())
 
   // watchers
   watch(localeSetting, (localeSetting) => {
-    localeUserSetting.value = localeSetting
+    localeUserSetting.set('lan', localeSetting,
+      {
+        domain: runtimeConfig.public.DOMAIN_NAME,
+        expires: exp
+      })
     locale.value = localeSetting
   })
 
