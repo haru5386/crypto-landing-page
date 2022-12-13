@@ -52,7 +52,8 @@ localeSetting.value = routerLang // 獲取 router 語言
 exp.setTime(exp.getTime() + 36500 * 24 * 60 * 60 * 1000)
 localeUserSetting.set('lan', routerLang, {
   domain: runtimeConfig.public.DOMAIN_NAME,
-  expires: exp
+  expires: exp,
+  path: '/'
 })
 
 // watch(localeSetting, (val) => {

@@ -107,7 +107,8 @@ export function LanguageManager () {
     localeUserSetting.set('lan', localeSetting,
       {
         domain: runtimeConfig.public.DOMAIN_NAME,
-        expires: exp
+        expires: exp,
+        path: '/'
       })
     locale.value = localeSetting
   })

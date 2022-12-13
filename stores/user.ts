@@ -58,7 +58,8 @@ export const useUserStore = defineStore('userStore', () => {
     isLogin.value = false
     const cookie = useCookies(['token'])
     cookie.remove('token', {
-      domain: runtimeConfig.public.DOMAIN_NAME
+      domain: runtimeConfig.public.DOMAIN_NAME,
+      path: '/'
     })
   }
 
