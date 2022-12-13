@@ -47,7 +47,7 @@ export default defineNuxtConfig({
   },
 
   // css
-  css: ['~/assets/scss/index.scss', '~/assets/font/font.css'],
+  css: ['~/assets/scss/index.scss'],
 
   // build
   build: {
