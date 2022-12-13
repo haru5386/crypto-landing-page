@@ -13,7 +13,10 @@ provide(ID_INJECTION_KEY, {
 </script>
 
 <template>
-  <Html :lang="locale">
+  <Html
+    :lang="locale"
+    version="1.0.2"
+  >
     <Body>
       <NuxtLayout>
         <NuxtPage />
