@@ -111,6 +111,24 @@ const changeLang = (lang: string) => {
   window.location.href = `/${lang}`
 }
 
+// 最後載入字體
+const addStyle = (stylePath:string) => {
+  const container = document.getElementsByTagName('head')[0]
+  const addStyle = document.createElement('link')
+  addStyle.rel = 'stylesheet'
+  addStyle.type = 'text/css'
+  addStyle.media = 'screen'
+  addStyle.href = stylePath
+  container.appendChild(addStyle)
+}
+
+// 等 USERDATA 拿到後載入字體
+watch(ISLOADING_USERDATA, (newNum) => {
+  if (!newNum) {
+    addStyle('../../../assets/font/font.css')
+  }
+})
+
 // 取得 header 呈現資訊
 // const data = await getHeadAndFooterApi({ lang: route.params.lang })
 // headTabs.push(...JSON.parse(data.data.value.data.header))
