@@ -125,7 +125,7 @@ const addStyle = (stylePath: string) => {
 // 等 USERDATA 拿到後載入字體
 watch(ISLOADING_USERDATA, (newNum) => {
   if (!newNum) {
-    addStyle('/font/font.css')
+    addStyle('/assets/font/font.css')
   }
 })
 
