@@ -112,7 +112,7 @@ const changeLang = (lang: string) => {
 }
 
 // 最後載入字體
-const addStyle = (stylePath:string) => {
+const addStyle = (stylePath: string) => {
   const container = document.getElementsByTagName('head')[0]
   const addStyle = document.createElement('link')
   addStyle.rel = 'stylesheet'
@@ -125,7 +125,7 @@ const addStyle = (stylePath:string) => {
 // 等 USERDATA 拿到後載入字體
 watch(ISLOADING_USERDATA, (newNum) => {
   if (!newNum) {
-    addStyle('../../../assets/font/font.css')
+    addStyle('/font/font.css')
   }
 })
 

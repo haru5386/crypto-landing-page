@@ -1,7 +1,7 @@
  /* 英文字型 */
 @font-face {
     font-family: "Barlow";
-    src: url("@/assets/font/Barlow-Regular.ttf");
+    src: url("./Barlow-Regular.ttf");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
     font-family: "Barlow";
-    src: url("@/assets/font/Barlow-Medium.ttf");
+    src: url("./Barlow-Medium.ttf");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
     font-family: "Barlow";
-    src: url("@/assets/font/Barlow-Bold.ttf");
+    src: url("./Barlow-Bold.ttf");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -25,7 +25,7 @@
 
 @font-face {
     font-family: "Barlow";
-    src: url("@/assets/font/Barlow-SemiBold.ttf");
+    src: url("./Barlow-SemiBold.ttf");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -33,14 +33,14 @@
  /* 非英文字體 */
 @font-face {
     font-family: "Noto Sans";
-    src: url("@/assets/font/NotoSans-Bold.ttf");
+    src: url("./NotoSans-Bold.ttf");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "Noto Sans";
-    src: url("@/assets/font/NotoSans-SemiBold.ttf");
+    src: url("./NotoSans-SemiBold.ttf");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -49,7 +49,7 @@
 
 @font-face {
     font-family: "Noto Sans";
-    src: url("@/assets/font/NotoSans-Medium.ttf");
+    src: url("./NotoSans-Medium.ttf");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -57,7 +57,7 @@
 
 @font-face {
     font-family: "Noto Sans";
-    src: url("@/assets/font/NotoSans-Regular.ttf");
+    src: url("./NotoSans-Regular.ttf");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -66,7 +66,7 @@
  /* 中文字體 */
 @font-face {
     font-family: "Noto Sans SC";
-    src: url("@/assets/font/NotoSansSC-Bold.otf");
+    src: url("./NotoSansSC-Bold.otf");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -74,7 +74,7 @@
 
 @font-face {
     font-family: "Noto Sans SC";
-    src: url("@/assets/font/NotoSansSC-Medium.otf");
+    src: url("./NotoSansSC-Medium.otf");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -82,7 +82,7 @@
 
 @font-face {
     font-family: "Noto Sans SC";
-    src: url("@/assets/font/NotoSansSC-Regular.otf");
+    src: url("./NotoSansSC-Regular.otf");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -91,7 +91,7 @@
  /* 韓文字體 */
 @font-face {
     font-family: "Noto Sans KR";
-    src: url("@/assets/font/NotoSansKR-Bold.otf");
+    src: url("./NotoSansKR-Bold.otf");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -99,7 +99,7 @@
 
 @font-face {
     font-family: "Noto Sans KR";
-    src: url("@/assets/font/NotoSansKR-Medium.otf");
+    src: url("./NotoSansKR-Medium.otf");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -107,7 +107,7 @@
 
 @font-face {
     font-family: "Noto Sans KR";
-    src: url("@/assets/font/NotoSansKR-Regular.otf");
+    src: url("./NotoSansKR-Regular.otf");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -116,7 +116,7 @@
  /* 日文字體 */
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("@/assets/font/NotoSansJP-Bold.otf");
+    src: url("./NotoSansJP-Bold.otf");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -124,7 +124,7 @@
 
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("@/assets/font/NotoSansJP-Medium.otf");
+    src: url("./NotoSansJP-Medium.otf");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -132,7 +132,7 @@
 
 @font-face {
     font-family: "Noto Sans JP";
-    src: url("@/assets/font/NotoSansJP-Regular.otf");
+    src: url("./NotoSansJP-Regular.otf");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
