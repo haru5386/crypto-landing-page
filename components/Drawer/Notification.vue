@@ -44,7 +44,10 @@
               {{ item.messageContent }}
             </div>
           </div>
-          <div class="more">
+          <div
+            class="more"
+            @click="goPath(`/${localeSetting}/mesage`)"
+          >
             {{ $t('查看更多') }}
           </div>
         </div>
