@@ -44,6 +44,7 @@
         <div
           v-else
           class="account"
+          @click="goPath(`${localeSetting}/personal/userManagement`)"
         >
           <div class="email">
             {{ USERDATA?.email }}
