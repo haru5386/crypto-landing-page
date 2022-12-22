@@ -53,9 +53,9 @@
           </div>
         </div>
         <div style="margin-top: 24px" />
-        <!-- 資產 -->
         <div v-if="isLogin">
           <el-collapse accordion>
+            <!-- 資產 -->
             <el-collapse-item name="1">
               <template #title>
                 <div class="tab-title">
@@ -85,18 +85,21 @@
                 </div>
               </div>
             </el-collapse-item>
+            <!-- 訂單 -->
             <el-collapse-item name="2">
               <template #title>
                 <div class="tab-title">
                   <img
                     class="icon no-active"
                     src="../../assets/images/icons/order.svg"
-                    alt="assets"
+                    alt="order"
+                    style="padding: 0 3px;"
                   >
                   <img
                     class="icon active"
                     src="../../assets/images/icons/order-active.svg"
-                    alt="assets"
+                    alt="order"
+                    style="padding: 0 3px;"
                   >
                   {{ $t('訂單') }}
                 </div>
