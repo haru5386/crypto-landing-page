@@ -36,6 +36,9 @@
         text-decoration: none;
         cursor: pointer;
         margin-right: $spacing_3;
+        &:hover {
+          color: $color_identity_Primary;
+        }
 
         &.active {
           color: $color_identity_Primary;

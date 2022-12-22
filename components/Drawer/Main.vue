@@ -53,9 +53,9 @@
           </div>
         </div>
         <div style="margin-top: 24px" />
-        <!-- 資產 -->
         <div v-if="isLogin">
           <el-collapse accordion>
+            <!-- 資產 -->
             <el-collapse-item name="1">
               <template #title>
                 <div class="tab-title">
@@ -74,13 +74,45 @@
               </template>
               <div>
                 <div
-                  v-for="item in assetsUrls"
-                  :key="item.text"
+                  v-for="(item, index) in props.assetsList"
+                  :key="index"
                   class="drop-down-item"
                   @click="goPath(item.link)"
                 >
                   <div class="item-text">
-                    {{ item.text }}
+                    {{ item.title }}
+                  </div>
+                </div>
+              </div>
+            </el-collapse-item>
+            <!-- 訂單 -->
+            <el-collapse-item name="2">
+              <template #title>
+                <div class="tab-title">
+                  <img
+                    class="icon no-active"
+                    src="../../assets/images/icons/order.svg"
+                    alt="order"
+                    style="padding: 0 3px;"
+                  >
+                  <img
+                    class="icon active"
+                    src="../../assets/images/icons/order-active.svg"
+                    alt="order"
+                    style="padding: 0 3px;"
+                  >
+                  {{ $t('訂單') }}
+                </div>
+              </template>
+              <div>
+                <div
+                  v-for="(item, index) in props.orderList"
+                  :key="index"
+                  class="drop-down-item"
+                  @click="goPath(item.link)"
+                >
+                  <div class="item-text">
+                    {{ item.title }}
                   </div>
                 </div>
               </div>
@@ -89,25 +121,23 @@
           <div class="line" />
         </div>
         <!-- menu -->
-        <a
-          v-for="item in mainMenu"
-          :key="item.label"
-          class="collapse-tab-item"
-          :href="item.src"
-          :target="item.target"
-        >
+        <template v-for="(value, key) in headerList">
           <div
-            class="tab-title"
-            @click="UserStore.LOGOUT"
+            v-if="value?.isOpen"
+            :key="key"
+            class="collapse-tab-item"
+            @click="goHref(value.link,value.target)"
           >
-            <img
-              class="icon"
-              :src="item.icon"
-              :alt="item.label"
-            >
-            {{ item.label }}
+            <div class="tab-title">
+              <img
+                class="icon"
+                :src="value.icon"
+                :alt="value.activeId"
+              >
+              {{ value.text }}
+            </div>
           </div>
-        </a>
+        </template>
         <div class="line" />
         <!-- 語言設定 -->
         <el-collapse accordion>
@@ -165,10 +195,23 @@
 </template>
 <script lang="ts" setup>
 import { ElDrawer, ElIcon, ElCollapse, ElCollapseItem } from 'element-plus'
-import { defineProps } from 'vue'
+import { defineProps, PropType } from 'vue'
 import { Close } from '@element-plus/icons-vue'
 import { storeToRefs } from 'pinia'
-import AGET from '../../assets/images/icons/aget.svg'
+import AGETIcon from '../../assets/images/icons/aget.svg'
+import marketIcon from '../../assets/images/icons/aget.svg'
+import exTradeIcon from '../../assets/images/icons/exTrade.svg'
+import otcTradeIcon from '../../assets/images/icons/otcTrade.svg'
+import marginTradeIcon from '../../assets/images/icons/aget.svg'
+import coTradeIcon from '../../assets/images/icons/aget.svg'
+import exPvpIcon from '../../assets/images/icons/aget.svg'
+import etfIcon from '../../assets/images/icons/etf.svg'
+import loanIcon from '../../assets/images/icons/aget.svg'
+import earnIcon from '../../assets/images/icons/aget.svg'
+import NFTIcon from '../../assets/images/icons/aget.svg'
+import buyCryptoIcon from '../../assets/images/icons/buyCrypto.svg'
+
+import { HeaderData, LinkList } from '@/types/interface/base.interface'
 import { useUserStore } from '~~/stores/user'
 import { availableLocales } from '@/utils/lang'
 import { getURLs } from '~~/utils/urls'
@@ -194,6 +237,120 @@ const props = defineProps({
   modelValue: {
     type: Boolean,
     required: true
+  },
+  header: {
+    type: Object,
+    default: () => {
+      // return {
+      //   AGET: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   NFT: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   buyCrypto: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   coTrade: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   earn: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   etf: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   exPvp: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   exTrade: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   loan: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   marginTrade: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   market: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   },
+      //   otcTrade: {
+      //     activeId: '',
+      //     text: '',
+      //     link: '',
+      //     target: '',
+      //     isOpen: '',
+      //     icon: ''
+      //   }
+      // }
+    },
+    required: true
+  },
+  assetsList: {
+    type: Array as PropType<LinkList[]>,
+    default: () => [],
+    required: true
+  },
+  orderList: {
+    type: Array as PropType<LinkList[]>,
+    default: () => [],
+    required: true
   }
 })
 
@@ -212,6 +369,14 @@ const goSignUp = () => {
 const goPath = (link: string) => {
   window.location.href = link
 }
+// 跳轉連結
+const goHref = (link:string, target:string) => {
+  if (target && target === 'black') {
+    window.open(link)
+  } else {
+    window.location.href = link
+  }
+}
 
 // 當前語言顯示
 const currentLangName = computed(() => {
@@ -219,7 +384,7 @@ const currentLangName = computed(() => {
   // 中文語系額外設定
   for (const key in availableLocales) {
     if (availableLocales[key].iso === localeSetting.value) {
-      result = availableLocales[key]?.name
+      result = availableLocales[key].name
     }
   }
   return result || ''
@@ -244,6 +409,23 @@ const accountStatusText = computed(() => {
   }
 })
 
+// header list
+const headerList = computed(() => {
+  const headerObj:HeaderData = props.header
+  headerObj.market.icon = marketIcon
+  headerObj.exTrade.icon = exTradeIcon
+  headerObj.otcTrade.icon = otcTradeIcon
+  headerObj.marginTrade.icon = marginTradeIcon
+  headerObj.coTrade.icon = coTradeIcon
+  headerObj.exPvp.icon = exPvpIcon
+  headerObj.etf.icon = etfIcon
+  headerObj.loan.icon = loanIcon
+  headerObj.earn.icon = earnIcon
+  headerObj.NFT.icon = NFTIcon
+  headerObj.buyCrypto.icon = buyCryptoIcon
+  headerObj.AGET.icon = AGETIcon
+  return headerObj
+})
 // 資產
 const assetsUrls = reactive([
   {
@@ -253,15 +435,6 @@ const assetsUrls = reactive([
   }
 ])
 
-// menu
-const mainMenu = ref([
-  {
-    label: 'AGET',
-    icon: AGET,
-    src: getURLs().AGET,
-    target: '_blank'
-  }
-])
 </script>
 
 <style lang="scss">

@@ -22,8 +22,8 @@ export const getIndexDataApi = () => {
 }
 
 // 取得 Header & Footer 設定
-export const getHeadAndFooterApi = (data:any) => {
-  return useAsyncFetchData.post('/fe-ex-api/common/footer_and_header', data)
+export const getHeadAndFooterApi = () => {
+  return useFetchData.post('/fe-ex-api/common/footer_and_header')
 }
 
 // 要在伺服器獲取語言

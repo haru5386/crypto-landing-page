@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { computed, ref } from 'vue'
+import { computed, ref, Ref, ComputedRef } from 'vue'
 import { useUserStore } from '@/stores/user.js'
 // import i18n from '@/utils/i18n'
 import { availableLocales } from '@/utils/lang'
-import { HeaderInfo } from '@/types/interface/base.interface'
-// import { getHeadAndFooterApi } from '@/api/base'
+import { HeaderData, LinkList } from '@/types/interface/base.interface'
+import { getHeadAndFooterApi } from '@/api/base'
 
 import { getURLs } from '@/utils/urls'
 
@@ -40,43 +40,77 @@ const accountStatusText = computed(() => {
       return t('正常')
   }
 })
-// 交易 tabs
-const headTabs: HeaderInfo[] = reactive([
-  // {
-  //   text: t('行情'),
-  //   link: `${env.BASE_URL}/market`,
-  //   target: ''
-  // },
-  // {
-  //   text: t('幣幣交易'),
-  //   link: `${env.BASE_URL}/trade`,
-  //   target: ''
-  // },
-  // {
-  //   text: t('法幣交易'),
-  //   link: `https://otc${env.DOMAIN_NAME}`,
-  //   target: ''
-  // }
-  // {
-  //   text: t('杠桿交易'),
-  //   link: `${env.BASE_URL}/margin`,
-  //   target: ''
-  // }
-  {
-    text: 'AGET',
-    link: getURLs().AGET,
-    target: '_BLANK'
+// header List
+const header: Ref<HeaderData> = ref({})
+// 資產List
+const assetsList:ComputedRef<LinkList[]> = computed(() => {
+  const arr = []
+  // 幣幣帳戶
+  if (header.value.exTrade?.isOpen) {
+    arr.push({
+      title: t('幣幣帳戶'),
+      link: '/assets/exchangeAccount'
+    })
   }
-])
-// 獲取語言
-// const availableLocales = await getAvailableLocales()
-const assetsUrls = reactive([
-  {
-    text: t('幣幣帳戶'),
-    link: getURLs().assets.trade,
-    target: '_BLANK'
+  // C2C帳戶
+  if (header.value.otcTrade?.isOpen) {
+    arr.push({
+      title: t('C2C帳戶'),
+      link: '/assets/otcAccount'
+    })
   }
-])
+  // 合約帳戶
+  if (header.value.coTrade?.isOpen) {
+    const url = `${header.value.coTrade}/assets/coAccount`
+    arr.push({
+      title: t('合約帳戶'),
+      link: url
+    })
+  }
+
+  // 槓桿帳戶
+  if (header.value.marginTrade?.isOpen) {
+    arr.push({
+      title: t('槓桿帳戶'),
+      link: '/assets/leverageAccount'
+    })
+  }
+  return arr
+})
+// 訂單List
+const orderList = computed(() => {
+  const arr = []
+  // 幣幣訂單
+  if (header.value.exTrade?.isOpen) {
+    arr.push({
+      title: t('幣幣訂單'),
+      link: '/order/exchangeOrder'
+    })
+  }
+  // C2C訂單
+  if (header.value.otcTrade?.isOpen) {
+    arr.push({
+      title: t('C2C訂單'),
+      link: '/order/otcOrder'
+    })
+  }
+  // 合約訂單
+  if (header.value.coTrade?.isOpen) {
+    const url = `${header.value.coTrade.link}/assets/coOrder`
+    arr.push({
+      title: t('合約訂單'),
+      link: url
+    })
+  }
+  // 槓桿訂單
+  if (header.value.marginTrade?.isOpen) {
+    arr.push({
+      title: t('槓桿訂單'),
+      link: '/order/leverageOrder'
+    })
+  }
+  return arr
+})
 
 // tab 導頁
 const goPath = (link: string) => {
@@ -97,11 +131,25 @@ const toggleOpenDrawerMain = (value: boolean) => {
 }
 
 const isOpenDrawerNotification = ref(false)
-
 const toggleOpenDrawerNotification = (value: boolean) => {
   isOpenDrawerNotification.value = value
 }
 
+// 取得header
+const getHeaderFooterData = async () => {
+  const data = await getHeadAndFooterApi()
+  const headerData = JSON.parse(data.data.header)
+  header.value = headerData
+}
+
+// 跳轉連結
+const goHref = (link:string, target:string) => {
+  if (target && target === 'black') {
+    window.open(link)
+  } else {
+    window.location.href = link
+  }
+}
 /*
  * 語言相關
  */
@@ -129,9 +177,9 @@ watch(ISLOADING_USERDATA, (newNum) => {
   }
 })
 
-// 取得 header 呈現資訊
-// const data = await getHeadAndFooterApi({ lang: route.params.lang })
-// headTabs.push(...JSON.parse(data.data.value.data.header))
+onMounted(() => {
+  getHeaderFooterData()
+})
 </script>
 
 <template>
@@ -145,15 +193,16 @@ watch(ISLOADING_USERDATA, (newNum) => {
       >
       <div class="pc">
         <div class="tabs">
-          <a
-            v-for="(item, index) in headTabs"
-            :key="index"
-            class="tab_item"
-            :href="item.link"
-            :target="item.target"
-          >
-            {{ item.text }}
-          </a>
+          <template v-for="(value, key) in header">
+            <div
+              v-if="value?.isOpen"
+              :key="key"
+              class="tab_item"
+              @click="goHref(value.link,value.target)"
+            >
+              {{ value.text }}
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -197,20 +246,20 @@ watch(ISLOADING_USERDATA, (newNum) => {
             </div>
             <div class="drop-down">
               <div
-                v-for="(item, index) in assetsUrls"
+                v-for="(item, index) in assetsList"
                 :key="index"
                 class="drop-down-item"
                 @click="goPath(item.link)"
               >
                 <div class="item-text">
-                  {{ item.text }}
+                  {{ item.title }}
                 </div>
               </div>
             </div>
           </div>
 
           <!-- 訂單 -->
-          <!-- <div class="icon drop-down-menu">
+          <div class="icon drop-down-menu">
             <div class="drop-down-title">
               訂單
               <img
@@ -220,18 +269,17 @@ watch(ISLOADING_USERDATA, (newNum) => {
             </div>
             <div class="drop-down">
               <div
-                v-for="item in availableLocales"
-                :key="item.iso"
-                :class="{ active: localeSetting === item.iso }"
+                v-for="(item, index) in orderList"
+                :key="index"
                 class="drop-down-item"
-                @click="changeLang(item.iso)"
+                @click="goPath(item.link)"
               >
                 <div class="item-text">
-                  {{ item.name }}
+                  {{ item.title }}
                 </div>
               </div>
             </div>
-          </div> -->
+          </div>
 
           <!-- 個人中心 -->
           <div class="icon drop-down-menu">
@@ -414,6 +462,9 @@ watch(ISLOADING_USERDATA, (newNum) => {
   <!-- 主選單 -->
   <DrawerMain
     v-model="isOpenDrawerMain"
+    :header="header"
+    :assets-list="assetsList"
+    :order-list="orderList"
     @update="toggleOpenDrawerMain"
   />
   <!-- 通知彈窗 -->
