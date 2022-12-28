@@ -242,104 +242,6 @@ const props = defineProps({
   header: {
     type: Object,
     default: () => {
-      // return {
-      //   AGET: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   NFT: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   buyCrypto: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   coTrade: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   earn: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   etf: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   exPvp: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   exTrade: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   loan: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   marginTrade: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   market: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   },
-      //   otcTrade: {
-      //     activeId: '',
-      //     text: '',
-      //     link: '',
-      //     target: '',
-      //     isOpen: '',
-      //     icon: ''
-      //   }
-      // }
     },
     required: true
   },
@@ -427,14 +329,6 @@ const headerList = computed(() => {
   headerObj.AGET.icon = AGETIcon
   return headerObj
 })
-// 資產
-const assetsUrls = reactive([
-  {
-    text: t('幣幣帳戶'),
-    link: getURLs().assets.trade,
-    target: '_BLANK'
-  }
-])
 
 </script>
 

@@ -31,6 +31,8 @@ interface HeaderData {
     target: string;
     isOpen: boolean;
     icon?: string
+    showAsset?: boolean;
+    showOrder?: boolean;
   }
 }
 

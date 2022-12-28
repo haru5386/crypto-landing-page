@@ -46,21 +46,21 @@ const header: Ref<HeaderData> = ref({})
 const assetsList:ComputedRef<LinkList[]> = computed(() => {
   const arr = []
   // 幣幣帳戶
-  if (header.value.exTrade?.isOpen) {
+  if (header.value.exTrade?.showAsset) {
     arr.push({
       title: t('幣幣帳戶'),
       link: '/assets/exchangeAccount'
     })
   }
   // C2C帳戶
-  if (header.value.otcTrade?.isOpen) {
+  if (header.value.otcTrade?.showAsset) {
     arr.push({
       title: t('C2C帳戶'),
       link: '/assets/otcAccount'
     })
   }
   // 合約帳戶
-  if (header.value.coTrade?.isOpen) {
+  if (header.value.coTrade?.showAsset) {
     const url = `${header.value.coTrade}/assets/coAccount`
     arr.push({
       title: t('合約帳戶'),
@@ -69,7 +69,7 @@ const assetsList:ComputedRef<LinkList[]> = computed(() => {
   }
 
   // 槓桿帳戶
-  if (header.value.marginTrade?.isOpen) {
+  if (header.value.marginTrade?.showAsset) {
     arr.push({
       title: t('槓桿帳戶'),
       link: '/assets/leverageAccount'
@@ -81,21 +81,21 @@ const assetsList:ComputedRef<LinkList[]> = computed(() => {
 const orderList = computed(() => {
   const arr = []
   // 幣幣訂單
-  if (header.value.exTrade?.isOpen) {
+  if (header.value.exTrade?.showOrder) {
     arr.push({
       title: t('幣幣訂單'),
       link: '/order/exchangeOrder'
     })
   }
   // C2C訂單
-  if (header.value.otcTrade?.isOpen) {
+  if (header.value.otcTrade?.showOrder) {
     arr.push({
       title: t('C2C訂單'),
       link: '/order/otcOrder'
     })
   }
   // 合約訂單
-  if (header.value.coTrade?.isOpen) {
+  if (header.value.coTrade?.showOrder) {
     const url = `${header.value.coTrade.link}/assets/coOrder`
     arr.push({
       title: t('合約訂單'),
@@ -103,7 +103,7 @@ const orderList = computed(() => {
     })
   }
   // 槓桿訂單
-  if (header.value.marginTrade?.isOpen) {
+  if (header.value.marginTrade?.showOrder) {
     arr.push({
       title: t('槓桿訂單'),
       link: '/order/leverageOrder'
@@ -261,7 +261,7 @@ onMounted(() => {
           <!-- 訂單 -->
           <div class="icon drop-down-menu">
             <div class="drop-down-title">
-              訂單
+              {{ $t('訂單') }}
               <img
                 style="margin-left: 5px"
                 src="@/assets/images/icons/menu-down.svg"
