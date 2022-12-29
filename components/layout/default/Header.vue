@@ -156,6 +156,7 @@ const goHref = (link:string, target:string) => {
 
 // 更新語言
 const changeLang = (lang: string) => {
+  localeSetting.value = lang
   window.location.href = `/${lang}`
 }
 

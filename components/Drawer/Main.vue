@@ -229,6 +229,7 @@ const isLogin = computed(() => {
   return ISLOGIN.value
 })
 const changeLang = (lang: string) => {
+  localeSetting.value = lang
   window.location.href = `/${lang}`
 }
 
