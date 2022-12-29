@@ -137,13 +137,13 @@ onMounted(() => {
           <br>
           {{ $t('block6-des2') }}
         </p>
-        <a
+        <!-- <a
           class="btn-detail"
           href="https://aget.aceglobal.io/"
           target="_blank"
           rel="noopener noreferrer"
         >{{ $t('block6-btn') }}
-        </a>
+        </a> -->
       </div>
       <div class="block6-right">
         <div class="title">

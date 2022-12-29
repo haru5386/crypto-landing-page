@@ -180,17 +180,17 @@ const dataList = reactive([
       }
     ]
   },
-  {
-    id: 2,
-    title: t('Products'),
-    footerArticleList: [
-      {
-        id: '2-1',
-        title: 'AGET',
-        externalLink: 'https://aget.aceglobal.io/'
-      }
-    ]
-  },
+  // {
+  //   id: 2,
+  //   title: t('Products'),
+  //   footerArticleList: [
+  //     {
+  //       id: '2-1',
+  //       title: 'AGET',
+  //       externalLink: 'https://aget.aceglobal.io/'
+  //     }
+  //   ]
+  // },
   {
     id: 3,
     title: t('Legal'),
