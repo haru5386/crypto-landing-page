@@ -57,7 +57,10 @@
         <div v-if="isLogin">
           <el-collapse accordion>
             <!-- 資產 -->
-            <el-collapse-item name="1">
+            <el-collapse-item
+              v-if="props.assetsList.length > 0"
+              name="1"
+            >
               <template #title>
                 <div class="tab-title">
                   <img
@@ -87,20 +90,23 @@
               </div>
             </el-collapse-item>
             <!-- 訂單 -->
-            <el-collapse-item name="2">
+            <el-collapse-item
+              v-if="props.orderList.length > 0"
+              name="2"
+            >
               <template #title>
                 <div class="tab-title">
                   <img
                     class="icon no-active"
                     src="../../assets/images/icons/order.svg"
                     alt="order"
-                    style="padding: 0 3px;"
+                    style="padding: 0 3px"
                   >
                   <img
                     class="icon active"
                     src="../../assets/images/icons/order-active.svg"
                     alt="order"
-                    style="padding: 0 3px;"
+                    style="padding: 0 3px"
                   >
                   {{ $t('訂單') }}
                 </div>
@@ -127,7 +133,7 @@
             v-if="value?.isOpen"
             :key="key"
             class="collapse-tab-item"
-            @click="goHref(value.link,value.target)"
+            @click="goHref(value.link, value.target)"
           >
             <div class="tab-title">
               <img
@@ -242,8 +248,7 @@ const props = defineProps({
   },
   header: {
     type: Object,
-    default: () => {
-    },
+    default: () => {},
     required: true
   },
   assetsList: {
@@ -274,7 +279,7 @@ const goPath = (link: string) => {
   window.location.href = link
 }
 // 跳轉連結
-const goHref = (link:string, target:string) => {
+const goHref = (link: string, target: string) => {
   if (target && target === 'black') {
     window.open(link)
   } else {
@@ -315,7 +320,7 @@ const accountStatusText = computed(() => {
 
 // header list
 const headerList = computed(() => {
-  const headerObj:HeaderData = props.header
+  const headerObj: HeaderData = props.header
   headerObj.market.icon = marketIcon
   headerObj.exTrade.icon = exTradeIcon
   headerObj.otcTrade.icon = otcTradeIcon
@@ -330,7 +335,6 @@ const headerList = computed(() => {
   headerObj.AGET.icon = AGETIcon
   return headerObj
 })
-
 </script>
 
 <style lang="scss">
