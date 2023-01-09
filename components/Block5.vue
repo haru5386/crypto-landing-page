@@ -154,7 +154,7 @@ function block5Out () {
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: '#block6',
+        trigger: '#block7',
         markers: false,
         start: 'top 100%',
         end: 'top 5%',
@@ -201,7 +201,7 @@ function block5MobileOut () {
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: '#block6',
+        trigger: '#block7',
         markers: false,
         start: 'top 100%',
         end: 'top 5%',
