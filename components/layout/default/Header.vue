@@ -43,7 +43,7 @@ const accountStatusText = computed(() => {
 // header List
 const header: Ref<HeaderData> = ref({})
 // 資產List
-const assetsList:ComputedRef<LinkList[]> = computed(() => {
+const assetsList: ComputedRef<LinkList[]> = computed(() => {
   const arr = []
   // 幣幣帳戶
   if (header.value.exTrade?.showAsset) {
@@ -143,7 +143,7 @@ const getHeaderFooterData = async () => {
 }
 
 // 跳轉連結
-const goHref = (link:string, target:string) => {
+const goHref = (link: string, target: string) => {
   if (target && target === 'black') {
     window.open(link)
   } else {
@@ -199,7 +199,7 @@ onMounted(() => {
               v-if="value?.isOpen"
               :key="key"
               class="tab_item"
-              @click="goHref(value.link,value.target)"
+              @click="goHref(value.link, value.target)"
             >
               {{ value.text }}
             </div>
@@ -236,7 +236,10 @@ onMounted(() => {
           style="display: flex; height: 100%"
         >
           <!-- 資產 -->
-          <div class="icon drop-down-menu">
+          <div
+            v-if="assetsList.length > 0"
+            class="icon drop-down-menu"
+          >
             <div class="drop-down-title">
               {{ $t('資產') }}
               <img
@@ -260,7 +263,10 @@ onMounted(() => {
           </div>
 
           <!-- 訂單 -->
-          <div class="icon drop-down-menu">
+          <div
+            v-if="orderList.length > 0"
+            class="icon drop-down-menu"
+          >
             <div class="drop-down-title">
               {{ $t('訂單') }}
               <img
