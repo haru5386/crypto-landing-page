@@ -2,6 +2,7 @@ interface UserData {
   id: number
   accountStatus: number
   email: string
+  authLevel: number
 }
 
 interface UserMessage {

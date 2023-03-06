@@ -115,6 +115,8 @@
 // 個人中心
 .drop-down-menu {
   position: relative;
+  width: fit-content;
+  margin-right: 0;
 
   .drop-down-title {
     padding: 8px;
@@ -212,10 +214,11 @@
     border-radius: 8px;
     top: 64px;
     right: 0;
-    width: 200px;
+    width: 220px;
     background-color: $color_gray_80;
 
     .member-info {
+      @include font("Body1-Med", $color_gray_White);
       padding: 16px;
       padding-left: 19px;
       border-bottom: 1px solid #fff;
@@ -229,8 +232,29 @@
       }
 
       .status {
-        margin-top: 4px;
-        color: $color_gray_60;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        @include font("Body1-Med", $color_gray_50);
+        .id {
+          margin-right: 12px;
+        }
+        .kyc_verify {
+          @include font("Cap1-Reg", $color_identity_Primary);
+          display: flex;
+          align-items: center;
+          padding: 4px;
+          border-radius: 4px;
+          border: 0.5px solid $color_identity_Primary;
+        }
+        .kyc_unverify {
+          @include font("Cap1-Reg", $color_gray_60);
+          display: flex;
+          align-items: center;
+          padding: 4px;
+          border-radius: 4px;
+          border: 0.5px solid $color_gray_60;
+        }
       }
     }
 

@@ -2,7 +2,7 @@
   <ClientOnly>
     <el-drawer
       v-model="isOpen"
-      size="100%"
+      size="1"
       :with-header="false"
       direction="rtl"
     >
@@ -40,20 +40,25 @@
             {{ $t('註冊') }}
           </button>
         </div>
-        <!-- 帳戶狀態 -->
-        <div
-          v-else
-          class="account"
-          @click="goPath(`${localeSetting}/personal/userManagement`)"
-        >
-          <div class="email">
-            {{ USERDATA?.email }}
+        <div style="height: 64px" />
+        <!-- menu -->
+        <template v-for="(value, key) in headerList">
+          <div
+            v-if="value?.isOpen"
+            :key="key"
+            class="collapse-tab-item"
+            @click="goHref(value.link, value.target)"
+          >
+            <div class="tab-title">
+              <img
+                class="icon"
+                :src="value.icon"
+                :alt="value.activeId"
+              >
+              {{ value.text }}
+            </div>
           </div>
-          <div class="status">
-            {{ t('帳戶狀態') }} : {{ accountStatusText }}
-          </div>
-        </div>
-        <div style="margin-top: 24px" />
+        </template>
         <div v-if="isLogin">
           <el-collapse accordion>
             <!-- 資產 -->
@@ -125,27 +130,7 @@
               </div>
             </el-collapse-item>
           </el-collapse>
-          <div class="line" />
         </div>
-        <!-- menu -->
-        <template v-for="(value, key) in headerList">
-          <div
-            v-if="value?.isOpen"
-            :key="key"
-            class="collapse-tab-item"
-            @click="goHref(value.link, value.target)"
-          >
-            <div class="tab-title">
-              <img
-                class="icon"
-                :src="value.icon"
-                :alt="value.activeId"
-              >
-              {{ value.text }}
-            </div>
-          </div>
-        </template>
-        <div class="line" />
         <!-- 語言設定 -->
         <el-collapse accordion>
           <el-collapse-item name="1">
@@ -179,6 +164,7 @@
             </div>
           </el-collapse-item>
         </el-collapse>
+        <div class="line" />
         <!-- 登出 -->
         <div
           v-if="isLogin"
@@ -186,7 +172,7 @@
         >
           <div
             class="tab-title"
-            @click="UserStore.LOGOUT"
+            @click="LOGOUT"
           >
             <img
               class="icon"
@@ -302,22 +288,6 @@ const currentLangName = computed(() => {
 // tabs
 const { t } = useLang()
 
-// 帳戶狀態
-const accountStatusText = computed(() => {
-  switch (USERDATA.value?.accountStatus) {
-    case 0:
-      return t('正常')
-    case 1:
-      return t('凍結交易, 凍結提現')
-    case 2:
-      return t('凍結交易')
-    case 3:
-      return t('凍結提現')
-    default:
-      return t('正常')
-  }
-})
-
 // header list
 const headerList = computed(() => {
   const headerObj: HeaderData = props.header
@@ -335,6 +305,12 @@ const headerList = computed(() => {
   headerObj.AGET.icon = AGETIcon
   return headerObj
 })
+
+// 登出
+const LOGOUT = () => {
+  isOpen.value = false
+  UserStore.LOGOUT()
+}
 </script>
 
 <style lang="scss">
@@ -368,32 +344,35 @@ const headerList = computed(() => {
   // 登出狀態顯示
   .login-buttons {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 0 15px;
     padding-top: 81px;
 
     .login {
-      flex: 1;
-      height: 30px;
+      width:100%;
+      height: 38px;
       padding: 4px 15px;
+      margin: 0px auto 16px;
       @extend .button-text;
       margin-right: $spacing_3;
     }
 
     .sign-up {
-      flex: 1;
-      height: 30px;
+      width:100%;
+      height: 38px;
       padding: 4px 15px;
       @extend .button-filled;
     }
   }
 }
 
-.el-drawer {
-  width: 100%;
-  max-width: 375px;
+.el-drawer{
+  width: 347px;
   left: auto;
   background-color: $color_gray_80;
+  border-radius: 16px 0 0 0;
 }
 
 .el-drawer__body {
@@ -477,14 +456,14 @@ const headerList = computed(() => {
 // pad
 @include pad {
   .el-drawer {
-    max-width: 375px;
+    width: 347px;
   }
 }
 
 // mobile
 @include mobile {
   .el-drawer {
-    max-width: 100%;
+    width: 305px;
   }
 }
 </style>
@@ -495,7 +474,12 @@ const headerList = computed(() => {
 .drop-down-item {
   color: #fff;
   .item-text {
-    padding: 16px 48px;
+    flex: 1;
+    height: 37px;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    height: 37px;
   }
 
   &.active {
