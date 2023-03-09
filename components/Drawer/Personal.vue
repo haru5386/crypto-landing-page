@@ -41,7 +41,7 @@
                 ID: {{ USERDATA?.id }}
               </div>
               <div
-                v-if="authLevel === 3"
+                v-if="authLevel === 1"
                 class="kyc_verify"
               >
                 <img
