@@ -25,21 +25,11 @@ const isLogin = computed(() => {
 // tabs
 const { t } = useLang()
 
-// 帳戶狀態
-const accountStatusText = computed(() => {
-  switch (USERDATA.value?.accountStatus) {
-    case 0:
-      return t('正常')
-    case 1:
-      return t('凍結交易, 凍結提現')
-    case 2:
-      return t('凍結交易')
-    case 3:
-      return t('凍結提現')
-    default:
-      return t('正常')
-  }
+// kyc等級
+const authLevel = computed(() => {
+  return USERDATA.value?.authLevel
 })
+
 // header List
 const header: Ref<HeaderData> = ref({})
 // 資產List
@@ -133,6 +123,11 @@ const toggleOpenDrawerMain = (value: boolean) => {
 const isOpenDrawerNotification = ref(false)
 const toggleOpenDrawerNotification = (value: boolean) => {
   isOpenDrawerNotification.value = value
+}
+
+const isOpenDrawerPersonal = ref(false)
+const toggleOpenDrawerPersonal = (value: boolean) => {
+  isOpenDrawerPersonal.value = value
 }
 
 // 取得header
@@ -243,9 +238,16 @@ onMounted(() => {
             <div class="drop-down-title">
               {{ $t('資產') }}
               <img
-                alt="menu"
+                class="no-active"
                 style="margin-left: 5px"
-                src="@/assets/images/icons/menu-down.svg"
+                alt="drop-down"
+                src="@/assets/images/icons/menu_down.svg"
+              >
+              <img
+                class="active"
+                style="margin-left: 5px"
+                alt="drop-down"
+                src="@/assets/images/icons/menu_down_active.svg"
               >
             </div>
             <div class="drop-down">
@@ -270,8 +272,16 @@ onMounted(() => {
             <div class="drop-down-title">
               {{ $t('訂單') }}
               <img
+                class="no-active"
                 style="margin-left: 5px"
-                src="@/assets/images/icons/menu-down.svg"
+                alt="drop-down"
+                src="@/assets/images/icons/menu_down.svg"
+              >
+              <img
+                class="active"
+                style="margin-left: 5px"
+                alt="drop-down"
+                src="@/assets/images/icons/menu_down_active.svg"
               >
             </div>
             <div class="drop-down">
@@ -302,7 +312,7 @@ onMounted(() => {
               <img
                 class="active"
                 alt="account"
-                src="@/assets/images/icons/account-active.svg"
+                src="@/assets/images/icons/account_active.svg"
               >
             </div>
             <div class="drop-down">
@@ -314,7 +324,39 @@ onMounted(() => {
                   {{ USERDATA?.email }}
                 </div>
                 <div class="status">
-                  {{ t('帳戶狀態') }} : {{ accountStatusText }}
+                  <div class="id">
+                    ID: {{ USERDATA?.id }}
+                  </div>
+                  <div
+                    v-if="authLevel === 1"
+                    class="kyc_verify"
+                  >
+                    <img
+                      src="@/assets/images/icons/nav_varified.svg"
+                      alt=""
+                    >
+                    {{ t("通過驗證") }}
+                  </div>
+                  <div
+                    v-else-if="authLevel === 0"
+                    class="kyc_verify"
+                  >
+                    <img
+                      src="@/assets/images/icons/nav_unvarified.svg"
+                      alt=""
+                    >
+                    {{ t("審核中") }}
+                  </div>
+                  <div
+                    v-else
+                    class="kyc_unverify"
+                  >
+                    <img
+                      src="@/assets/images/icons/nav_unvarified.svg"
+                      alt=""
+                    >
+                    {{ t("未通過驗證") }}
+                  </div>
                 </div>
               </div>
               <div
@@ -347,7 +389,7 @@ onMounted(() => {
               <img
                 class="active"
                 alt="bell"
-                src="@/assets/images/icons/bell-active.svg"
+                src="@/assets/images/icons/bell_active.svg"
               >
               <div
                 v-if="
@@ -390,9 +432,16 @@ onMounted(() => {
           <div class="drop-down-title">
             {{ $t('語言') }}
             <img
+              class="no-active"
               style="margin-left: 5px"
               alt="drop-down"
-              src="@/assets/images/icons/menu-down.svg"
+              src="@/assets/images/icons/menu_down.svg"
+            >
+            <img
+              class="active"
+              style="margin-left: 5px"
+              alt="drop-down"
+              src="@/assets/images/icons/menu_down_active.svg"
             >
           </div>
           <div class="drop-down">
@@ -416,6 +465,18 @@ onMounted(() => {
           v-if="isLogin"
           style="display: flex"
         >
+          <!-- 個人中心 -->
+          <div
+            class="icon drop-down-menu"
+            @click="isOpenDrawerPersonal = !isOpenDrawerPersonal"
+          >
+            <div class="drop-down-title">
+              <img
+                src="@/assets/images/icons/account.svg"
+                alt="bell"
+              >
+            </div>
+          </div>
           <!-- 通知 -->
           <div
             class="icon drop-down-menu"
@@ -479,6 +540,11 @@ onMounted(() => {
     v-if="isLogin"
     v-model="isOpenDrawerNotification"
     @update="toggleOpenDrawerNotification"
+  />
+  <DrawerPersonal
+    v-model="isOpenDrawerPersonal"
+    :authLevel="authLevel"
+    @update="toggleOpenDrawerPersonal"
   />
 </template>
 

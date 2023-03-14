@@ -2,7 +2,7 @@
   <ClientOnly>
     <el-drawer
       v-model="isOpen"
-      size="100%"
+      size="1"
       :with-header="false"
       direction="rtl"
     >
@@ -30,7 +30,7 @@
           >
           {{ $t('消息中心') }}
         </div>
-        <div class="icon menu">
+        <div class="menu">
           <div
             v-for="item in NOREADMSG?.userMessageList"
             :key="item.id"
@@ -169,26 +169,27 @@ const goPath = (link: string) => {
 }
 
 .el-drawer {
-  width: 100%;
-  max-width: 375px;
+  width: 347px;
   left: auto;
   background-color: $color_gray_80;
+  border-radius: 16px 0 0 0;
 }
 
 .el-drawer__body {
   padding: 0;
 }
+
 // pad
 @include pad {
   .el-drawer {
-    max-width: 375px;
+    width: 347px;
   }
 }
 
 // mobile
 @include mobile {
   .el-drawer {
-    max-width: 100%;
+    width: 305px;
   }
 }
 </style>
