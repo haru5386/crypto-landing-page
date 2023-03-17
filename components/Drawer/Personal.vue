@@ -182,14 +182,18 @@ const props = defineProps({
   }
 })
 const assetsList = reactive([
-  { title: t('設置'), link: '/personal/userManagement/settings/settings' },
-  { title: t('登入歷史'), link: '/personal/userManagement/login-history' },
-  { title: t('設定歷史'), link: '/personal/userManagement/setting-history' }
+  { title: t('設置'), link: '/personal/userManagement' },
+  // /personal/userManagement/settings/settings
+  { title: t('登入歷史'), link: '/personal/userManagement' },
+  // /personal/userManagement/login-history
+  { title: t('設定歷史'), link: '/personal/userManagement' }
+  // /personal/userManagement/setting-history
 ])
 const securityList = reactive([
   {
     key: 'kyc',
-    link: '/personal/idAuth',
+    link: '/personal/userManagement',
+    // /personal/idAuth
     text: t('Kyc驗證'),
     activeId: t('Kyc驗證'),
     icon: Kyc
