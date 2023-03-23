@@ -1,6 +1,6 @@
 // 瀏覽器端呼叫api
 import { useFetchData } from '~~/composables/fetch'
-// import { HeaderInfo } from '@/types/interface/base.interface'
+import { NoticeListParams } from '@/types/interface/base.interface'
 
 // 伺服器端呼叫api
 import { useAsyncFetchData } from '~~/composables/asyncFetch'
@@ -19,6 +19,9 @@ export const getNoReadMsgApi = () => {
 
 export const getIndexDataApi = () => {
   return useFetchData.post('/fe-ex-api/common/index')
+}
+export const getNoticeInfoListAPI = (params: NoticeListParams) => {
+  return useFetchData.post('/fe-ex-api/notice/notice_info_list', params)
 }
 
 // 取得 Header & Footer 設定

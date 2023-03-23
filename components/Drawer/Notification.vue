@@ -21,34 +21,37 @@
             </el-icon>
           </div>
         </div>
-        <div class="title">
-          <img
-            width="18px"
-            height="21px"
-            src="@/assets/images/icons/bell.svg"
-            alt="notice"
-          >
-          {{ $t('消息中心') }}
-        </div>
         <div class="menu">
           <div
-            v-for="item in NOREADMSG?.userMessageList"
-            :key="item.id"
             class="menu-item"
-            @click="goPath(`/${localeSetting}/mesage`)"
+            @click="goPath(`/${localeSetting}/message`)"
           >
-            <div class="new">
-              <div class="dot" />
+            <div class="menu-item-right">
+              <img
+                src="@/assets/images/icons/message.svg"
+                alt=""
+              >
+              {{ $t("消息中心") }}
             </div>
-            <div class="message">
-              {{ item.messageContent }}
+            <div class="menu-item-left">
+              <span
+                v-if="NOREADMSG?.noReadMsgCount"
+                class="count"
+              >{{ NOREADMSG?.noReadMsgCount }}</span>
             </div>
           </div>
           <div
-            class="more"
-            @click="goPath(`/${localeSetting}/mesage`)"
+            class="menu-item"
+            @click="goPath(`/${localeSetting}/noticeInfo`)"
           >
-            {{ $t('查看更多') }}
+            <div class="menu-item-right">
+              <img
+                src="@/assets/images/icons/noticeInfo.svg"
+                alt=""
+              >
+              {{ $t("公告") }}
+            </div>
+            <div class="menu-item-left" />
           </div>
         </div>
       </div>
@@ -97,6 +100,7 @@ const goPath = (link: string) => {
   .menu-head {
     width: 100%;
     position: relative;
+    height: 40px;
     .icon-close {
       position: absolute;
       top: 25px;
@@ -117,52 +121,32 @@ const goPath = (link: string) => {
     }
   }
   .menu {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    margin-top: 40px;
+    height: 100%;
     .menu-item {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      @include font("Body2-Med", $color_gray_White);
+      padding: 20px 24px;
       display: flex;
       align-items: center;
       cursor: pointer;
+      justify-content: space-between;
       &:hover {
         background-color: $color_gray_90;
       }
-
-      .message {
-        flex: 1;
-        color: #fff;
-        padding-right: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        &:hover {
-          color: $color_identity_Primary;
-        }
-      }
-      .new {
-        width: 50px;
-        height: 100%;
+      .menu-item-right {
         display: flex;
-        justify-content: center;
         align-items: center;
-        .dot {
-          width: 8px;
-          height: 8px;
-          background-color: $color_state_Error;
-          border-radius: 50%;
+        img {
+          margin-right: 8px;
         }
       }
-    }
-    .more {
-      border-top: 1px solid $color_gray_60;
-      padding: 16px;
-      color: #fff;
-      padding-top: 20px;
-      &:hover {
-        color: $color_identity_Primary;
+      .count {
+        @include font("Cap1-Bold", $color_identity_Primary);
+        padding: 0 8px;
+        margin-left: 10px;
+        background: $color_identity_Light;
+        border-radius: 4px;
       }
     }
   }

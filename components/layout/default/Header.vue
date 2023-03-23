@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 import { computed, ref, Ref, ComputedRef } from 'vue'
+import { ElTabs, ElTabPane } from 'element-plus'
 import { useUserStore } from '@/stores/user.js'
+import { useBaseStore } from '@/stores/base.js'
+
 // import i18n from '@/utils/i18n'
 import { availableLocales } from '@/utils/lang'
 import { HeaderData, LinkList } from '@/types/interface/base.interface'
 import { getHeadAndFooterApi } from '@/api/base'
-
 import { getURLs } from '@/utils/urls'
-
-// const route = useRoute()
+const { $dayjs } = useNuxtApp()
 const localeSetting = useState<string>('locale.setting')
 
 // stores
 const UserStore = useUserStore()
+const BaseStore = useBaseStore()
 const { ISLOGIN, USERDATA, NOREADMSG, ISLOADING_USERDATA } =
   storeToRefs(UserStore)
+const { NOTICEINFOLIST } = storeToRefs(BaseStore)
 
 // data
 const isLogin = computed(() => {
@@ -100,6 +103,16 @@ const orderList = computed(() => {
     })
   }
   return arr
+})
+
+// message, noticeInfo 切換
+const activeName = ref('message')
+
+// 切換時間filters
+const dayFromNow = computed(() => {
+  return (value: Number | String) => {
+    return $dayjs(value).fromNow()
+  }
 })
 
 // tab 導頁
@@ -378,7 +391,6 @@ onMounted(() => {
           <!-- 通知 -->
           <div
             class="icon drop-down-menu"
-            @click="goPath(`/${localeSetting}/mesage`)"
           >
             <div class="drop-down-title">
               <img
@@ -399,21 +411,105 @@ onMounted(() => {
               />
             </div>
             <div class="drop-down notice">
-              <div
-                v-for="item in NOREADMSG?.userMessageList"
-                :key="item.id"
-                class="drop-down-item"
+              <div class="notice-title">
+                {{ t('通知') }}
+              </div>
+              <el-tabs
+                v-model="activeName"
+                class="message-tabs"
               >
-                <div class="new">
-                  <div class="dot" />
-                </div>
-                <div class="message">
-                  {{ item.messageContent }}
-                </div>
-              </div>
-              <div class="more">
-                {{ $t('查看更多') }}
-              </div>
+                <el-tab-pane
+                  :label="t('消息')"
+                  name="message"
+                >
+                  <template #label>
+                    {{ t('消息') }}
+                    <span
+                      v-if="NOREADMSG?.noReadMsgCount"
+                      class="count"
+                    >{{ NOREADMSG?.noReadMsgCount }}</span>
+                  </template>
+                  <template v-if="NOREADMSG?.userMessageList && NOREADMSG?.userMessageList.length">
+                    <div
+                      v-for="(item, index) in NOREADMSG?.userMessageList"
+                      :key="index"
+                      class="drop-down-item-msg"
+                      @click="goPath(`/${localeSetting}/message`)"
+                    >
+                      <div class="message">
+                        <img
+                          src="@/assets/images/icons/msg_read.svg"
+                          alt=""
+                          width="16px"
+                        >
+                        <p>{{ item.messageContent }}</p>
+                      </div>
+                      <div class="time">
+                        {{ dayFromNow(item.ctime) }}
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div class="no-message">
+                      <img
+                        src="@/assets/images/icons/no-message.svg"
+                        alt=""
+                        width="120px"
+                      >
+                      <p>{{ $t("沒有消息") }}</p>
+                    </div>
+                  </template>
+                  <div class="line" />
+                  <button
+                    class="view-all-btn"
+                    @click="goPath(`/${localeSetting}/message`)"
+                  >
+                    {{ t("查看全部") }}
+                  </button>
+                </el-tab-pane>
+                <el-tab-pane
+                  :label="t('公告')"
+                  name="noticeInfo"
+                >
+                  <template v-if="NOTICEINFOLIST?.length">
+                    <div
+                      v-for="(item, index) in NOTICEINFOLIST"
+                      :key="index"
+                      class="drop-down-item-msg"
+                      @click="goPath(`${localeSetting}/noticeInfo/${item.id}`)"
+                    >
+                      <div class="message">
+                        <img
+                          src="@/assets/images/icons/notification.svg"
+                          alt=""
+                        >
+                        <p>{{ item.title }}</p>
+                      </div>
+                      <div class="time">
+                        {{ dayFromNow(item.timeLong) }}
+                      </div>
+                    </div>
+                  </template>
+                  <template v-else>
+                    <div class="no-message">
+                      <img
+                        src="@/assets/images/icons/no-message.svg"
+                        alt=""
+                        width="120px"
+                      >
+                      <p>{{ t("沒有公告") }}</p>
+                    </div>
+                  </template>
+                  <div class="line" />
+                  <Button
+                    class="view-all-btn"
+                    type="solid"
+                    @click="goPath(`/${localeSetting}/noticeInfo`)"
+                  >
+                    {{ t("查看全部") }}
+                  </Button>
+                </el-tab-pane>
+              </el-tabs>
             </div>
           </div>
         </div>
@@ -543,7 +639,7 @@ onMounted(() => {
   />
   <DrawerPersonal
     v-model="isOpenDrawerPersonal"
-    :authLevel="authLevel"
+    :auth-level="authLevel"
     @update="toggleOpenDrawerPersonal"
   />
 </template>

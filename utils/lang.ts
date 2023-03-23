@@ -74,6 +74,37 @@ export async function getAvailableLocales () {
   return availableLocales
 }
 
+// dayjs的多國語系
+function dayjsLocal (local : String) {
+  const { $dayjs } = useNuxtApp()
+  let dayjsLang = ''
+  switch (local) {
+    case 'en_US':
+      dayjsLang = 'en'
+      break
+    case 'zh_CN':
+      dayjsLang = 'zh-cn'
+      break
+    case 'el_GR':
+      dayjsLang = 'zh-tw'
+      break
+    case 'vi_VN':
+      dayjsLang = 'vi'
+      break
+    case 'ja_JP':
+      dayjsLang = 'ja'
+      break
+    case 'ko_KR':
+      dayjsLang = 'ko'
+      break
+    default:
+      dayjsLang = 'en'
+  }
+  if (!process.server) {
+    $dayjs.locale(dayjsLang)
+  }
+}
+
 export function LanguageManager () {
   // composable
   const { locale } = useI18n()
@@ -111,6 +142,7 @@ export function LanguageManager () {
         path: '/'
       })
     locale.value = localeSetting
+    dayjsLocal(localeSetting.value)
   })
 
   // init locale
@@ -119,6 +151,7 @@ export function LanguageManager () {
     // console.log('useRouter', useRouter().currentRoute.value.params.lang)
   }
   locale.value = `${useRouter().currentRoute.value.params.lang}`
+  dayjsLocal(localeSetting.value)
 
   // lifecycle
   onBeforeMount(() => init())

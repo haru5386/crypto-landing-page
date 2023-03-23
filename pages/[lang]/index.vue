@@ -12,18 +12,21 @@
   </div>
 </template>
 <script setup lang="ts">
-// import { useBaseStore } from '../../stores/base.js'
 import { useCookies } from '@vueuse/integrations/useCookies'
 import { useUserStore } from '../../stores/user.js'
+import { useBaseStore } from '../../stores/base.js'
+
 import { availableLocales } from '../../utils/lang'
 // fetch 資料
-// const BaseStore = useBaseStore()
+const BaseStore = useBaseStore()
 const UserStore = useUserStore()
 const exp = new Date()
 const runtimeConfig = useRuntimeConfig()
 // 引入 store action
 // const { BASE_DATA_INIT } = BaseStore
 const { USER_DATA_INIT } = UserStore
+const { NOTICE_INFOLIST } = BaseStore
+
 interface LanList {
   name: string
   iso: string
@@ -62,6 +65,7 @@ localeUserSetting.set('lan', routerLang, {
 onMounted(() => {
   // 取得使用者資訊
   USER_DATA_INIT()
+  NOTICE_INFOLIST({ page: 1, pageSize: 4 })
   // BASE_DATA_INIT()
 })
 

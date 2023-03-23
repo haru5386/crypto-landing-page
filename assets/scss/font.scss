@@ -6,6 +6,8 @@
         @extend .font-heading-2;
     } @else if $name == Heading3 {
         @extend .font-heading-3;
+    } @else if $name == 'Sub Heading4' {
+        @extend .font-sub-heading-4;
     } @else if $name == Body1-Bold {
         @extend .font-body1-bold;
     } @else if $name == Body1-Med {
@@ -101,6 +103,12 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
+}
+
+.font-sub-heading-4 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
 }
 
 .font-cap1-bold {

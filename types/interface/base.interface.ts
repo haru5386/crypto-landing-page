@@ -15,6 +15,7 @@ interface Notice {
   stime: number;
   lang: string;
   httpUrl: string | null;
+  timeLong: number;
 }
 
 interface HeaderInfo {
@@ -24,16 +25,16 @@ interface HeaderInfo {
 }
 
 interface HeaderData {
-  [key:string]:{
+  [key: string]: {
     activeId: string;
     text: string;
     link: string;
     target: string;
     isOpen: boolean;
-    icon?: string
+    icon?: string;
     showAsset?: boolean;
     showOrder?: boolean;
-  }
+  };
 }
 
 interface LinkList {
@@ -41,4 +42,10 @@ interface LinkList {
   title: string;
 }
 
-export { Banner, Notice, HeaderInfo, HeaderData, LinkList }
+interface NoticeListParams {
+  page: Number;
+  pageSize: Number;
+  keyword?: String;
+}
+
+export { Banner, Notice, HeaderInfo, HeaderData, LinkList, NoticeListParams }

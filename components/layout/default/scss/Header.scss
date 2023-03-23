@@ -162,46 +162,127 @@
   }
 
   .drop-down {
+    // 消息中心
     &.notice {
       width: 320px;
-    
+      .notice-title {
+        @include font("Sub Heading4", $color_gray_White);
+        padding: 20px 24px;
+      }
+      ::v-deep(.el-tabs) {
+        .el-tabs__header {
+          margin-bottom: 4px;
+        }
+        .el-tabs__nav-wrap {
+          height: 30px;
+          .el-tabs__nav-scroll{
+            height: 100%;
+          }
+          .el-tabs__nav {
+            width: 100%;
+            height: 95%;
+          }
+          &::after {
+            height: 1px;
+            background-color: $color_gray_50;
+          }
+        }
+        .el-tabs__active-bar {
+        background-color: $color_identity_Primary;
+        width: 64px !important;
+        left: 38px;
+        height: 3px;
+        border-radius: 2px
+        }
+        .el-tabs__item {
+          @include font("Body2-Med", $color_gray_50);
+          width: 50%;
+          height: 100%;
+          text-align: center;
+          .count {
+            @include font("Cap1-Bold", $color_gray_White);
+            padding: 0 8px;
+            margin-left: 10px;
+            background: $color_gray_60;
+            border-radius: 4px;
+          }
+          &.is-active {
+            color: $color_identity_Primary;
+            .count {
+              @include font("Cap1-Bold", $color_identity_Primary);
+              background: $color_identity_Light;
+            }
+          }
+        }
+  }
+    }
+    .view-all-btn {
+      width: 20%;
+      height: 30px;
+      margin: 20px 24px;
+      float: right;
+      padding: 10px 0;
+      white-space: nowrap;
+      background: $color_identity_Primary;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      justify-content: center;
+      @include font("Body2-Med", #000);
+      cursor: pointer;
+      &:hover {
+          background: $color_identity_Secondary;
+      }
+    }
+    .drop-down-item-msg {
+      width: 100%;
+      padding: 8px 24px;
+      &:hover {
+        background-color: $color_gray_90;
+      }
 
-      .drop-down-item {
-        padding-top: 16px;
-        padding-bottom: 16px;
+      .message {
         display: flex;
-    
-        .message {
-          flex: 1;
+        img {
+          margin-right: 4px;
+          width: 16px;
+        }
+        p {
+          @include font("Cap1-Reg", $color_gray_White);
           color: #fff;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
-          -webkit-line-clamp: 2;
+          -webkit-line-clamp: 1;
           -webkit-box-orient: vertical;
-          &:hover {
-            color: $color_identity_Primary;
-          }
         }
-        .new {
-          width: 20px;
-          height: 100%;
-          .dot {
-            width: 8px;
-            height: 8px;
-            background-color: $color_state_Error;
-            border-radius: 50%;
-          }
-        }
-       
       }
-      .more {
-        border-top: 1px solid $color_gray_60;
-        padding: 16px;
-        color: #fff;
-        &:hover {
-          color: $color_identity_Primary;
-        }
+      .content {
+        @include font("Cap1-Reg", $color_gray_50);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        margin: 4px 0;
+      }
+      .time {
+        @include font("Cap1-Reg", $color_gray_50);
+      }
+    }
+    .no-message {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      img {
+        width: 120px;
+      }
+      p {
+        @include font("Body1-Med", $color_gray_60);
+        margin-top: 12px;
       }
     }
 

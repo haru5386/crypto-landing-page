@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, reactive, ref, UnwrapNestedRefs } from 'vue'
-import { getBaseDataApi, getIndexDataApi } from '@/api/base'
-import { Banner, Notice } from '@/types/interface/base.interface'
+import { getBaseDataApi, getIndexDataApi, getNoticeInfoListAPI } from '@/api/base'
+import { Banner, Notice, NoticeListParams } from '@/types/interface/base.interface'
 
 export const useBaseStore = defineStore('baseStore', () => {
   // state
@@ -36,6 +36,9 @@ export const useBaseStore = defineStore('baseStore', () => {
   const INDEX_DATA = async () => {
     const data = await getIndexDataApi()
     banner.push(...data.data.cmsAdvertList)
+  }
+  const NOTICE_INFOLIST = async (params:NoticeListParams) => {
+    const data = await getNoticeInfoListAPI(params)
     noticeInfoList.push(...data.data.noticeInfoList)
   }
 
@@ -45,6 +48,7 @@ export const useBaseStore = defineStore('baseStore', () => {
     BANNER,
     NOTICEINFOLIST,
     BASE_DATA_INIT,
-    INDEX_DATA
+    INDEX_DATA,
+    NOTICE_INFOLIST
   }
 })
