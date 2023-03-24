@@ -376,7 +376,7 @@ onMounted(() => {
                 class="drop-down-item"
                 @click="UserStore.LOGOUT"
               >
-                <div class="item-text">
+                <div class="item-text logout">
                   <img
                     class="item-icon"
                     alt="logout"

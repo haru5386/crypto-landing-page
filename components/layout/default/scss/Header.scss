@@ -364,6 +364,9 @@
         display: flex;
         align-items: center;
         @include font('Body2-Med', #fff);
+        &.logout{
+          @include font('Body2-Med', $color_gray_60);
+        }
 
         .item-icon {
           margin-right: 8px;
